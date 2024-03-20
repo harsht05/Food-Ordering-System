@@ -1,9 +1,36 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  private baseUrl='http://localhost:8080/user/';
+
+  register(user:User):Observable<User>
+  {
+    // return this.customers.push(customer);
+    return this.http.post<User>(`${this.baseUrl}register`,user);
+  }
+
+  sendOtp(email:string): Observable<number> {
+
+    return this.http.post<number>(`${this.baseUrl}sendOtp`, email);
+  }
+
+  verifyOtp(otp:number): Observable<boolean> {
+
+    return this.http.post<boolean>(`${this.baseUrl}verifyOtp`, otp);
+  }
+
+  login(user:User):Observable<User>
+  {
+    // return this.customers.push(customer);
+    return this.http.post<User>(`${this.baseUrl}/login`,user);
+  }
 }
