@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
+import { Restaurant } from '../models/restaurant';
+import { Customer } from '../models/customer';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +34,20 @@ export class UserService {
   {
     // return this.customers.push(customer);
     return this.http.post<User>(`${this.baseUrl}/login`,user);
+  }
+
+  getRestaurantById(id:number) : Observable<Restaurant> {
+
+    return this.http.get<Restaurant>(`${this.baseUrl}getUserById/${id}`);
+  }
+
+  getAllRestaurants() : Observable<Restaurant[]> {
+
+    return this.http.get<Restaurant[]>(`${this.baseUrl}getAllRestaurants`);
+  }
+
+  getCustomerById(id:number) : Observable<Customer> {
+
+    return this.http.get<Customer>(`${this.baseUrl}getUserById/${id}`);
   }
 }

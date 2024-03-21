@@ -1,1 +1,31 @@
-<p>order-summary works!</p>
+<app-header></app-header>
+<div class="container-fluid bg-secondary p-3" id="custHeight">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="alert alert-success text-center" role="alert">
+                Congratulations! Your order has been placed.</div>
+
+            <p class="mt-3 fw-bolder fs-2 text-center heading">Order Summary</p>
+
+
+                <div class="card mt-4" *ngFor="let order of orders">
+                    <div class="card-body">
+                        
+                        <!-- Display order details here -->
+                        <p class="fw-bold">Order ID: {{order.orderId}}</p>
+                        <p>Food Name : {{order.food.foodName}}</p>
+                        <p>Quantity : {{order.quantity}}</p>
+                        <p>Restaurant Name : {{restaurant.userName}}</p>
+                        <p>Total Amount: {{order.totalPrice}}</p>
+                        <p>Ordered Date: {{order.date}}</p>
+                        <p>Delivery Address: {{order.customer.userCity}}, {{order.customer.userState}}, {{order.customer.userPin}}, </p>
+                    </div>
+                </div>
+
+
+            <div class="text-center mt-3">
+                <a routerLink="/customer/dashboard" class="btn btn-danger m-2">Back To Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
