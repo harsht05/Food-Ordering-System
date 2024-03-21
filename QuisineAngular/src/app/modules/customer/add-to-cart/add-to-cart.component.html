@@ -1,1 +1,93 @@
-<p>add-to-cart works!</p>
+<app-header></app-header>
+
+<div class="container-fluid p-1 bg-secondary">
+  <p class="fw-bolder fs-2 text-center heading">Fresh in {{ restName }}</p>
+  <div class="container p-2">
+    <div class="row card_container">
+      <div class="col-md-8">
+        <div
+          class="d-flex justify-content-center gap-4 flex-row flex-wrap mb-3 cards-container"
+        >
+          <div
+            class="card m-2 rounded"
+            style="width: 18rem"
+            *ngFor="let foodRest of restFood"
+          >
+            <img
+              src="../../../../assets/images/{{ foodRest.food.foodImage }}"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <p class="card-title fs-4 fw-semibold">
+                {{ foodRest.food.foodName }}
+              </p>
+              <p class="card-text fs-5">
+                Starting at just <b>&#8377; {{ foodRest.rate }}</b>
+              </p>
+              <button
+                class="btn btn-danger add-to-cart p-2 mb-2"
+                (click)="toggleQuantityButtons(foodRest)"
+              >
+                Add to Cart
+              </button>
+              <div class="quantity-bar">
+                <button
+                  type="button"
+                  class="btn btn-success decrease-quantity"
+                  *ngIf="foodRest.addedToCart"
+                  (click)="decreaseQuantity(foodRest)"
+                >
+                  -
+                </button>
+                <span class="p-2 span-con" *ngIf="foodRest.addedToCart">{{
+                  foodRest.quantity
+                }}</span>
+                <button
+                  type="button"
+                  class="btn btn-success increase-quantity"
+                  *ngIf="foodRest.addedToCart"
+                  (click)="increaseQuantity(foodRest)"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="summary bg-white p-3 rounded">
+          <p class="fs-4 fw-semibold">Summary</p>
+          <p class="fs-6 fw-normal">
+            Meals :
+            <span *ngFor="let entry of map | keyvalue; let last = last">
+              {{ entry.key.food.foodName }} * {{ entry.value
+              }}{{ !last ? ", " : "" }}
+            </span>
+          </p>
+          <p class="fs-6 fw-normal">
+            Meal Charges : &#8377; {{ totalMealCharges }}
+          </p>
+          <hr />
+          <p class="fs-6 fw-normal">
+            Delivery Charges : &#8377; {{ deliveryCharges }}
+          </p>
+          <p class="fs-6 fw-normal">
+            Convenience Fee : &#8377; {{ convenienceFee }}
+          </p>
+          <hr />
+          <p class="fs-6 fw-normal">Total Price : &#8377; {{ totalPrice }}</p>
+          <button
+            type="submit"
+            class="btn btn-success mt-2"
+            [disabled]="!proceedButtonState"
+            (click)="proceedToPayment()"
+          >
+            Proceed
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

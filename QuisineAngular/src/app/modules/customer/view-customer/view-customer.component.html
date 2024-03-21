@@ -1,0 +1,60 @@
+<div class="container position-absolute top-50 start-50 translate-middle p-2 mb-5 text-dark shadow-lg rounded">
+
+    <p class="fw-bolder fs-2 text-center m-3">Your Profile</p>
+
+    <div class="container">
+    
+        <form class="row g-3" [formGroup]="user">
+         
+            <div class="col-md-6">
+            <label for="fname" class="form-label">First name</label>
+            <input type="text" class="form-control def" formControlName="userName" readonly>
+          </div>
+         
+          <div class="col-md-6">
+            <label for="uemail" class="form-label">Email</label>
+            <div class="input-group has-validation">
+              <input type="email" class="form-control def" formControlName="userEmail" style="border-radius: 20px;" readonly>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="cnumber" class="form-label">Contact Number</label>
+            <input type="text" class="form-control def" formControlName="userContact" readonly>
+          </div>
+         
+          <div class="col-md-6">
+            <label for="upass" class="form-label">Password</label>
+            <input type="password" class="form-control def" formControlName="userPass" readonly>
+          </div>
+
+          <div class="col-md-6">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control def" formControlName="userCity" readonly>
+            
+          </div>
+
+
+          <div class="col-md-3">
+            <label for="state" class="form-label">State</label>
+            <select class="form-select def" style="border-radius: 10px;" readonly>
+                <option selected>{{customer.userState}}</option>
+            </select>
+
+          </div>
+         
+          <div class="col-md-3">
+            <label for="pincode" class="form-label">Pin Code</label>
+            <input type="text" class="form-control def" formControlName="userPin" readonly>
+          </div>
+         
+          
+    <div class="text-center">
+    
+        <a routerLink="/customer/dashboard" class="btn btn-danger m-2">Back To Dashboard</a>
+    </div>
+        </form>
+    
+    </div>
+    
+</div>

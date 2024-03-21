@@ -1,1 +1,41 @@
-<p>header works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="images/OIP.jfif" alt="Your Logo" width="120" height="auto">
+      </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active fs-6 fw-normal" aria-current="page" routerLink="/customer/dashboard">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-6 fw-normal" routerLink="/customer/viewOrders">Orders</a>
+                </li>
+                
+            </ul>
+            <form class="d-flex mr-3"> 
+                <input class="form-control me-2" type="search" id="search-bar" name="query" placeholder="Search" aria-label="Search" style="height:40px;" required>
+                <select class="form-select def" id="state" name="filter_type" style="height:40px; border-radius: 20px;" required>
+                    <option selected disabled value="">Choose Filter</option>
+                    <option value="rest_name">Filter by Restaurent Name</option>
+                    <option value="rest_city">Filter by City</option>
+                    <option value="rest_pin">Filter by Pin Code</option>
+                  </select>
+                
+                <input type="submit" class="btn btn-outline-light submit-btn" value="Search" style="height:40px;">
+            </form>
+
+            <button class="text-white active fs-6 fw-normal" mat-button [matMenuTriggerFor]="afterMenu"> Profile</button>
+            <mat-menu #afterMenu="matMenu" xPosition="after">
+                <button routerLink="/customer/updateCustomer" mat-menu-item>Update Profile</button>
+                <button routerLink="/customer/viewCustomer" mat-menu-item>View Profile</button>
+                <button routerLink="/customer/logout" mat-menu-item>Logout</button>
+            </mat-menu>
+        </div>
+    </div>
+  </nav>

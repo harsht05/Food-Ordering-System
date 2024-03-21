@@ -1,1 +1,20 @@
-<p>customer-dashboard works!</p>
+<app-header></app-header>
+      <div class="container-fluid p-3 bg-secondary">
+  
+          <p class="fw-bolder fs-2 text-center heading">Hotels Near You</p>
+  
+          <div class="d-flex justify-content-center gap-4 flex-row flex-wrap mb-3 cards-container">
+  
+              <div class="card m-2 rounded" style="width: 18rem;"  *ngFor="let rest of restaurants">
+                  <img src="../../../../assets/images/hotels/restaurant-1.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-title fs-4 fw-semibold">{{rest.userName}}</p>
+                    <p class="card-text fs-5">Starting at just <b>&#8377; 99</b> </p>
+                    <a routerLink="/customer/addToCart/{{rest.userId}}" class="btn btn-danger">Order Now</a>
+                  </div>
+                </div>
+
+          </div>
+      </div>
+  
+      
