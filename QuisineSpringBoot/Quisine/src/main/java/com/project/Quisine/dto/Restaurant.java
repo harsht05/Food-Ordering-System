@@ -3,9 +3,9 @@ package com.project.Quisine.dto;
 import lombok.Data;
 
 @Data
-public class Customer {
+public class Restaurant {
 
-    private int userId;
+	private int userId;
 	private String userName;
 	private String userEmail;
 	private String userPass;

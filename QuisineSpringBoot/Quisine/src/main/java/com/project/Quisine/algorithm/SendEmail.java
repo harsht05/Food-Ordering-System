@@ -33,7 +33,7 @@ public boolean sendOtpEmail(String to, int otp) {
 
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				// TODO Auto-generated method stub
+				
 				return new PasswordAuthentication(username, password);
 			}
 		});
@@ -87,7 +87,7 @@ public boolean sendOtpEmail(String to, int otp) {
 
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				// TODO Auto-generated method stub
+				
 				return new PasswordAuthentication(username, password);
 			}
 		});
