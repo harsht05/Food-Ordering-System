@@ -1,27 +1,49 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './modules/user/login/login.component';
-import { SendOtpComponent } from './modules/user/send-otp/send-otp.component';
-import { VerifyOtpComponent } from './modules/user/verify-otp/verify-otp.component';
+import { ForgotPasswordComponent } from './modules/user/forgot-password/forgot-password.component';
+import { SendVerifyOtpComponent } from './modules/user/send-verify-otp/send-verify-otp.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomepageComponent } from './modules/shared/homepage/homepage.component';
+import { AllRestaurantsComponent } from './modules/shared/all-restaurants/all-restaurants.component';
 import { RegisterComponent } from './modules/user/register/register.component';
+import { RestaurantFoodsComponent } from './modules/shared/restaurant-foods/restaurant-foods.component';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
+
 
 const routes: Routes = [
+
   {
-    path:"login",
+    path: "",
+    component: HomepageComponent
+  },
+  {
+    path: "login",
     component: LoginComponent
   },
   {
-    path:"sendOtp",
-    component: SendOtpComponent
-  },
-  {
-    path:"verifyOtp",
-    component: VerifyOtpComponent
-  },
-  {
-    path:"register",
+    path: "register",
     component: RegisterComponent
+  },
+  {
+    path: "forgotPassword",
+    component: ForgotPasswordComponent
+  },
+  {
+    path: "sendVerifyOtp",
+    component: SendVerifyOtpComponent
+  },
+  {
+    path: "restaurants",
+    component: AllRestaurantsComponent
+  },
+  {
+    path: "restaurantFoods/:restId",
+    component: RestaurantFoodsComponent
+  },
+  {
+    path: "accessDenied",
+    component: AccessDeniedComponent
   },
   {
     path: 'customer',

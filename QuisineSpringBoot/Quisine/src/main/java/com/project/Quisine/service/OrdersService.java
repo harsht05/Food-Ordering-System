@@ -7,11 +7,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.Quisine.dto.Customer;
 import com.project.Quisine.dto.OrdersDTO;
 import com.project.Quisine.entity.Orders;
 import com.project.Quisine.repository.OrdersRepository;
-import com.project.Quisine.repository.UserEntityRespository;
+import com.project.Quisine.repository.UserEntityRepository;
 
 @Service
 public class OrdersService {
@@ -19,7 +18,7 @@ public class OrdersService {
     @Autowired
 	private OrdersRepository ordersRepository;
 	@Autowired
-	private UserEntityRespository userEntityRespository;
+	private UserEntityRepository userEntityRespository;
 	
 	@Autowired
 	private ModelMapper modelMapper;

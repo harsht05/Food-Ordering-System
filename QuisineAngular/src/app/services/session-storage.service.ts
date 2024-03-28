@@ -7,6 +7,7 @@ import { RestaurantFood } from '../models/restaurant-food';
 export class SessionStorageService {
 
   constructor() { }
+
   setItem(key: string, value: any): void {
     sessionStorage.setItem(key, JSON.stringify(value));
   }

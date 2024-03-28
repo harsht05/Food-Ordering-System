@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { Restaurant } from '../models/restaurant';
@@ -14,24 +14,32 @@ export class UserService {
 
   private baseUrl='http://localhost:8080/user/';
 
-  register(user:User):Observable<User>
-  {
-    return this.http.post<User>(`${this.baseUrl}register`,user);
-  }
-
-  sendOtp(email:string): Observable<number> {
-
+  sendOtp(email: string): Observable<number> {
     return this.http.post<number>(`${this.baseUrl}sendOtp`, email);
   }
 
-  verifyOtp(otp:number): Observable<boolean> {
-
+  verifyOtp(otp: number): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}verifyOtp`, otp);
   }
 
-  login(user:User):Observable<User>
-  {
-    return this.http.post<User>(`${this.baseUrl}/login`,user);
+  login(user: User): Observable<User> {
+    
+    return this.http.post<User>(`${this.baseUrl}userLogin`, user);
+  }
+
+  addUser(user: User): Observable<User> {
+
+    return this.http.post<User>(`${this.baseUrl}addUser`, user);
+  }
+
+  getUserByEmail(email:string): Observable<User> {
+
+    return this.http.post<User>(`${this.baseUrl}findByEmail`, email);
+  }
+
+  changePassword(user: User): Observable<User> {
+    
+    return this.http.post<User>(`${this.baseUrl}forgotPassword`, user);
   }
 
   getRestaurantById(id:number) : Observable<Restaurant> {
@@ -49,3 +57,7 @@ export class UserService {
     return this.http.get<Customer>(`${this.baseUrl}getUserById/${id}`);
   }
 }
+
+
+ 
+

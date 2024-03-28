@@ -9,13 +9,14 @@ import { Router } from '@angular/router';
 })
 export class CustomerLogoutComponent {
 
-  constructor(sessionStorage: SessionStorageService, private route: Router) {
+  constructor(private sessionStorageService: SessionStorageService, private route: Router) {
 
   }
 
   ngOnInit() {
 
-    sessionStorage.clear();
-    this.route.navigate(['/accessDenied']);
+    this.sessionStorageService.clearStorage();
+    window.history.back();
+    
   }
 }

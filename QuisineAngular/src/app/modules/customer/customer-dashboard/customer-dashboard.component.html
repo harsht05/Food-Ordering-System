@@ -1,20 +1,30 @@
 <app-header></app-header>
-      <div class="container-fluid p-3 bg-secondary">
-  
-          <p class="fw-bolder fs-2 text-center heading">Hotels Near You</p>
-  
-          <div class="d-flex justify-content-center gap-4 flex-row flex-wrap mb-3 cards-container">
-  
-              <div class="card m-2 rounded" style="width: 18rem;"  *ngFor="let rest of restaurants">
-                  <img src="../../../../assets/images/hotels/restaurant-1.jpg" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <p class="card-title fs-4 fw-semibold">{{rest.userName}}</p>
-                    <p class="card-text fs-5">Starting at just <b>&#8377; 99</b> </p>
-                    <a routerLink="/customer/addToCart/{{rest.userId}}" class="btn btn-danger">Order Now</a>
-                  </div>
-                </div>
 
-          </div>
-      </div>
+      <div class="container-fluid p-3">
+  
+        <p class="fw-bolder fs-2 text-center mt-4 mb-3 heading">Hotels Near You</p>
+    
+        <div class="d-flex justify-content-center gap-5 flex-row flex-wrap mb-3 mt-3 cards-container">
+    
+            <div class="col-lg-3 col-md-2" *ngFor="let rest of restaurants">
+                <div class="card border-0 med-blog rounded" style="border-radius: 15px !important;">
+                    <div class="card-header p-0">
+                        
+                      <img class="card-img-bottom" style="border-top-left-radius: 15px !important;border-top-right-radius: 15px !important;" src="../../../../assets/images/hotels/restaurant-1.jpg" alt="Card image cap">
+                        
+                    </div>
+                    <div class="card-body border border-top-0">
+                        <h5 class="blog-title card-title m-0 ">{{rest.userName}}</h5>
+                        <p class="mt-2 ">Starting at just <b>&#8377; 99 </b></p>
+                        <a routerLink="/customer/addToCart/{{rest.userId}}" class="button-w3ls active mt-2">Order Now
+                            <span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- <app-footer></app-footer> -->
   
       

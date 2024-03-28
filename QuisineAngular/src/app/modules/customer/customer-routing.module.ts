@@ -1,25 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
-import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
-import { ViewCustomerComponent } from './view-customer/view-customer.component';
 import { PageNotFoundComponent } from '../../page-not-found/page-not-found.component';
-import { UpdateCustomerComponent } from './update-customer/update-customer.component';
 import { ViewOrdersComponent } from './view-orders/view-orders.component';
 import { CustomerLogoutComponent } from './customer-logout/customer-logout.component';
+import { DeleteOrderComponent } from './delete-order/delete-order.component';
 import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 
 const routes: Routes = [
-  {
-    path: "dashboard",
-    component: CustomerDashboardComponent
-  },
-  {
-    path: "addToCart/:restId",
-    component: AddToCartComponent
-  },
   {
     path: "payementGateway",
     component: PaymentGatewayComponent
@@ -27,14 +16,6 @@ const routes: Routes = [
   {
     path: "orderSummary",
     component: OrderSummaryComponent
-  },
-  {
-    path: "viewCustomer",
-    component: ViewCustomerComponent
-  },
-  {
-    path: "updateCustomer",
-    component: UpdateCustomerComponent
   },
   {
     path: "viewOrders",
@@ -46,7 +27,10 @@ const routes: Routes = [
   },
   {
     path: "feedback",
-    component: FeedbackComponent
+    component: FeedbackComponent},
+    {
+    path: "deleteOrder/:orderId",
+    component: DeleteOrderComponent
   },
   {
     path: '**',

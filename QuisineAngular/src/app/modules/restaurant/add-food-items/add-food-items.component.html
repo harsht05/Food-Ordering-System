@@ -1,0 +1,34 @@
+<body>
+    <div class="container form-container" id="grey">
+      <h2 class="text-center">Add Food Item</h2>
+      <form [formGroup]="foodForm" (ngSubmit)="submitForm()">
+        <div class="mb-3">
+          <label for="foodName" class="form-label">Food Name</label>
+          <input type="text" class="form-control" id="foodName" formControlName="foodName">
+          </div>
+          <div *ngIf="foodForm.get('foodName')?.errors?.['required'] && foodForm.get('foodName')?.touched" class="text-danger">
+            Food Name is required
+          </div>
+          <div class="mb-3">
+            <label for="foodPrice" class="form-label">Price</label>
+            <input type="number" class="form-control" id="foodPrice" formControlName="rate">
+            <div *ngIf="foodForm.get('foodPrice')?.errors?.['required'] && foodForm.get('foodPrice')?.touched" class="text-danger">
+              Food Price is required
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="foodImage" class="form-label">Food Image</label>
+            <input type="file" class="form-control" id="foodImage" formControlName="foodImage" accept="image/*">
+            <div *ngIf="foodForm.get('foodImage')?.errors?.['required'] && foodForm.get('foodImage')?.touched" class="text-danger">
+              Food Image is required
+            </div>
+          </div>
+  
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-danger" [disabled]="foodForm.invalid">Add Food Item</button>
+            <a [routerLink]="['/restaurant/dashboard', restaurantId]" class="btn btn-danger">Back To Home</a>
+          </div>
+      </form>
+    </div>
+  </body>
+  

@@ -1,5 +1,6 @@
+import { Customer } from "./customer";
 import { Food } from "./food";
-import { User } from "./user";
+import { Restaurant } from "./restaurant";
 
 export class Orders {
     
@@ -7,8 +8,10 @@ export class Orders {
         public quantity: number = 0,
         public totalPrice: number = 0,
         public date: Date = new Date(),
+        public deliveryAddress: string = '',
         public food: Food,
-        public customer: User,
-        public restaurant: User) {
+        public customer: Customer,
+        public restaurant: Restaurant,
+        public isCollapsed: boolean = true) {
     }
 }

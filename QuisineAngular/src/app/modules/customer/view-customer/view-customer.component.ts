@@ -3,6 +3,7 @@ import { SessionStorageService } from '../../../services/session-storage.service
 import { UserService } from '../../../services/user.service';
 import { Customer } from '../../../models/customer';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-customer',
@@ -11,7 +12,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class ViewCustomerComponent {
 
-  customerId: number = 6;
+  customerId: number = 0;
   customer: Customer = new Customer();
   
   user = new FormGroup({
@@ -24,13 +25,18 @@ export class ViewCustomerComponent {
     userPin: new FormControl(0),
   });
 
-  constructor(private sessionStorage: SessionStorageService, private userService: UserService) {}
+  constructor(private sessionStorage: SessionStorageService, private userService: UserService, private route: Router) {}
 
   ngOnInit() {
 
     const cid = this.sessionStorage.getItem("custId");
 
-    if(cid !== null) {
+    if(cid === null) {
+
+      this.route.navigate(['login']);
+    }
+
+    else {
 
       this.customerId = cid;
     }

@@ -7,6 +7,8 @@ import { RegisterComponent } from './register/register.component';
 import { SendOtpComponent } from './send-otp/send-otp.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SendVerifyOtpComponent } from './send-verify-otp/send-verify-otp.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -15,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     SendOtpComponent,
     VerifyOtpComponent,
+    SendVerifyOtpComponent,
+    ForgotPasswordComponent
   ],
     imports: [
     CommonModule,

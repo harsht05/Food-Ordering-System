@@ -12,20 +12,23 @@ import { CustomerModule } from './modules/customer/customer.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { SharedModule } from './shared/shared.module';
 import { HomepageComponent } from './homepage/homepage.component';
+import { RestaurantModule } from './modules/restaurant/restaurant.module';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    HomepageComponent
-
+    HomepageComponent,
+    AccessDeniedComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     UserModule,
     CustomerModule,
+    RestaurantModule,
     ReactiveFormsModule,
     HttpClientModule,
     AdminModule,
