@@ -9,12 +9,17 @@ import { UserModule } from './modules/user/user.module';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerModule } from './modules/customer/customer.module';
+import { AdminModule } from './modules/admin/admin.module';
+import { SharedModule } from './shared/shared.module';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomepageComponent
+
   ],
   imports: [
     BrowserModule,
@@ -22,7 +27,9 @@ import { CustomerModule } from './modules/customer/customer.module';
     UserModule,
     CustomerModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AdminModule,
+    SharedModule
   ],
   providers: [
     provideClientHydration(),

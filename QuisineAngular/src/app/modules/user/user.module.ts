@@ -14,12 +14,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     SendOtpComponent,
-    VerifyOtpComponent
+    VerifyOtpComponent,
   ],
     imports: [
     CommonModule,
     UserRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   exports:[
     LoginComponent,

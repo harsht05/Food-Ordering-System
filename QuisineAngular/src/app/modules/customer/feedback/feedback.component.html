@@ -1,0 +1,52 @@
+<div class="container mt-5">
+    <h1>Feedback Form</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form [formGroup]="feedbackForm" (ngSubmit)="submitForm()">
+          <div class="mb-3">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" formControlName="description" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="like">What do you like about the site?</label>
+            <select class="form-select" id="like" formControlName="like" required>
+              <option selected disabled>Select an option</option>
+              <option value="Excellent">Excellent</option>
+              <option value="Good">Good</option>
+              <option value="Average">Average</option>
+              <option value="Poor">Poor</option>
+              <option value="Very Bad">Very Bad</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Would you recommend our site to others?</label><br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" formControlName="recommend" id="recommendYes" value="1" required>
+              <label class="form-check-label" for="recommendYes">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" formControlName="recommend" id="recommendNo" value="0">
+              <label class="form-check-label" for="recommendNo">No</label>
+            </div>
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-danger">Submit</button>
+            <button type="button" class="btn btn-secondary" (click)="skipForm()">Skip</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <a class="navbar-brand" href="#"> <img src="assets/images/LOGO.png" alt="Your Logo" style="height: 80px; width: 200px;float: right;" class="rounded">
+        </a>
+      </div>
+    </div>
+  </div>
+  

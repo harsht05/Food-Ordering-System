@@ -16,7 +16,6 @@ export class UserService {
 
   register(user:User):Observable<User>
   {
-    // return this.customers.push(customer);
     return this.http.post<User>(`${this.baseUrl}register`,user);
   }
 
@@ -32,7 +31,6 @@ export class UserService {
 
   login(user:User):Observable<User>
   {
-    // return this.customers.push(customer);
     return this.http.post<User>(`${this.baseUrl}/login`,user);
   }
 

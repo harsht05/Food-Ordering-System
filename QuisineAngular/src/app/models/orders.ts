@@ -1,6 +1,5 @@
-import { Customer } from "./customer";
 import { Food } from "./food";
-import { Restaurant } from "./restaurant";
+import { User } from "./user";
 
 export class Orders {
     
@@ -9,7 +8,7 @@ export class Orders {
         public totalPrice: number = 0,
         public date: Date = new Date(),
         public food: Food,
-        public customer: Customer,
-        public restaurant: Restaurant) {
+        public customer: User,
+        public restaurant: User) {
     }
 }

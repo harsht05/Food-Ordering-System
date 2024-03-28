@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateCustomerComponent } from './update-customer/update-customer.component';
 import { ViewCustomerComponent } from './view-customer/view-customer.component';
 import { ViewOrdersComponent } from './view-orders/view-orders.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ViewOrdersComponent } from './view-orders/view-orders.component';
     CustomerLogoutComponent,
     UpdateCustomerComponent,
     ViewCustomerComponent,
-    ViewOrdersComponent
+    ViewOrdersComponent,
+    FeedbackComponent
   ],
   imports: [
     CommonModule,
