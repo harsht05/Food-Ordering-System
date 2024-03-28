@@ -11,6 +11,7 @@ public class OrdersDTO {
 	private int quantity;
 	private float totalPrice;
 	private Date date;
+	private String deliveryAddress;
 	
 	private Customer customer;
 	private Restaurant restaurant;

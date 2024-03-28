@@ -1,36 +1,28 @@
 <app-header></app-header>
 
-<div class="container-fluid p-1 bg-secondary">
-  <p class="fw-bolder fs-2 text-center heading">Fresh in {{ restName }}</p>
-  <div class="container p-2">
-    <div class="row card_container">
+<div class="container-fluid">
+  <p class="fw-bolder fs-2 text-center mt-4 heading">Fresh in {{ restName }}</p>
+    <div class="row card_container p-4">
       <div class="col-md-8">
         <div
-          class="d-flex justify-content-center gap-4 flex-row flex-wrap mb-3 cards-container"
+          class="d-flex justify-content-center gap-5 flex-row flex-wrap mb-3 cards-container"
         >
-          <div
-            class="card m-2 rounded"
-            style="width: 18rem"
-            *ngFor="let foodRest of restFood"
-          >
-            <img
-              src="../../../../assets/images/{{ foodRest.food.foodImage }}"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <p class="card-title fs-4 fw-semibold">
-                {{ foodRest.food.foodName }}
-              </p>
-              <p class="card-text fs-5">
-                Starting at just <b>&#8377; {{ foodRest.rate }}</b>
-              </p>
-              <button
-                class="btn btn-danger add-to-cart p-2 mb-2"
+          <div class="col-lg-5 col-md-2" *ngFor="let foodRest of restFood">
+            <div class="card border-0 med-blog rounded" style="border-radius: 12px !important;">
+                <div class="card-header p-0">
+                    
+                  <img class="card-img-bottom" style="border-top-left-radius: 12px !important;border-top-right-radius: 12px !important;" src="../../../../assets/images/{{ foodRest.food.foodImage }}" alt="Card image cap">
+                    
+                </div>
+                <div class="card-body border border-top-0">
+                    <h5 class="blog-title card-title m-0 ">{{ foodRest.food.foodName }}</h5>
+                    <p class="mt-2 ">Starting at just <b>&#8377; {{ foodRest.rate }} </b></p>
+                    <a
+                class="button-w3ls active mt-2 add-to-cart mb-2"
                 (click)="toggleQuantityButtons(foodRest)"
               >
-                Add to Cart
-              </button>
+                Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                </a>
               <div class="quantity-bar">
                 <button
                   type="button"
@@ -52,32 +44,33 @@
                   +
                 </button>
               </div>
+                </div>
             </div>
-          </div>
+        </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="summary bg-white p-3 rounded">
-          <p class="fs-4 fw-semibold">Summary</p>
-          <p class="fs-6 fw-normal">
+          <p class="fs-4 fw-semibold heading">Summary</p>
+          <p class="normal-text-format">
             Meals :
             <span *ngFor="let entry of map | keyvalue; let last = last">
               {{ entry.key.food.foodName }} * {{ entry.value
               }}{{ !last ? ", " : "" }}
             </span>
           </p>
-          <p class="fs-6 fw-normal">
+          <p class="normal-text-format">
             Meal Charges : &#8377; {{ totalMealCharges }}
           </p>
           <hr />
-          <p class="fs-6 fw-normal">
+          <p class="normal-text-format">
             Delivery Charges : &#8377; {{ deliveryCharges }}
           </p>
-          <p class="fs-6 fw-normal">
+          <p class="normal-text-format">
             Convenience Fee : &#8377; {{ convenienceFee }}
           </p>
           <hr />
-          <p class="fs-6 fw-normal">Total Price : &#8377; {{ totalPrice }}</p>
+          <p class="normal-text-format">Total Price : &#8377; {{ totalPrice }}</p>
           <button
             type="submit"
             class="btn btn-success mt-2"
@@ -89,5 +82,4 @@
         </div>
       </div>
     </div>
-  </div>
 </div>

@@ -1,7 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+/* Import Bootstrap CSS */
+@import url('../src/assets/css/bootstrap.css');
+
+/* Import other CSS files */
+@import url('../src/assets/css/css_slider.css');
+@import url('../src/assets/css/style.css');
+@import url('../src/assets/css/font-awesome.min.css');
+
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-image: linear-gradient(135deg, #fccf3166 10%, #f5555569 100%);
+}

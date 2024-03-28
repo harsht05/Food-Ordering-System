@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class UpdateCustomerComponent {
 
-  customerId: number = 6;
+  customerId: number = 0;
   customer: Customer = new Customer();
   
   user = new FormGroup({
@@ -21,6 +21,7 @@ export class UpdateCustomerComponent {
     userEmail: new FormControl(''),
     userContact: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(10), Validators.minLength(10)]),
     userPass: new FormControl(''),
+    userAddress: new FormControl(''),
     userCity: new FormControl(''),
     userState: new FormControl(''),
     userPin: new FormControl(0)
@@ -32,7 +33,12 @@ export class UpdateCustomerComponent {
 
     const cid = this.sessionStorage.getItem("custId");
 
-    if(cid !== null) {
+    if(cid === null) {
+
+      this.route.navigate(['login']);
+    }
+
+    else {
 
       this.customerId = cid;
     }
@@ -46,6 +52,7 @@ export class UpdateCustomerComponent {
         userEmail: this.customer.userEmail,
         userContact: this.customer.userContact,
         userPass: this.customer.userPass,
+        userAddress: this.customer.userAddress,
         userCity: this.customer.userCity,
         userState: this.customer.userState,
         userPin: this.customer.userPin
@@ -54,13 +61,9 @@ export class UpdateCustomerComponent {
   }
 
   updateCustomer() {
-
-    // this.user.user
-    // console.log(this.user);
       
-    this.custService.updateCustomer(new Customer(this.customerId, this.user.value.userName!, this.user.value.userEmail!, this.user.value.userPass!, this.user.value.userContact!, this.user.value.userCity!, this.user.value.userState!, this.user.value.userPin!, "customer")).subscribe(response => {
+    this.custService.updateCustomer(new Customer(this.customerId, this.user.value.userName!, this.user.value.userEmail!, this.user.value.userPass!, '', this.user.value.userContact!, this.user.value.userAddress!, this.user.value.userCity!, this.user.value.userState!, this.user.value.userPin!, "customer")).subscribe(response => {
 
-      // console.log(response);
       this.route.navigate(['/customer/viewCustomer']);
     });
   }

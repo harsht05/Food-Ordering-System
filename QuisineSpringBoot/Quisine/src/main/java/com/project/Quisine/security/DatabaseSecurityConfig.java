@@ -24,7 +24,7 @@ import org.springframework.web.filter.CorsFilter;
 public class DatabaseSecurityConfig {
 
 	@Autowired
-	private UserLoginServic userLoginService;
+	private UserLoginService userLoginService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;

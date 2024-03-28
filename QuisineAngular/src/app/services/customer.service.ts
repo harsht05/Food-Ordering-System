@@ -27,4 +27,16 @@ export class CustomerService {
 
     return this.http.get<Orders[]>(`${this.baseUrl}getCustomerOrders/${customerId}`);
   }
+
+  sendOrderDetails(orders: Orders[]) : Observable<number> {
+
+    console.log("In Service : " + orders);
+    
+    return this.http.post<number>(`${this.baseUrl}sendOrderDetails`, orders);
+  }
+
+  cancelOrder(orderId: number): Observable<boolean> {
+    
+    return this.http.delete<boolean>(`${this.baseUrl}deleteOrder/${orderId}`);
+  }
 }

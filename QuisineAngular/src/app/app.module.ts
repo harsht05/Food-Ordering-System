@@ -10,12 +10,14 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerModule } from './modules/customer/customer.module';
 import { RestaurantModule } from './modules/restaurant/restaurant.module';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AccessDeniedComponent
   ],
   imports: [
     BrowserModule,

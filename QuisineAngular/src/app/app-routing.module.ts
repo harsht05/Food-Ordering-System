@@ -2,26 +2,28 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './modules/user/login/login.component';
-import { SendOtpComponent } from './modules/user/send-otp/send-otp.component';
-import { VerifyOtpComponent } from './modules/user/verify-otp/verify-otp.component';
+import { HomepageComponent } from './modules/shared/homepage/homepage.component';
+import { AllRestaurantsComponent } from './modules/shared/all-restaurants/all-restaurants.component';
 import { RegisterComponent } from './modules/user/register/register.component';
+import { RestaurantFoodsComponent } from './modules/shared/restaurant-foods/restaurant-foods.component';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 const routes: Routes = [
   {
-    path:"login",
-    component: LoginComponent
+    path: "",
+    component: HomepageComponent
   },
   {
-    path:"sendOtp",
-    component: SendOtpComponent
+    path: "restaurants",
+    component: AllRestaurantsComponent
   },
   {
-    path:"verifyOtp",
-    component: VerifyOtpComponent
+    path: "restaurantFoods/:restId",
+    component: RestaurantFoodsComponent
   },
   {
-    path:"register",
-    component: RegisterComponent
+    path: "accessDenied",
+    component: AccessDeniedComponent
   },
   {
     path: 'customer',
