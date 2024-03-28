@@ -1,0 +1,53 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+  <img [src]="'assets/images/hotels/'+restaurant.userImage" alt="{{ restaurant.userImage }}" class="restaurant-image">
+</div>
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-12 col-lg-90">
+      <div class="restaurant-details">
+        <div class="text-center mb-4" style="font-weight: 600; font-size: xx-large;">
+          <div class="d-flex justify-content-between align-items-center">
+            <p></p>
+            <p class="fw-bolder fs-2 text-center heading">{{ restaurant.userName }}</p>
+            <button [routerLink]="['/restaurant/updateRestaurant', restaurantId]" class="btn btn-secondary fs-5"><i class="fa-solid fa-pen-to-square"></i></button>
+          </div>
+        </div>
+        <div class="restaurant-info text-center">
+          <p class="fs-5"><strong>Contact:</strong> {{ restaurant.userContact }}</p>
+          <p class="fs-5"><strong>City:</strong> {{ restaurant.userCity }}</p>
+          <p class="fs-5"><strong>State:</strong> {{ restaurant.userState }}</p>
+          <p class="fs-5"><strong>Pincode:</strong> {{ restaurant.userPin }}</p>
+          <p class="fs-5">Welcome, {{ restaurant.userName }}! As a restaurant owner, I rely on our comprehensive dashboard as the central hub for managing all aspects of our operations efficiently. With its intuitive features such as menu management, order tracking, customer management, analytics & reporting, table reservations, staff management, and promotions & marketing tools, I can streamline every facet of our restaurant's workflow. From effortlessly updating our menu to monitoring real-time orders and analyzing performance metrics, our dashboard empowers me to make informed decisions and ensure exceptional dining experiences for our customers. Whether I'm a seasoned restaurateur or just starting out, this user-friendly platform is designed to simplify tasks and boost productivity. Join us today and let's revolutionize the way we run our restaurant together!</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row justify-content-center flex-column">
+   
+      <app-view-food-items></app-view-food-items>
+  
+    <!-- <div class="text-center">
+      <button [routerLink]="['/restaurant/addFoodItems', restaurantId]" class="btn btn-block bg-light"><i class="fa-solid fa-plus plus"></i></button>
+      
+    </div> -->
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row justify-content-end">
+    <div class="col-md-6">
+      <div class="d-flex justify-content-end">
+        <div class="restaurant-buttons">
+          <!-- <button [routerLink]="['/restaurant/viewRestaurantOrders', restaurantId]" class="btn btn-primary fs-5">Orders</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

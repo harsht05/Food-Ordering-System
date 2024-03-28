@@ -1,0 +1,39 @@
+<body>
+    <div class="container">
+      <div class="form-container">
+        <h2>Update Restaurant</h2>
+        <form [formGroup]="restaurantForm" (ngSubmit)="updateRestaurant()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Restaurant Name</label>
+            <input type="text" class="form-control" id="name" formControlName="userName">
+          </div>
+          <div class="mb-3">
+            <label for="contact" class="form-label">Contact</label>
+            <input type="text" class="form-control" id="contact" formControlName="userContact">
+          </div>
+          <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" formControlName="userCity">
+          </div>
+          <div class="mb-3">
+            <label for="state" class="form-label">State</label>
+            <input type="text" class="form-control" id="state" formControlName="userState">
+          </div>
+          <div class="mb-3">
+            <label for="pin" class="form-label">Pin</label>
+            <input type="text" class="form-control" id="pin" formControlName="userPin">
+          </div>
+          <div class="mb-3">
+            <label for="userImage" class="form-label">Image</label>
+            <input type="file" class="form-control" id="userImage" formControlName="userImage" accept="image/*">
+          </div>
+          
+          <div class="mb-3">
+            <button type="submit" class="btn btn-danger">Update</button>
+            <button type="button" class="btn btn-danger" (click)="cancelUpdate()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  

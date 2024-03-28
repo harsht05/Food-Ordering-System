@@ -77,4 +77,9 @@ public class UserEntityController {
 		
 		return new ResponseEntity<List<Restaurant>>(userEntityService.getAllRestaurants(), HttpStatus.OK);
 	}
+
+	@GetMapping("getAllUsers")
+	public ResponseEntity<List<UserEntity>> getAllUsers() {		
+		return new ResponseEntity<List<UserEntity>>(userEntityService.getAllUsers(), HttpStatus.OK);
+	}
 }

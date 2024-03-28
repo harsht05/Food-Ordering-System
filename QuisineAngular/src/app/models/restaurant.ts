@@ -9,5 +9,6 @@ export class Restaurant {
         public userState: string = '',
         public userPin: number = 0,
         public role: string = ''
+        
       ) {}
 }

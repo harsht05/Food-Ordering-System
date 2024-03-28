@@ -9,6 +9,7 @@ import { UserModule } from './modules/user/user.module';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerModule } from './modules/customer/customer.module';
+import { RestaurantModule } from './modules/restaurant/restaurant.module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { CustomerModule } from './modules/customer/customer.module';
     AppRoutingModule,
     UserModule,
     CustomerModule,
+    RestaurantModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

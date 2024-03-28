@@ -1,0 +1,21 @@
+<app-header></app-header>
+<body>
+  <div class="container mt-0" id="content">
+    <h2 class="text-center">Restaurant Orders</h2>
+    <div *ngIf="restaurantOrders.length > 0; else noOrders">
+      <ul>
+        <li *ngFor="let order of restaurantOrders">
+          
+          Quantity: {{ order.quantity }}, Total Amount: {{ order.totalPrice }}
+        </li>
+      </ul>
+    </div>
+    <ng-template #noOrders>
+      <p>No orders found for this restaurant.</p>
+    </ng-template>
+  </div>
+
+  <div class="text-center mt-3">
+    <a [routerLink]="['/restaurant/dashboard', restaurantId]" class="back-link">Back To Home</a> <!-- Use btn-primary class for consistency -->
+  </div>
+</body>

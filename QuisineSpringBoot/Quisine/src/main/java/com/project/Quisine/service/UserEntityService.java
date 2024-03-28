@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.project.Quisine.dto.Customer;
 import com.project.Quisine.dto.Restaurant;
 import com.project.Quisine.entity.UserEntity;
 import com.project.Quisine.repository.UserEntityRespository;
@@ -49,4 +50,28 @@ public class UserEntityService {
 		
 		return userEntityRepository.updateUserNameAndContact(userId, userName, userContact);
 	}
+
+
+	public List<UserEntity> getAllUsers() {
+
+		return userEntityRepository.findAll();
+	}
+
+	public List<UserEntity> getUserByRole(String role) {
+
+		return userEntityRepository.findByRole(role);
+	}
+
+	public List<Customer> getAllCustomers() {
+
+		return userEntityRepository.findByRole("customer").stream()
+				.map(customer -> modelMapper.map(customer, Customer.class)).collect(Collectors.toList());
+	}
+
+	public Restaurant getRestaurantById(int id) {
+
+		return modelMapper.map(userEntityRepository.findById(id).get(), Restaurant.class);
+	}
+
+	
 }
