@@ -9,6 +9,7 @@ import { UserModule } from './modules/user/user.module';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerModule } from './modules/customer/customer.module';
+import { RestaurantModule } from './modules/restaurant/restaurant.module';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 
@@ -23,6 +24,7 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
     AppRoutingModule,
     UserModule,
     CustomerModule,
+    RestaurantModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

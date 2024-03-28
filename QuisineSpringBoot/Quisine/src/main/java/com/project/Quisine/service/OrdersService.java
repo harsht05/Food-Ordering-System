@@ -5,11 +5,13 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.project.Quisine.dto.OrdersDTO;
 import com.project.Quisine.entity.Orders;
 import com.project.Quisine.repository.OrdersRepository;
 
+@Service
 public class OrdersService {
     
     @Autowired

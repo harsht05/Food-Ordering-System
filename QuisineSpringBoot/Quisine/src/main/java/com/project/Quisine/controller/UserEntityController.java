@@ -136,4 +136,6 @@ public class UserEntityController {
 		
 		return new ResponseEntity<List<Restaurant>>(userEntityService.getAllRestaurants(), HttpStatus.OK);
 	}
+
+	
 }

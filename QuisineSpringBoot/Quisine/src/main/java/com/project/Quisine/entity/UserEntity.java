@@ -32,6 +32,8 @@ public class UserEntity {
 	private String userState;
 	private int userPin;
 	private String role;
+
+	private String userImage;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
