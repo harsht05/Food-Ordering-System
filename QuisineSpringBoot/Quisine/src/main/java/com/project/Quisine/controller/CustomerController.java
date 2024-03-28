@@ -1,5 +1,7 @@
 package com.project.Quisine.controller;
 
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import com.project.Quisine.service.OrdersService;
 import com.project.Quisine.service.UserEntityService;
 
 public class CustomerController {
+	
 
     @Autowired
 	private UserEntityService userEntityService;
@@ -41,7 +44,7 @@ public class CustomerController {
     @PostMapping("updateCustomer")
 	public void updateCustomer(@RequestBody UserEntity customer) {
 		
-		userEntityService.updateCustomerCustom(customer.getUserId(), customer.getUserName(), customer.getUserContact());
+		userEntityService.updateCustomerCustom(customer.getUserId(), customer.getUserName(), customer.getUserContact(),customer.getUserAddress(),customer.getUserCity(),customer.getUserState(),customer.getUserPin(),customer.getUserImg());
 	}
 
 	@PostMapping("sendOrderDetails")

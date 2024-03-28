@@ -1,0 +1,68 @@
+
+
+<div class="container custom-form mb-2 position-absolute top-50 start-50 translate-middle p-4 mb-5 text-dark shadow-lg rounded">
+
+    <p class="fw-bolder fs-2 text-center heading">Verify Your Email</p>
+  
+    <div class="container m-2">
+  
+        <form class="row g-3" [formGroup]="user">
+            
+          <div class="col-md-12 mt-3 p-2">
+            <label class="form-label">Email</label>
+            <div class="input-group has-validation">
+              <input type="email" class="form-control" formControlName="userEmail">
+            </div>
+            <div *ngIf="user.get('userEmail')?.touched && user.get('userEmail')?.errors">
+              <div class="text-danger m-2" *ngIf="user.get('userEmail')?.errors?.['required']">Email is required</div>
+              <div class="text-danger m-2" *ngIf="user.get('userEmail')?.errors?.['pattern']">Invalid email format</div>
+            </div>
+          </div>
+          
+  
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input def" type="checkbox" formControlName="agree">
+              <label class="form-check-label">
+                Agree to terms and conditions
+              </label>
+            </div>
+            <div *ngIf="user.get('agree')?.touched && user.get('agree')?.errors">
+              <div class="text-danger m-2" *ngIf="user.get('agree')?.errors?.['required']">You must agree to Terms and Conditions!!</div>
+            </div>
+          </div>
+  
+          <div class="col-12 mt-4">
+            <button *ngIf="!otpStatus" [disabled]="!user.valid" class="button-w3ls active mr-3" (click)="sendOtp()"> Send OTP </button>
+            
+          </div>
+  
+          </form>
+  
+          <form *ngIf="otpStatus" class="row g-3" [formGroup]="otpForm">
+                <div class="col-md-12 mt-3 p-2">
+                    <label for="otp" class="form-label">Enter OTP</label>
+                    <div class="input-group has-validation">
+                      <input type="password" class="form-control" formControlName="otp">
+                    </div>
+                    <div *ngIf="user.get('otp')?.touched && user.get('otp')?.errors">
+                      <div class="text-danger m-2" *ngIf="user.get('otp')?.errors?.['required']">OTP is required</div>
+                      <div class="text-danger m-2" *ngIf="user.get('otp')?.errors?.['pattern']">Enter Valid OTP</div>
+                    </div>
+                  </div>
+             
+              <div class="col-12 mt-4">
+                <button class="button-w3ls active" (click)="verifyOtp()"> Verify OTP</button>
+              </div>
+          </form>
+  
+    </div>
+    
+    <p class="text-center text-dark">Already Registered? Want to <a href="login"
+            class="text-decoration-none">Sign in </a></p>
+  
+  </div>
+  
+  
+  
+  
