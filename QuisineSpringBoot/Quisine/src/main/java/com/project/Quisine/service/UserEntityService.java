@@ -43,20 +43,6 @@ public class UserEntityService {
 		return userEntityRepository.findByUserEmailAndUserPass(email, pass);
 	}
 	
-	public List<UserEntity> getAllUsers() {
-		
-		return userEntityRepository.findAll();
-	}
-	
-	public List<UserEntity> getUserByRole(String role) {
-		
-		return userEntityRepository.findByRole(role);
-	}
-	
-	public List<Customer> getAllCustomers() {
-		
-		return userEntityRepository.findByRole("customer").stream().map(customer->modelMapper.map(customer, Customer.class)).collect(Collectors.toList());
-	}
 	
 	
 	public int updateCustomerCustom(Integer userId, String userName, String userContact, String userAddress, String userCity, String userState, int userPin, String userImg) {
@@ -84,11 +70,7 @@ public class UserEntityService {
 		return userEntityRepository.findByRole("restaurant").stream().map(rest->modelMapper.map(rest, Restaurant.class)).collect(Collectors.toList());
 	}
 	
-	public Restaurant getRestaurantById(int id) {
-		
-		return modelMapper.map(userEntityRepository.findById(id).get(), Restaurant.class);
-	}
-
+	
 
 	public List<UserEntity> getAllUsers() {
 

@@ -23,8 +23,8 @@ import org.springframework.web.filter.CorsFilter;
 @EnableWebSecurity
 public class DatabaseSecurityConfig {
 
-	@Autowired
-	private UserLoginService userLoginService;
+	// @Autowired
+	// private UserLoginService userLoginService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -54,26 +54,26 @@ public class DatabaseSecurityConfig {
 		return http.build();
 	}
 	
-	@Bean
-	AuthenticationProvider authenticationProvider() {
+	// @Bean
+	// AuthenticationProvider authenticationProvider() {
 		
-		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-		daoAuthenticationProvider.setUserDetailsService(userLoginService);
-		daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
+	// 	DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+	// 	daoAuthenticationProvider.setUserDetailsService(userLoginService);
+	// 	daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
 		
-		return daoAuthenticationProvider;
-	}
+	// 	return daoAuthenticationProvider;
+	// }
 	
-	@Bean
-    public CorsFilter corsFilter() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-        config.setAllowedHeaders(Arrays.asList("*"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
-    }
+	// @Bean
+    // public CorsFilter corsFilter() {
+    //     CorsConfiguration config = new CorsConfiguration();
+    //     config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+    //     config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+    //     config.setAllowedHeaders(Arrays.asList("*"));
+    //     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    //     source.registerCorsConfiguration("/**", config);
+    //     return new CorsFilter(source);
+    // }
 	
 	private RequestMatcher requestMatcher(String pattern) {
 		
