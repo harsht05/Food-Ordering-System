@@ -8,8 +8,10 @@ export class Orders {
         public quantity: number = 0,
         public totalPrice: number = 0,
         public date: Date = new Date(),
+        public deliveryAddress: string = '',
         public food: Food,
         public customer: Customer,
-        public restaurant: Restaurant) {
+        public restaurant: Restaurant,
+        public isCollapsed: boolean = true) {
     }
 }
