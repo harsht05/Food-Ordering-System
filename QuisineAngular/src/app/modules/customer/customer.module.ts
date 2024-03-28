@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateCustomerComponent } from './update-customer/update-customer.component';
 import { ViewCustomerComponent } from './view-customer/view-customer.component';
 import { ViewOrdersComponent } from './view-orders/view-orders.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 import { SharedModule } from '../shared/shared.module';
 import { DeleteOrderComponent } from './delete-order/delete-order.component';
 
@@ -26,6 +27,7 @@ import { DeleteOrderComponent } from './delete-order/delete-order.component';
     UpdateCustomerComponent,
     ViewCustomerComponent,
     ViewOrdersComponent,
+    FeedbackComponent,
     DeleteOrderComponent
   ],
   imports: [

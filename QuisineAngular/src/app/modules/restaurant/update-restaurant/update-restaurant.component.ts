@@ -52,7 +52,8 @@ export class UpdateRestaurantComponent implements OnInit {
           userCity: this.restaurant.userCity,
           userState: this.restaurant.userState,
           userPin: this.restaurant.userPin,
-          userImage:this.restaurant.userImage
+          userImg:this.restaurant.userImg,
+
         });
       },
       (error) => {
@@ -73,7 +74,9 @@ export class UpdateRestaurantComponent implements OnInit {
         userEmail: this.restaurant.userEmail,
         userPass: this.restaurant.userPass,
         role: this.restaurant.role,
-        userImage: this.restaurantForm.value.userImage.substring(12)
+        userImg: this.restaurantForm.value.userImg.substring(12),
+        restOwnerName:this.restaurantForm.value.restOwnerName,
+        userAddress:this.restaurantForm.value.userAddress
       };
       this.restaurantService.updateRestaurant(updatedRestaurant).subscribe(
         () => {
