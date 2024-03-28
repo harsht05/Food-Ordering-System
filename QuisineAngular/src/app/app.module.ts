@@ -8,17 +8,21 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { UserModule } from './modules/user/user.module';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CustomerModule } from './modules/customer/customer.module';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AccessDeniedComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     UserModule,
+    CustomerModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

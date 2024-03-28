@@ -1,1 +1,145 @@
-<p>payment-gateway works!</p>
+<app-header></app-header>
+
+<div class="container-fluid">
+    <div class="row justify-content-center gap-5 p-5">
+
+        <div class="custom-form col-md-8 bg-white rounded p-4">
+            <p class="fw-normal fs-3 text-center heading">Payment Details</p>
+            <form id="custom-form" [formGroup]="payementForm" (ngSubmit)="submitForm()">
+              <div class="mb-3">
+                <label for="card-number" class="form-label">Card Number</label> <i class="fa fa-credit-card-alt ml-2" aria-hidden="true"></i>
+                <input type="text" class="form-control" id="card-number" placeholder="Enter card number" formControlName="cardNumber">
+                <div *ngIf="payementForm.get('cardNumber')?.touched && payementForm.get('cardNumber')?.errors">
+                    <div class="text-danger m-2" *ngIf="payementForm.get('cardNumber')?.errors?.['required']">
+                        Card Number Can't be Blank!
+                    </div>
+                    <div class="text-danger m-2" *ngIf="payementForm.get('cardNumber')?.errors?.['pattern']">
+                        Please enter a valid 16-digit card number.
+                    </div>
+                    <div class="text-danger m-2" *ngIf="payementForm.get('cardNumber')?.errors?.['minlength']">
+                        Card number must be at least 16 digits.
+                    </div>
+                    <div class="text-danger m-2" *ngIf="payementForm.get('cardNumber')?.errors?.['maxlength']">
+                        Card number cannot exceed 16 digits.
+                    </div>
+                </div>
+              </div>
+          
+              <div class="mb-3">
+                <label for="card-holder" class="form-label">Card Holder Name <i class="fa fa-user ml-2" aria-hidden="true"></i></label>
+                <input type="text" class="form-control" id="card-holder" placeholder="Enter card holder name" formControlName="cardHolder">
+                <div *ngIf="payementForm.get('cardHolder')?.touched && payementForm.get('cardHolder')?.errors">
+                    <div class="text-danger m-2" *ngIf="payementForm.get('cardHolder')?.errors?.['required']">
+                        Card Holder Name Can't be Blank!
+                    </div>
+                    <div class="text-danger m-2" *ngIf="payementForm.get('cardHolder')?.errors?.['pattern']">
+                        Please enter a valid Card Holder Name.
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="expiry-date" class="form-label">Expiry Date (MM/YY) <i class="fa fa-calendar-o ml-2" aria-hidden="true"></i></label>
+                  <input type="text" class="form-control" id="expiry-date" placeholder="MM/YY"  formControlName="expiryDate" >
+                  <div *ngIf="payementForm.get('expiryDate')?.touched && payementForm.get('expiryDate')?.errors">
+                    <div class="text-danger m-2" *ngIf="payementForm.get('expiryDate')?.errors?.['required']">
+                        Expiry Date Can't be Blank!
+                    </div>
+                    <div class="text-danger m-2" *ngIf="payementForm.get('expiryDate')?.errors?.['pattern']">
+                        Please enter a valid Expiry Date.
+                    </div>
+                </div>
+                </div>
+
+                
+
+                <div class="col-md-6 mb-3">
+                  <label for="cvv" class="form-label">CVV <i class="fa fa-unlock-alt ml-2" aria-hidden="true"></i></label>
+                  <input type="password" class="form-control" id="cvv" placeholder="Enter CVV" formControlName="cvv">
+                  <div *ngIf="payementForm.get('cvv')?.touched && payementForm.get('cvv')?.errors">
+                    <div class="text-danger m-2" *ngIf="payementForm.get('cvv')?.errors?.['required']">
+                        CVV Can't be Empty!
+                    </div>
+                    <div class="text-danger m-2" *ngIf="payementForm.get('cvv')?.errors?.['pattern']">
+                        Please enter a valid CVV.
+                    </div>
+                </div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="card-number" class="form-label">  Delivery Address <i class="fa fa-map-marker ml-2" aria-hidden="true"></i></label>
+                <input type="text" class="form-control" formControlName="delAddress">
+                <div *ngIf="payementForm.get('delAddress')?.touched && payementForm.get('delAddress')?.errors">
+                    <div class="text-danger m-2" *ngIf="payementForm.get('delAddress')?.errors?.['required']">
+                        Address Can't be Blank!
+                    </div>
+                    <div class="text-danger m-2" *ngIf="payementForm.get('delAddress')?.errors?.['minlength']">
+                      Enter a Valid Address!!
+                  </div>
+                </div>
+              </div>
+          
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="agree" formControlName="agreeToTerms">
+                  <label class="form-check-label" for="agree">Agree to terms and conditions</label>
+                  <div *ngIf="payementForm.get('agreeToTerms')?.touched && payementForm.get('agreeToTerms')?.errors">
+                    <div class="text-danger m-2" *ngIf="payementForm.get('agreeToTerms')?.errors?.['required']">
+                        You must agree to Terms and Conditions!
+                    </div>
+                </div>
+                </div>
+              </div>
+          
+              <button type="submit" class="button-w3ls active mt-2" [disabled]="!payementForm.valid" (click)="submitForm()">Pay Now</button>
+            </form>
+
+            <p class="normal-text-format mt-2 heading">We Accept</p>
+            <ul class="list-unstyled payment-links mt-1">
+              <a>
+                <img src="../../assets/images/pay2.png" alt="">
+              </a>
+              <a>
+                <img src="../../assets/images/pay5.png" alt="">
+              </a>
+              <a>
+                <img src="../../assets/images/pay1.png" alt="">
+              </a>
+              <a>
+                <img src="../../assets/images/pay4.png" alt="">
+              </a>
+            </ul>
+          </div>
+          
+
+        <div class="col-md-4">
+            <div class="summary p-3 bg-white rounded">
+                <p class="fs-4 fw-normal heading">Summary</p>
+                <p class="normal-text-format">
+                  Meals :
+                  <span *ngFor="let entry of map | keyvalue; let last = last">
+                    {{ entry.key.food.foodName }} * {{ entry.value
+                    }}{{ !last ? ", " : "" }}
+                  </span>
+                </p>
+                <p class="normal-text-format">
+                  Meal Charges : &#8377; {{totalMealCharges}}
+                </p>
+                <hr />
+                <p class="normal-text-format">
+                  Delivery Charges : &#8377; 40
+                </p>
+                <p class="normal-text-format">
+                  Convenience Fee : &#8377; 20
+                </p>
+                <hr />
+                <p class="normal-text-format">Total Price : &#8377; {{totalMealCharges + 60}}</p>
+            
+            </div>
+          </div>
+</div>
+</div>
+
+<app-footer></app-footer>

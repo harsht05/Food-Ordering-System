@@ -1,0 +1,39 @@
+.quantity-bar button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: #f8f9fa;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.quantity-bar button:hover {
+  background-color: #dee2e6;
+  color: #212529;
+}
+
+.quantity-bar span {
+  font-size: 16px;
+}
+
+.quantity-bar .increase-quantity {
+  border-radius: 0 5px 5px 0;
+}
+
+.quantity-bar .decrease-quantity {
+  border-radius: 5px 0 0 5px;
+}
+.quantity-bar {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-bar button {
+  margin: 0;
+}

@@ -1,0 +1,84 @@
+<div class="container p-2 mb-5 text-dark shadow-lg rounded">
+
+  <p class="heading fw-bolder fs-2 text-center m-3">Update Profile</p>
+
+  <div class="container">
+  
+      <form class="row g-3" [formGroup]="user" (submit)="updateCustomer()">
+       
+        <div class="col-md-6">
+          <label for="uemail" class="form-label">Email</label>
+          <div class="input-group has-validation">
+            <input type="email" class="form-control def" formControlName="userEmail" style="border-radius: 20px;" readonly>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="upass" class="form-label">Password</label>
+          <input type="password" class="form-control def" formControlName="userPass" readonly>
+        </div>
+
+        <div class="col-md-6">
+          <label for="fname" class="form-label">First name</label>
+          <input type="text" class="form-control def" formControlName="userName">
+
+          <div *ngIf="user.get('userName')?.touched && user.get('userName')?.errors">
+            <div class="text-danger m-2" *ngIf="user.get('userName')?.errors?.['required']">
+                Customer Name Can't be Blank!
+            </div>
+            <div class="text-danger m-2" *ngIf="user.get('userName')?.errors?.['pattern']">
+                Please enter a valid Customer Name.
+            </div>
+        </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="cnumber" class="form-label">Contact Number</label>
+          <input type="text" class="form-control def" formControlName="userContact">
+
+          <div *ngIf="user.get('userContact')?.touched && user.get('userContact')?.errors">
+            <div class="text-danger m-2" *ngIf="user.get('userContact')?.errors?.['required']">
+                Contact Number Can't be Blank!
+            </div>
+            <div class="text-danger m-2" *ngIf="user.get('userContact')?.errors?.['pattern']">
+                Please enter a valid Contact Number.
+            </div>
+            <div class="text-danger m-2" *ngIf="user.get('userContact')?.errors?.['minlength']">
+              Contact number must be at least 16 digits.
+          </div>
+          <div class="text-danger m-2" *ngIf="user.get('userContact')?.errors?.['maxlength']">
+              Contact number cannot exceed 16 digits.
+          </div>
+        </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="city" class="form-label">City</label>
+          <input type="text" class="form-control def" formControlName="userCity">
+          
+        </div>
+
+
+        <div class="col-md-3">
+          <label for="state" class="form-label">State</label>
+          <select class="form-select def" style="border-radius: 10px;">
+              <option selected>{{customer.userState}}</option>
+          </select>
+
+        </div>
+       
+        <div class="col-md-3">
+          <label for="pincode" class="form-label">Pin Code</label>
+          <input type="text" class="form-control def" formControlName="userPin">
+        </div>
+       
+        
+  <div class="text-center">
+  
+      <input type="submit" [disabled]="!user.valid" value="Update Profile" class="btn btn-danger m-2">
+  </div>
+      </form>
+  
+  </div>
+  
+</div>

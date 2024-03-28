@@ -738,6 +738,39 @@ a.button-w3ls:hover, button.button-w3ls.active:hover {
 	color: #302d2d;
 }
 
+/* Heading and normal text styling */
+
+.heading-format {
+
+    font-size: 20px;
+    font-weight: 500;
+    color: #4c4747;
+}
+
+.normal-text-format {
+
+    font-size: 18px;
+    font-weight: 400;
+    color: black
+}
+
+/* Summary :  */
+
+.summary {
+	border: 1px solid #ddd;
+	padding: 10px;
+	margin-left: 20px;
+	position: sticky;
+	top: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payement-links-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* //right side slider */
 
 /* css clider */

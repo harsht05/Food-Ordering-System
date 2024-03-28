@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import com.project.Quisine.dto.Restaurant;
 import com.project.Quisine.algorithm.SendEmail;
 import com.project.Quisine.dto.Restaurant;
 import com.project.Quisine.entity.UserEntity;
@@ -41,6 +43,13 @@ public class UserEntityController {
 	
 	@PostMapping("sendOtp")
 	public ResponseEntity<Integer> sendOtp(@RequestBody String email) {
+		
+		UserEntity user = userEntityService.findByEmail(email);
+		if(user != null) {
+			
+			System.out.println(user);
+			return new ResponseEntity<Integer>(-1, HttpStatus.OK);
+		}
 		
 		Random random = new Random();
 		int otp = random.nextInt(100000, 999999);
@@ -70,6 +79,12 @@ public class UserEntityController {
 	public ResponseEntity<UserEntity> addUser(@RequestBody UserEntity userEntity) {
 		
 		return new ResponseEntity<UserEntity>(userEntityService.addUser(userEntity), HttpStatus.CREATED);
+	}
+
+	@GetMapping("getUserById/{id}")
+	public ResponseEntity<UserEntity> getUserById(@PathVariable int id) {
+		
+		return new ResponseEntity<UserEntity>(userEntityService.getUserById(id), HttpStatus.OK);
 	}
 	
 	@PostMapping("userLogin")
@@ -114,5 +129,11 @@ public class UserEntityController {
 	public ResponseEntity<Restaurant> getRestaurantById(@PathVariable int id) {
 		
 		return new ResponseEntity<Restaurant>(userEntityService.getRestaurantById(id), HttpStatus.OK);
+	}
+	
+	@GetMapping("getAllRestaurants")
+	public ResponseEntity<List<Restaurant>> customerDashboard() {
+		
+		return new ResponseEntity<List<Restaurant>>(userEntityService.getAllRestaurants(), HttpStatus.OK);
 	}
 }

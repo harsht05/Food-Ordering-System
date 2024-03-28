@@ -1,1 +1,48 @@
-<p>order-summary works!</p>
+<app-header></app-header>
+<div class="container-fluid p-3" id="custHeight">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <p class="mt-3 fw-bolder fs-2 text-center heading">Order Summary</p>
+            <div class="order-card" *ngFor="let order of orders">
+                <div class="card-item">
+                    <div class="outer-info">
+                        <div class="order-info">
+                            <img src="assets/images/{{order.food.foodImage}}" width="100px" alt="">
+                            <p>{{order.food.foodName}}</p>
+                        </div>
+                        <div class="view-more-btn" (click)="toggleCollapse(order)">
+                            <i class="fa fa-plus" aria-hidden="true" [class.show]="!order.isCollapsed"></i>
+                        </div>
+                    </div>
+                    <div class="collapse" [class.show]="!order.isCollapsed">
+                        <div class="card-body">
+                        
+                            <p class="fw-bold">Order ID: {{ order.orderId }}</p>
+                            <p>Food Name: {{ order.food.foodName }}</p>
+                            <p>Quantity: {{ order.quantity }}</p>
+                            <p>Restaurant Name: {{ order.restaurant.userName }}</p>
+                            <p>Total Amount: {{ order.totalPrice }}</p>
+                            <p>Ordered Date: {{ order.date | date:'MMM d, y' }}</p>
+                            <p>Ordered Time: {{ order.date | date:'h:mm a' }}</p> 
+                    
+                            <p>Delivery Address: {{ order.deliveryAddress }}, {{ order.customer.userCity }}, {{ order.customer.userState }}, {{ order.customer.userPin }}</p>
+                            
+                            <div class="d-flex justify-content-center mt-3">
+                            <button *ngIf="isOrderCancellable(order.date) else elseBlock" class="button-w3ls active" (click)="cancelOrder(order.orderId)">Cancel Order</button>
+                            </div>
+                            <ng-template #elseBlock>
+                                <p>Status : Delivered</p>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="text-center mt-3">
+                <a routerLink="/restaurants" class="button-w3ls active m-2">Back To Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

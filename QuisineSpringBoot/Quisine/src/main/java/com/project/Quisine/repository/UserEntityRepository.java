@@ -23,8 +23,8 @@ public interface UserEntityRepository extends JpaRepository<UserEntity, Integer>
 	 
 	 @Modifying
 	 @Transactional
-	 @Query("UPDATE UserEntity u SET u.userName = :userName, u.userContact = :userContact, u.userAddress = :userAddress, u.userCity = :userCity, u.userState = :userState, u.userPin = :userPin WHERE u.userId = :userId")
-	    int updateUserNameAndContact(Integer userId, String userName, String userContact, String userAddress, String userCity, String userState, int userPin);
+	 @Query("UPDATE UserEntity u SET u.userName = :userName, u.userContact = :userContact, u.userAddress = :userAddress, u.userCity = :userCity, u.userState = :userState, u.userPin = :userPin, u.userImg = :userImg WHERE u.userId = :userId")
+	    int updateUserNameAndContact(Integer userId, String userName, String userContact, String userAddress, String userCity, String userState, int userPin, String userImg);
 
 
 	 boolean existsByUserEmail(String userEmail);

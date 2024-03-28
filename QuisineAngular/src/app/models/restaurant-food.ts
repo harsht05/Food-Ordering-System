@@ -1,5 +1,5 @@
-import { Food } from "./food";
-import { Restaurant } from "./restaurant";
+import { Food } from './food';
+import { Restaurant } from './restaurant';
 
 export class RestaurantFood {
     id: number;

@@ -37,8 +37,6 @@ public class UserEntityService {
 		return userEntityRepository.findByUserEmail(email);
 	}
 	
-		
-
 	
 	public UserEntity findUserByEmailAndPass(String email, String pass) {
 		
@@ -61,9 +59,9 @@ public class UserEntityService {
 	}
 	
 	
-	public int updateCustomerCustom(Integer userId, String userName, String userContact, String userAddress, String userCity, String userState, int userPin) {
+	public int updateCustomerCustom(Integer userId, String userName, String userContact, String userAddress, String userCity, String userState, int userPin, String userImg) {
 		
-		return userEntityRepository.updateUserNameAndContact(userId, userName, userContact, userAddress, userCity, userState, userPin);
+		return userEntityRepository.updateUserNameAndContact(userId, userName, userContact, userAddress, userCity, userState, userPin, userImg);
 	}
 	
 	
@@ -76,8 +74,11 @@ public class UserEntityService {
 	    
 	}
 
+	public UserEntity getUserById(int id) {
+		
+		return userEntityRepository.findById(id).get();
+	}
 
-	
 	public List<Restaurant> getAllRestaurants() {
 		
 		return userEntityRepository.findByRole("restaurant").stream().map(rest->modelMapper.map(rest, Restaurant.class)).collect(Collectors.toList());

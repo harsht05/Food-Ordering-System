@@ -4,5 +4,4 @@ export class Food {
         public foodName: string = '',
         public foodImage: string = ''
       ) {}
-
 }

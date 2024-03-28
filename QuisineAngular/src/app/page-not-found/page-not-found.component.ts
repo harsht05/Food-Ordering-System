@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class PageNotFoundComponent {
 
+  constructor() { }
+
+  goBack() {
+    window.history.back();
+  }
 }
