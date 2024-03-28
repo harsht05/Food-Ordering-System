@@ -21,6 +21,7 @@ public class Orders {
 	private int quantity;
 	private float totalPrice;
 	private Date date;
+	private String deliveryAddress;
 	
 	@ManyToOne
 	@JoinColumn(name = "rest_id")

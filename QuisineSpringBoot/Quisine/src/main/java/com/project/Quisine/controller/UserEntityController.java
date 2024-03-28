@@ -38,12 +38,11 @@ public class UserEntityController {
 			return new ResponseEntity<Integer>(-1, HttpStatus.OK);
 		}
 		
-		SendEmail sendEmail = new SendEmail();
 		Random random = new Random();
 		int otp = random.nextInt(100000, 999999);
 		verifyOtp = otp;
 		
-		sendEmail.sendOtpEmail(email, otp);
+		SendEmail.sendOtpEmail(email, otp);
 		
 		return new ResponseEntity<Integer>(otp, HttpStatus.OK);
 	}

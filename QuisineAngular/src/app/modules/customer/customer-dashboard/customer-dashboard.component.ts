@@ -21,22 +21,6 @@ export class CustomerDashboardComponent {
 
   ngOnInit() {
 
-    // const cid = sessionStorage.getItem("custId");
-
-    // if (cid === null) {
-      
-    //   this.router.navigate(['/accessDenied']); // Assuming 'access-denied' is the route for the AccessDenied component
-    // } 
-    // else {
-      
-    //   this.customerId = Number(cid);
-      
-    //   this.restService.getAllRestaurants().subscribe(response => {
-    //     this.restaurants = response;
-    //     console.log(this.restaurants);
-    //   });
-    // }
-
     this.userService.getAllRestaurants().subscribe(response => {
       this.restaurants = response;
       console.log(this.restaurants);

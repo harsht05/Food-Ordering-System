@@ -1,67 +1,39 @@
-.heading {
-    margin-top: 20px;
-    color: #b30000;
-  }
-  
-  .cards-container {
-    margin-top: 20px;
-  }
-  .card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    transition: all 0.3s;
-  }
-  .card:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transform: translateY(-12px);
-  }
-  
-  .summary {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-left: 20px;
-    position: sticky;
-    top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .quantity-bar button {
-    width: 30px;
-    height: 30px;
-    border: none;
-    color: #f8f9fa;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
-  }
-  
-  .quantity-bar button:hover {
-    background-color: #dee2e6;
-    color: #212529;
-  }
-  
-  .quantity-bar span {
-    font-size: 16px;
-  }
-  
-  .quantity-bar .increase-quantity {
-    border-radius: 0 5px 5px 0;
-  }
-  
-  .quantity-bar .decrease-quantity {
-    border-radius: 5px 0 0 5px;
-  }
-  .quantity-bar {
-    display: flex;
-    align-items: center;
-  }
-  
-  .quantity-bar button {
-    margin: 0;
-  }
-  
+.quantity-bar button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: #f8f9fa;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.quantity-bar button:hover {
+  background-color: #dee2e6;
+  color: #212529;
+}
+
+.quantity-bar span {
+  font-size: 16px;
+}
+
+.quantity-bar .increase-quantity {
+  border-radius: 0 5px 5px 0;
+}
+
+.quantity-bar .decrease-quantity {
+  border-radius: 5px 0 0 5px;
+}
+.quantity-bar {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-bar button {
+  margin: 0;
+}
