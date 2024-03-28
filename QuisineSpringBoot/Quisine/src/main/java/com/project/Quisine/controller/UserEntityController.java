@@ -1,17 +1,28 @@
 package com.project.Quisine.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.project.Quisine.algorithm.SendEmail;
+import com.project.Quisine.dto.Restaurant;
 import com.project.Quisine.entity.UserEntity;
 import com.project.Quisine.service.UserEntityService;
 
@@ -19,31 +30,27 @@ import com.project.Quisine.service.UserEntityService;
 @RequestMapping("/user/")
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserEntityController {
+	
 	@Autowired
 	private UserEntityService userEntityService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	static int verifyOtp = 0;
 	
 	@PostMapping("sendOtp")
 	public ResponseEntity<Integer> sendOtp(@RequestBody String email) {
 		
-		System.out.println("In controller");
-		UserEntity user = userEntityService.findByEmail(email);
-		if(user != null) {
-			
-			System.out.println(user);
-			return new ResponseEntity<Integer>(-1, HttpStatus.OK);
-		}
-		
-		SendEmail sendEmail = new SendEmail();
 		Random random = new Random();
 		int otp = random.nextInt(100000, 999999);
 		verifyOtp = otp;
 		
-		sendEmail.sendOtpEmail(email, otp);
+		SendEmail.sendOtpEmail(email, otp);
 		
-		return new ResponseEntity<Integer>(otp, HttpStatus.OK);
+		return new ResponseEntity<Integer>(1, HttpStatus.OK);
 	}
+
 	
 	@PostMapping("verifyOtp") 
 	public ResponseEntity<Boolean> verifyOtpMethod(@RequestBody int otp) {
@@ -57,10 +64,55 @@ public class UserEntityController {
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
 	
+	
+
 	@PostMapping("addUser")
 	public ResponseEntity<UserEntity> addUser(@RequestBody UserEntity userEntity) {
 		
 		return new ResponseEntity<UserEntity>(userEntityService.addUser(userEntity), HttpStatus.CREATED);
 	}
 	
+	@PostMapping("userLogin")
+	public ResponseEntity<UserEntity> userLogin(@RequestBody UserEntity userEntity) {
+		
+		String userEmail = userEntity.getUserEmail();
+	    String userPassword = userEntity.getUserPass();
+
+	    UserEntity userFromDatabase = userEntityService.findByEmail(userEmail);
+	    
+	    if (userFromDatabase != null && passwordEncoder.matches(userPassword, userFromDatabase.getUserPass())) {
+	       
+	        return new ResponseEntity<UserEntity>(userFromDatabase, HttpStatus.OK);
+	    } 
+	    else {
+
+	        return new ResponseEntity<>(null, HttpStatus.OK);
+	    }
+	}
+	
+	@PostMapping("forgotPassword")
+	public ResponseEntity<UserEntity> setNewPassword(@RequestBody UserEntity user) {
+		
+		user.setUserPass(passwordEncoder.encode(user.getUserPass()));
+		return new ResponseEntity<UserEntity>(userEntityService.updatePassword(user), HttpStatus.OK);
+	}
+	
+	@PostMapping("findByEmail")
+	public ResponseEntity<UserEntity> getUserByEmail(@RequestBody String email) {
+		
+
+		return new ResponseEntity<UserEntity>(userEntityService.findByEmail(email), HttpStatus.OK);
+	}
+	
+	@GetMapping("getAllUsers")
+	public ResponseEntity<List<UserEntity>> getAllUsers() {
+		
+		return new ResponseEntity<List<UserEntity>>(userEntityService.getAllUsers(), HttpStatus.OK);
+	}
+
+	@GetMapping("getRestaurantById/{id}")
+	public ResponseEntity<Restaurant> getRestaurantById(@PathVariable int id) {
+		
+		return new ResponseEntity<Restaurant>(userEntityService.getRestaurantById(id), HttpStatus.OK);
+	}
 }

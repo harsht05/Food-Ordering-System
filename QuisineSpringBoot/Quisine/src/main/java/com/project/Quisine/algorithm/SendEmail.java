@@ -11,7 +11,7 @@ import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 public class SendEmail {
-public boolean sendOtpEmail(String to, int otp) {
+public static boolean sendOtpEmail(String to, int otp) {
 		
 		String from = "freshertraining@evolvingsols.com", sub = "Verify OTP", msg = "Hi, Your OTP for verification is : "+otp;
 		
