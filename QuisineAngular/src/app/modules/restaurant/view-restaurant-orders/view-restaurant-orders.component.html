@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!-- <app-header></app-header>
 <body>
   <div class="container mt-0" id="content">
     <h2 class="text-center">Restaurant Orders</h2>
@@ -6,7 +6,8 @@
       <ul>
         <li *ngFor="let order of restaurantOrders">
           
-          Quantity: {{ order.quantity }}, Total Amount: {{ order.totalPrice }}
+          Quantity: {{ order.quantity }}
+          Total Amount: {{ order.totalPrice }}
         </li>
       </ul>
     </div>
@@ -16,6 +17,83 @@
   </div>
 
   <div class="text-center mt-3">
-    <a [routerLink]="['/restaurant/dashboard', restaurantId]" class="back-link">Back To Home</a> <!-- Use btn-primary class for consistency -->
+    <a [routerLink]="['/restaurant/dashboard', restaurantId]" class="back-link">Back To Home</a>   </div>
+</body> -->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+
+      <a class="navbar-brand" href="#">
+          <img src="../../../../assets/images/logo.png" alt="Your Logo" width="120" height="auto">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link active fs-5 fw-bold" aria-current="page" href="#">Home</a>
+              </li>
+          </ul>
+
+          <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                  <a (click)="logout()" class="btn login-button-2 text-uppercase text-wh">
+                      <span class="fa mr-2"></span>Logout</a>
+              </li>
+          </ul>
+      </div>
   </div>
-</body>
+</nav>
+
+<div class="container-fluid p-3" id="custHeight">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <p class="mt-3 fw-bolder fs-2 text-center heading">Your Recent Orders</p>
+
+            <div class="order-card" *ngFor="let order of restaurantOrders">
+                <div class="card-item">
+                    <div class="outer-info">
+                        <div class="order-info">
+                            <img src="assets/images/{{order.food.foodImage}}" width="100px" alt="">
+                            <p>{{order.food.foodName}}</p>
+                        </div>
+                        <div class="view-more-btn" (click)="toggleCollapse(order)">
+                            <i class="fa fa-plus" aria-hidden="true" [class.show]="!order.isCollapsed"></i>
+                        </div>
+                    </div>
+                    <div class="collapse" [class.show]="!order.isCollapsed">
+                        <div class="card-body">
+                        
+                            <p class="fw-bold">Order ID: {{ order.orderId }}</p>
+                            <p>Food Name: {{ order.food.foodName }}</p>
+                            <p>Quantity: {{ order.quantity }}</p>
+                            <p>Restaurant Name: {{ order.restaurant.userName }}</p>
+                            <p>Total Amount: {{ order.totalPrice }}</p>
+                            <p>Ordered Date: {{ order.date | date:'MMM d, y' }}</p>
+                            <p>Ordered Time: {{ order.date | date:'h:mm a' }}</p> 
+                    
+                            <p>Delivery Address: {{ order.deliveryAddress }}, {{ order.customer.userCity }}, {{ order.customer.userState }}, {{ order.customer.userPin }}</p>
+                            
+                            <!-- <div *ngIf="isOrderCancellable(order.date) else elseBlock" class="d-flex justify-content-center mt-3"> -->
+                            <!-- <button class="button-w3ls active" (click)="cancelOrder(order.orderId)">Cancel Order</button> -->
+                            </div>
+
+                            <ng-template #elseBlock>
+                                <p>Status : Delivered</p>
+                            </ng-template>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            <div class="text-center mt-3">
+                <a [routerLink]="['/restaurant/dashboard', restaurantId]" class="button-w3ls active m-2">Back To Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+<!-- <app-footer></app-footer> -->

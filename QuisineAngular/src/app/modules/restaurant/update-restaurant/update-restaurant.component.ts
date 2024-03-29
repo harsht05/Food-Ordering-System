@@ -24,74 +24,76 @@ export class UpdateRestaurantComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.restaurantId = this.route.snapshot.paramMap.get("restId");
-    this.initForm();
-    this.getRestaurantById(this.restaurantId);
+    // this.restaurantId = this.route.snapshot.paramMap.get("restId");
+    // this.initForm();
+    // this.getRestaurantById(this.restaurantId);
   }
 
-  initForm(): void {
-    this.restaurantForm = this.fb.group({
-      userName: ['', Validators.required],
-      userCity: ['', Validators.required],
-      userState: ['', Validators.required],
-      userPin: ['', Validators.required],
-      userContact: ['', Validators.required],
-      userImage: ['', Validators.required]
+  // initForm(): void {
+  //   this.restaurantForm = this.fb.group({
+  //     userName: ['', Validators.required],
+  //     userCity: ['', Validators.required],
+  //     userState: ['', Validators.required],
+  //     userPin: ['', Validators.required],
+  //     userContact: ['', Validators.required],
+  //     userImage: ['', Validators.required]
       
 
-    });
-  }
+  //   });
+  // }
 
-  getRestaurantById(id: number): void {
-    this.restaurantService.getRestaurantById(id).subscribe(
-      (data: Restaurant) => {
-        this.restaurant = data;
-        this.restaurantForm.patchValue({
-          userName: this.restaurant.userName,
-          userContact: this.restaurant.userContact,
-          userCity: this.restaurant.userCity,
-          userState: this.restaurant.userState,
-          userPin: this.restaurant.userPin,
-          userImage:this.restaurant.userImage
-        });
-      },
-      (error) => {
-        console.error('Error fetching restaurant:', error);
-      }
-    );
-  }
+  // getRestaurantById(id: number): void {
+  //   this.restaurantService.getRestaurantById(id).subscribe(
+  //     (data: Restaurant) => {
+  //       this.restaurant = data;
+  //       this.restaurantForm.patchValue({
+  //         userName: this.restaurant.userName,
+  //         userContact: this.restaurant.userContact,
+  //         userCity: this.restaurant.userCity,
+  //         userState: this.restaurant.userState,
+  //         userPin: this.restaurant.userPin,
+  //         userImage:this.restaurant.userImage
+  //       });
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching restaurant:', error);
+  //     }
+  //   );
+  // }
 
-  updateRestaurant(): void {
-    if (this.restaurantForm.valid) {
-      const updatedRestaurant: Restaurant = {
-        userId: this.restaurantId,
-        userName: this.restaurantForm.value.userName,
-        userContact: this.restaurantForm.value.userContact,
-        userCity: this.restaurantForm.value.userCity,
-        userState: this.restaurantForm.value.userState,
-        userPin: this.restaurantForm.value.userPin,
-        userEmail: this.restaurant.userEmail,
-        userPass: this.restaurant.userPass,
-        role: this.restaurant.role,
-        userImage: this.restaurantForm.value.userImage.substring(12)
-      };
-      this.restaurantService.updateRestaurant(updatedRestaurant).subscribe(
-        () => {
-          console.log('Restaurant updated successfully');
-          this.router.navigate(['/restaurant/dashboard', this.restaurantId]);
-        },
-        (error) => {
-          console.error('Error updating restaurant:', error);
-        }
+  // updateRestaurant(): void {
+  //   if (this.restaurantForm.valid) {
+  //     const updatedRestaurant: Restaurant = {
+  //       userId: this.restaurantId,
+  //       userName: this.restaurantForm.value.userName,
+  //       userContact: this.restaurantForm.value.userContact,
+  //       userCity: this.restaurantForm.value.userCity,
+  //       userState: this.restaurantForm.value.userState,
+  //       userPin: this.restaurantForm.value.userPin,
+  //       userEmail: this.restaurant.userEmail,
+  //       userPass: this.restaurant.userPass,
+  //       role: this.restaurant.role,
+  //       userImg: this.restaurantForm.value.userImage.substring(12),
+  //       restOwnerName: this.restaurant.restOwnerName,
+  //       userAddress: this.restaurant.userAddress
+  //     };
+  //     this.restaurantService.updateRestaurant(updatedRestaurant).subscribe(
+  //       () => {
+  //         console.log('Restaurant updated successfully');
+  //         this.router.navigate(['/restaurant/dashboard', this.restaurantId]);
+  //       },
+  //       (error) => {
+  //         console.error('Error updating restaurant:', error);
+  //       }
 
-      );
+  //     );
 
-    }
-  }
+  //   }
+  // }
 
 
 
-  cancelUpdate(): void {
-    this.router.navigate(['/restaurant/dashboard', this.restaurantId]);
-  }
+  // cancelUpdate(): void {
+  //   this.router.navigate(['/restaurant/dashboard', this.restaurantId]);
+  // }
 }

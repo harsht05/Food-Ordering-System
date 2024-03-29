@@ -9,4 +9,7 @@ import com.project.Quisine.entity.Orders;
 public interface OrdersRepository extends JpaRepository<Orders, Integer> {
 
     List<Orders> findByCustomerUserId(int id);
+    
+    List<Orders> findByRestaurantUserId(int id);
+
 } 

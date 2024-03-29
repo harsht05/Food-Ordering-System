@@ -22,7 +22,8 @@ export class ViewOrdersComponent {
   ngOnInit() {
 
     const cid = this.sessionStorage.getItem("custId");
-
+    console.log("ghfdgfggfuewigfeiucustomerid"+cid);
+    
     if(cid === null) {
 
       this.route.navigate(['']);
