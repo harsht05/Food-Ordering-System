@@ -37,9 +37,9 @@ export class RestaurantService {
     return this.http.post(`${this.baseUrl}addRestaurantFood`, restaurantFood);
   }
 
-  getRestaurantOrders(restaurantId: number): Observable<Orders[]> {
-    const url = `${this.baseUrl}getRestaurantOrders/${restaurantId}`;
-    return this.http.get<Orders[]>(url);
+  getRestaurantOrders(restaurantId : number) : Observable<Orders[]> {
+
+    return this.http.get<Orders[]>(`${this.baseUrl}getRestaurantOrders/${restaurantId}`);
   }
 
   updateRestaurant(updatedRestaurant: Restaurant): Observable<any> {

@@ -14,23 +14,30 @@ import com.project.Quisine.repository.UserEntityRepository;
 
 @Service
 public class OrdersService {
-    
-    @Autowired
+
+	@Autowired
 	private OrdersRepository ordersRepository;
 	@Autowired
 	private UserEntityRepository userEntityRespository;
 	
 	@Autowired
 	private ModelMapper modelMapper;
-	
+
 	public Orders addOrder(Orders order) {
-		
+
 		return ordersRepository.save(order);
 	}
-	
+
 	public List<OrdersDTO> getCustomerOrders(int id) {
-		
-		return ordersRepository.findByCustomerUserId(id).stream().map(order->modelMapper.map(order, OrdersDTO.class)).collect(Collectors.toList());
+
+		return ordersRepository.findByCustomerUserId(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
+				.collect(Collectors.toList());
+	}
+
+	public List<OrdersDTO> getRestaurantOrders(int id) {
+
+		return ordersRepository.findByRestaurantUserId(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
+				.collect(Collectors.toList());
 	}
 	public List<OrdersDTO> getAllCustomerOrders() {
 		

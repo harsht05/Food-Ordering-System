@@ -44,13 +44,6 @@ public class UserEntityController {
 	@PostMapping("sendOtp")
 	public ResponseEntity<Integer> sendOtp(@RequestBody String email) {
 		
-		UserEntity user = userEntityService.findByEmail(email);
-		if(user != null) {
-			
-			System.out.println(user);
-			return new ResponseEntity<Integer>(-1, HttpStatus.OK);
-		}
-		
 		Random random = new Random();
 		int otp = random.nextInt(100000, 999999);
 		verifyOtp = otp;

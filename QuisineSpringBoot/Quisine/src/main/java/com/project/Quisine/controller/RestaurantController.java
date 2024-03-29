@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.Quisine.dto.OrdersDTO;
 import com.project.Quisine.dto.Restaurant;
 import com.project.Quisine.dto.RestaurantFoodDTO;
 import com.project.Quisine.entity.Food;
+import com.project.Quisine.entity.Orders;
 import com.project.Quisine.entity.RestaurantFood;
 import com.project.Quisine.entity.UserEntity;
 import com.project.Quisine.service.FoodService;
+import com.project.Quisine.service.OrdersService;
 import com.project.Quisine.service.RestaurantFoodService;
 import com.project.Quisine.service.UserEntityService;
 
@@ -40,6 +43,9 @@ public class RestaurantController {
     
     @Autowired
 	private RestaurantFoodService restaurantFoodService;
+    
+    @Autowired
+    private OrdersService ordersService;
 	
     @GetMapping("getRestaurantFoods/{id}")
 	public ResponseEntity<List<RestaurantFoodDTO>> getRestaurantFoods(@PathVariable int id) {
@@ -71,17 +77,23 @@ public class RestaurantController {
 				HttpStatus.CREATED);
 	}
 
-	
+	@GetMapping("getRestaurantOrders/{id}")
+	public ResponseEntity<List<OrdersDTO>> getRestaurantOrders(@PathVariable int id) {
+		System.out.println("hydhdkahkdhakdhak:in the co");
+		List<OrdersDTO> orders = ordersService.getRestaurantOrders(id);
+		System.out.println("hjksahdkjahdjhorders:"+orders);
+		return new ResponseEntity<List<OrdersDTO>>(ordersService.getRestaurantOrders(id), HttpStatus.OK);
+	}
 
 //	@GetMapping("getRestaurantOrders/{restaurantId}")
 //	public ResponseEntity<List<Orders>> getRestaurantOrders(@PathVariable int restaurantId) {
-//		Restaurant restaurant = userEntityService.getRestaurantById(restaurantId);
+//		UserEntity restaurant = userEntityService.getUserById(restaurantId);
 //
 //		if (restaurant == null) {
 //			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 //		}
 //
-//		List<OrdersDTO> restaurantOrders = restaurant.getRestaurantOrders();
+//		List<Orders> restaurantOrders = restaurant.getRestaurantOrders();
 //		return new ResponseEntity<>(restaurantOrders, HttpStatus.OK);
 //	}
 
@@ -159,7 +171,7 @@ public class RestaurantController {
 	        existingUserEntity.setUserCity(userEntity.getUserCity());
 	        existingUserEntity.setUserState(userEntity.getUserState());
 	        existingUserEntity.setUserPin(userEntity.getUserPin());
-	        existingUserEntity.setUserImage(userEntity.getUserImage());
+	        existingUserEntity.setUserImg(userEntity.getUserImg());
 	        
 	        userEntityService.addUser(existingUserEntity); // Save the updated entity
 	        

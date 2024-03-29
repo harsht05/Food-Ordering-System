@@ -46,4 +46,25 @@ body {
   app-header{
     margin-bottom: 0;
   }
-  
+  .navbar {
+    background-color: #ffac30 !important;
+}
+
+.navbar-nav .nav-link {
+    color: #fff !important;
+    font-size: 1.2rem;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    width: 30px;
+    height: auto;
+}
+
+.navbar-toggler {
+    border: none;
+}

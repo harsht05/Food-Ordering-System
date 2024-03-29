@@ -17,5 +17,4 @@ public class Restaurant {
 	private int userPin;
 	private String role;
 
-	private String userImage;
 }
