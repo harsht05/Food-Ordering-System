@@ -1,0 +1,59 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <!-- Logo with Background -->
+
+        <a class="navbar-brand" href="#"> <img
+            src="assets/images/LOGO.png"
+            alt="Your Logo" height="80px" class="rounded">
+        </a>
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between"
+            id="navbarSupportedContent">
+            <!-- Filter -->
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown"><a
+                    class="nav-link dropdown-toggle fs-5 fw-bold" href="#"
+                    id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"> Filters <img
+                        src="assets/icons/filter.png" height="18em"
+                        class="align-middle" alt="...">
+                </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Filter by Food</a></li>
+                        <li><a class="dropdown-item" href="#">Filter by Hotel</a></li>
+                        <li><a class="dropdown-item" href="#">Filter by City</a></li>
+                        <li><a class="dropdown-item" href="#">Filter by Pin Code</a></li>
+                    </ul></li>
+            </ul>
+
+            <div class="navbar-nav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active fs-5 fw-bold"
+                        aria-current="page" href="#">Home <img
+                            src="assets/icons/home.png" height="19em"
+                            class="align-middle" alt="..."></a></li>
+                    <li class="nav-item"><a class="nav-link fs-5 fw-bold"
+                        href="#">Orders <img
+                            src="assets/icons/checkout.png" height="19.5em"
+                            class="align-middle" alt="..."></a></li>
+                </ul>
+                <form action="searchProcess" method="get" class="d-flex">
+                    <input class="form-control me-2" type="search" id="search-bar"
+                        placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light submit-btn" type="submit">Search</button>
+                </form>
+                <form action="loginPageRequest" method="post" class="d-flex">
+
+                    <button class="btn btn-outline-light submit-btn" type="submit">Login/Singup</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>

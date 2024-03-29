@@ -76,6 +76,20 @@ public class UserEntityService {
 
 		return userEntityRepository.findAll();
 	}
+	
+	
+
+
+	public Customer getCustomerDetailsById(int id) {
+		return modelMapper.map(userEntityRepository.findById(id).get(), Customer.class);
+	}
+	
+	public void deleteCustomer(int customerId) {
+		userEntityRepository.deleteById(customerId);
+	}
+	public void deleteRestaurant(int restId) {
+		userEntityRepository.deleteById(restId);
+	}
 
 	public List<UserEntity> getUserByRole(String role) {
 

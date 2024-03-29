@@ -1,0 +1,32 @@
+<app-header></app-header>
+
+<div class="container">
+    <h2 style="display: flex; justify-content: center;">All Restaurants</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <caption></caption>
+            <thead>
+                <tr>
+                    <th>Restaurant ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Pincode</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let rest of showrest">
+                    <td>{{ rest.userName }}</td> 
+                    <td>{{ rest.userEmail }}</td>
+                    <td>{{ rest.userContact }}</td>
+                    <td>{{ rest.userCity }}</td>
+                    <td>{{ rest.userState }}</td>
+                    <td>{{ rest.userPin }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<app-footer></app-footer>
