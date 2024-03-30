@@ -52,17 +52,15 @@
     <div class="container">
         <div class="nav-content d-flex gap-5 justify-content-center">
             <!-- logo -->
-            <h1>
                 <a id="logo" class="logo">
-                    <img src="../../assets/images/logo.png" alt="" class="img-fluid"><span>Quisine</span> Burger
+                    <img src="../../assets/images/LOGO.png" alt="" class="img-fluid" height="80px" class="rounded"> 
                 </a>
-            </h1>
-            <!-- //logo -->
             
             <div class="row middle-flex">
                 <form action="#" method="post" class="newsletter-info d-flex justify-content-center gap-2">
-                    <input type="email" name="email" placeholder="Search Restaurants......" required="">
-                    <button type="submit">Search</button>
+                  <input type="text" [(ngModel)]="searchInput" (input)="onInputChange()" placeholder="Restaurant and Food" class="search-bar rounded-1">
+                  <app-search *ngIf="showSearchResults"></app-search>                    
+                  <button type="submit" class="rounded-1">Search</button>
                 </form>
             </div>
 
@@ -79,7 +77,6 @@
                         <li><a class="text-white" *ngIf="!isLoggedIn();">Contact Us</a></li>
                         
 
-                        <!-- First Tier Drop Down -->
                         <label for="drop-3" class="toggle toogle-2">Your Profile <span class="fa fa-angle-down"
                           aria-hidden="true"></span>
                         </label>
@@ -91,7 +88,7 @@
                             <ul>
                                 <li><a class="drop-text" data-bs-toggle="modal" data-bs-target="#updateForm">Update Profile</a></li>
                                 <li><a class="drop-text" data-bs-toggle="modal" data-bs-target="#viewCustomer">View Profile</a></li>
-                                <li><a class="drop-text" (click)="logout()">Logout</a></li>
+                                <li><a class="drop-text rounded-1" (click)="logout()">Logout</a></li>
                             </ul>
                         </li>
                         

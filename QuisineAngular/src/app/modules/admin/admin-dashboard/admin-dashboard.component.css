@@ -6,7 +6,7 @@
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #A75D5D;
+    background: #f5555569;
     color: #fff;
     transition: all 0.3s;
     position: sticky;
@@ -25,11 +25,11 @@
 }
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #A75D5D;
+    background: #f5555569;
 }
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #A75D5D;
+    border-bottom: 1px solid #f5555569;
 }
 #sidebar ul p {
     color: #fff;
@@ -40,14 +40,11 @@
     font-size: 1.1em;
     display: block;
 }
-#sidebar ul li a:hover {
-    color:#fff;
-    background-color:#A75D5D;
-}
+
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #fff;
-    background: #A75D5D;
+    background: #f5555569;
 }
 a[data-toggle="collapse"] {
     position: relative;
@@ -62,7 +59,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #A75D5D;
+    background: #f5555569;
 }
 ul.CTAs {
     padding: 20px;
@@ -76,11 +73,11 @@ ul.CTAs a {
 }
 a.download {
     background: #fff;
-    color: #A75D5D;
+    color: #f5555569;
 }
 a.article,
 a.article:hover {
-    background: #A75D5D !important;
+    background: #f5555569 !important;
     color: #fff !important;
 }
 /* Content Style */

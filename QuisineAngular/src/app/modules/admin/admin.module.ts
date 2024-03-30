@@ -7,9 +7,11 @@ import { SideNavbarComponent } from './side-navbar/side-navbar.component';
 import { ViewAllCustomersComponent } from './view-all-customers/view-all-customers.component';
 import { ViewAllOrdersComponent } from './view-all-orders/view-all-orders.component';
 import { ViewAllRestaurantsComponent } from './view-all-restaurants/view-all-restaurants.component';
-import { SharedModule } from '../../shared/shared.module';
 import { AdminlogoutComponent } from './adminlogout/adminlogout.component';
 import { ViewAllFeedbackComponent } from './view-all-feedback/view-all-feedback.component';
+import { SharedModule } from '../shared/shared.module';
+import { SalesComponent } from './sales/sales.component';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { ViewAllFeedbackComponent } from './view-all-feedback/view-all-feedback.
     ViewAllRestaurantsComponent,
     AdminlogoutComponent,
     ViewAllFeedbackComponent,
+    SalesComponent,
+    UsersComponent,
   ],
   imports: [
     CommonModule,

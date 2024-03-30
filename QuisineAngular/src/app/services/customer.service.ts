@@ -39,4 +39,8 @@ export class CustomerService {
     
     return this.http.delete<boolean>(`${this.baseUrl}deleteOrder/${orderId}`);
   }
+
+  getCustomerById(customerId:number):Observable<Customer>{
+    return this.http.get<Customer>(`${this.baseUrl}getCustomerById/${customerId}`)
+  }
 }

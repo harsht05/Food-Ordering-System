@@ -29,8 +29,8 @@ export class RegisterComponent {
       icon: 'question',
       showCancelButton: true,
       allowOutsideClick: false,
-  allowEscapeKey: false,
-  allowEnterKey: false,
+      allowEscapeKey: false,
+      allowEnterKey: false,
       confirmButtonText: 'Customer',
       cancelButtonText: 'Restaurant'
     }).then((result) => {

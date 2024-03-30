@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.Quisine.algorithm.PdfGeneration;
 import com.project.Quisine.algorithm.SendEmail;
+import com.project.Quisine.dto.Customer;
 import com.project.Quisine.dto.OrdersDTO;
 import com.project.Quisine.entity.Orders;
 import com.project.Quisine.entity.UserEntity;
@@ -48,6 +49,12 @@ public class CustomerController {
 		return new ResponseEntity<List<OrdersDTO>>(ordersService.getCustomerOrders(id), HttpStatus.OK);
 	}
 
+    @GetMapping("getCustomerById/{id}")
+    public ResponseEntity<Customer> getCustomer(@PathVariable int id)
+    {
+		return new ResponseEntity<Customer>(userEntityService.getCustomerDetailsById(id), HttpStatus.OK);
+
+    }
     @PostMapping("updateCustomer")
 	public void updateCustomer(@RequestBody UserEntity customer) {
 		
