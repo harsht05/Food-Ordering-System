@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SessionStorageService } from '../../../services/session-storage.service';
+import { Customer } from '../../../models/customer';
+import { CustomerService } from '../../../services/customer.service';
 
 @Component({
   selector: 'app-feedback',
@@ -10,8 +13,9 @@ import { Router } from '@angular/router';
 export class FeedbackComponent {
 
   feedbackForm!: FormGroup;
+  loggedInCustomer: Customer | null = null; 
 
-  constructor(private fb: FormBuilder,private route:Router) { }
+  constructor(private fb: FormBuilder,private route:Router,private sessionStorage: SessionStorageService,private customerService:CustomerService) { }
 
   ngOnInit(): void {
     this.feedbackForm = this.fb.group({
@@ -19,10 +23,11 @@ export class FeedbackComponent {
       email: ['', [Validators.required, Validators.email]],
       description: ['', Validators.required],
       like: ['', Validators.required],
-      recommend: ['', Validators.required]
+      recommend: ['', Validators.required],
+
+
     });
 
-    // You might want to initialize form values here
     this.initializeForm();
   }
 
@@ -38,10 +43,26 @@ export class FeedbackComponent {
   }
 
   initializeForm() {
-    // You can initialize form values here
-    this.feedbackForm.patchValue({
-      name: 'John Doe', // Example name
-      email: 'john@example.com', // Example email
-    });
+    const customerId = this.sessionStorage.getItem("custId");
+    if (customerId) {
+      this.fetchCustomerData(customerId);
+    }
   }
-}
+    fetchCustomerData(customerId: number){
+      this.customerService.getCustomerById(customerId).subscribe(
+        (customer: Customer) => {
+          this.loggedInCustomer = customer;
+  
+          this.feedbackForm.patchValue({
+            name: this.loggedInCustomer.userName,
+            email: this.loggedInCustomer.userEmail,
+          });
+        },
+        (error) => {
+          console.error('Error fetching customer data:', error);
+        }
+      )
+    }
+   
+  }
+

@@ -5,7 +5,7 @@ import { RestaurantFood } from '../models/restaurant-food';
   providedIn: 'root'
 })
 export class SessionStorageService {
-
+  
   constructor() { }
 
   setItem(key: string, value: any): void {

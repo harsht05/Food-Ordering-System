@@ -6,7 +6,7 @@
     <div class="container m-2">
 
     
-        <form class="row g-3" [formGroup]="user" (ngSubmit)="addUser()">
+        <form class="row g-3" [formGroup]="user">
 
             <div class="col-md-12 m-auto" *ngIf="(restaurant || customer) && imageUrl">
                 <div class="img-prev-box" [style.background-image]="'url(' + imageUrl + ')'">
@@ -150,7 +150,7 @@
 
 
               <div *ngIf="restaurant || customer" class="col-12 mt-4">
-                <button type="submit" class="button-w3ls active mr-3" [disabled]="!user.valid">Register </button>
+                <button type="submit" class="button-w3ls active mr-3" (click)="addUser()">Register </button>
                 <button type="reset" class="button-w3ls active ms-3"> Cancel</button>
             </div>
     

@@ -7,7 +7,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RestaurantFoodsComponent } from './restaurant-foods/restaurant-foods.component';
 import { AllRestaurantsComponent } from './all-restaurants/all-restaurants.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -16,19 +17,22 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     HomepageComponent,
     RestaurantFoodsComponent,
-    AllRestaurantsComponent
+    AllRestaurantsComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     SharedRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
     HomepageComponent,
     HeaderComponent,
     FooterComponent,
     AllRestaurantsComponent,
-    RestaurantFoodsComponent
+    RestaurantFoodsComponent,
+    SearchComponent
   ]
 })
 export class SharedModule { }
