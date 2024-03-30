@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="container-fluid">
-  <img [src]="'assets/images/hotels/'+restaurant.userImage" alt="{{ restaurant.userImage }}" class="restaurant-image">
+  <img [src]="'assets/images/hotels/' + restaurant.userImg" alt="{{ restaurant.userImg }}" class="restaurant-image">
 </div>
 
 <div class="container-fluid">
@@ -12,7 +12,8 @@
           <div class="d-flex justify-content-between align-items-center">
             <p></p>
             <p class="fw-bolder fs-2 text-center heading">{{ restaurant.userName }}</p>
-            <button [routerLink]="['/restaurant/updateRestaurant', restaurantId]" class="btn btn-secondary fs-5"><i class="fa-solid fa-pen-to-square"></i></button>
+            <a class="drop-text fs-5" data-bs-toggle="modal" data-bs-target="#updateModal"><i
+                class="fa-solid fa-pen-to-square"></i></a>
           </div>
         </div>
         <div class="restaurant-info text-center">
@@ -20,33 +21,61 @@
           <p class="fs-5"><strong>City:</strong> {{ restaurant.userCity }}</p>
           <p class="fs-5"><strong>State:</strong> {{ restaurant.userState }}</p>
           <p class="fs-5"><strong>Pincode:</strong> {{ restaurant.userPin }}</p>
-          <p class="fs-5">Welcome, {{ restaurant.userName }}! As a restaurant owner, I rely on our comprehensive dashboard as the central hub for managing all aspects of our operations efficiently. With its intuitive features such as menu management, order tracking, customer management, analytics & reporting, table reservations, staff management, and promotions & marketing tools, I can streamline every facet of our restaurant's workflow. From effortlessly updating our menu to monitoring real-time orders and analyzing performance metrics, our dashboard empowers me to make informed decisions and ensure exceptional dining experiences for our customers. Whether I'm a seasoned restaurateur or just starting out, this user-friendly platform is designed to simplify tasks and boost productivity. Join us today and let's revolutionize the way we run our restaurant together!</p>
+          <p class="fs-5">Welcome, {{ restaurant.userName }}! As a restaurant owner, I rely on our comprehensive
+            dashboard as the central hub for managing all aspects of our operations efficiently. With its intuitive
+            features such as menu management, order tracking, customer management, analytics & reporting, table
+            reservations, staff management, and promotions & marketing tools, I can streamline every facet of our
+            restaurant's workflow. From effortlessly updating our menu to monitoring real-time orders and analyzing
+            performance metrics, our dashboard empowers me to make informed decisions and ensure exceptional dining
+            experiences for our customers. Whether I'm a seasoned restaurateur or just starting out, this user-friendly
+            platform is designed to simplify tasks and boost productivity. Join us today and let's revolutionize the way
+            we run our restaurant together!</p>
         </div>
-        
       </div>
     </div>
+    <app-view-food-items></app-view-food-items>
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="row justify-content-center flex-column">
-   
-      <app-view-food-items></app-view-food-items>
-  
-    <!-- <div class="text-center">
-      <button [routerLink]="['/restaurant/addFoodItems', restaurantId]" class="btn btn-block bg-light"><i class="fa-solid fa-plus plus"></i></button>
-      
-    </div> -->
-  </div>
-</div>
-
-<div class="container-fluid">
-  <div class="row justify-content-end">
-    <div class="col-md-6">
-      <div class="d-flex justify-content-end">
-        <div class="restaurant-buttons">
-          <!-- <button [routerLink]="['/restaurant/viewRestaurantOrders', restaurantId]" class="btn btn-primary fs-5">Orders</button> -->
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateModalLabel">Update Restaurant</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="restaurantForm" (ngSubmit)="updateRestaurant()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Restaurant Name</label>
+            <input type="text" class="form-control" id="name" formControlName="userName">
+          </div>
+          <div class="mb-3">
+            <label for="contact" class="form-label">Contact</label>
+            <input type="text" class="form-control" id="contact" formControlName="userContact">
+          </div>
+          <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" formControlName="userCity">
+          </div>
+          <div class="mb-3">
+            <label for="state" class="form-label">State</label>
+            <input type="text" class="form-control" id="state" formControlName="userState">
+          </div>
+          <div class="mb-3">
+            <label for="pin" class="form-label">Pin</label>
+            <input type="text" class="form-control" id="pin" formControlName="userPin">
+          </div>
+          <div class="mb-3">
+            <label for="userImage" class="form-label">Image</label>
+            <input type="file" class="form-control" id="userImg" formControlName="userImg" accept="image/*">
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-danger">Update</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

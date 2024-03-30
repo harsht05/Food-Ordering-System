@@ -68,6 +68,17 @@ export class LoginComponent {
             );
           }
         }
+
+        if(response.role === 'restaurant') {
+
+          this.sessionStorage.setItem("restaurantId", response.userId);
+          this.route.navigate([`restaurant/dashboard/${response.userId}`]);
+            Swal.fire(
+              'Login Successfully!!',
+              '',
+              'success'
+            );
+        }
         
       }
 

@@ -1,4 +1,4 @@
-
+<!-- 
 
 
 <div class="container-fluid p-3">
@@ -28,4 +28,36 @@
   
   
   
-  
+   -->
+
+   <div class="container-fluid p-3">
+    <p class="fw-bolder fs-2 text-center heading">Your food items</p>
+    <div class="d-flex justify-content-center gap-4 flex-row flex-wrap mb-3 cards-container">
+        <!-- Loop through food items -->
+        <ng-container *ngFor="let food of foods; let last = last">
+            <div class="card m-2 rounded card-hover" style="width: 18rem;">
+                <img [src]="'assets/images/' + food.food.foodImage" class="card-img-top" alt="{{ food.food.foodName }}">
+                <div class="card-body">
+                    <p class="card-title fs-4 fw-semibold">{{ food.food.foodName }}</p>
+                    <p class="card-text fs-5">Starting at just <b>&#8377; {{ food.rate }}</b></p>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <button class="btn btn-danger" (click)="deleteFoodItem(food.id)">Delete</button>
+                        </div>
+                        <div style="margin-left: 10px;">
+                            <button class="btn btn-danger" (click)="updateFoodItem(food.id)">Update Price</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Display the "+" icon after the last food item -->
+            <div *ngIf="last && foods.length > 0" class="card m-2 rounded card-hover add-food-button" style="width: 18rem;">
+                <button [routerLink]="['/restaurant/addFoodItems', restaurantId]" class="btn btn-light add-button"><i class="fa-solid fa-plus plus"></i></button>
+            </div>
+        </ng-container>
+        <!-- Display the "+" icon if there are no food items -->
+        <div *ngIf="foods.length === 0" class="card m-2 rounded card-hover add-food-button" style="width: 18rem;">
+            <button [routerLink]="['/restaurant/addFoodItems', restaurantId]" class="btn btn-light add-button"><i class="fa-solid fa-plus plus"></i></button>
+        </div>
+    </div>
+</div>

@@ -24,23 +24,23 @@ export class UpdateRestaurantComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.restaurantId = this.route.snapshot.paramMap.get("restId");
-    this.initForm();
-    this.getRestaurantById(this.restaurantId);
+    // this.restaurantId = this.route.snapshot.paramMap.get("restId");
+    // this.initForm();
+    // this.getRestaurantById(this.restaurantId);
   }
 
-  initForm(): void {
-    this.restaurantForm = this.fb.group({
-      userName: ['', Validators.required],
-      userCity: ['', Validators.required],
-      userState: ['', Validators.required],
-      userPin: ['', Validators.required],
-      userContact: ['', Validators.required],
-      userImage: ['', Validators.required]
+  // initForm(): void {
+  //   this.restaurantForm = this.fb.group({
+  //     userName: ['', Validators.required],
+  //     userCity: ['', Validators.required],
+  //     userState: ['', Validators.required],
+  //     userPin: ['', Validators.required],
+  //     userContact: ['', Validators.required],
+  //     userImage: ['', Validators.required]
       
 
-    });
-  }
+  //   });
+  // }
 
   getRestaurantById(id: number): void {
     this.restaurantService.getRestaurantById(id).subscribe(
@@ -87,14 +87,15 @@ export class UpdateRestaurantComponent implements OnInit {
           console.error('Error updating restaurant:', error);
         }
 
-      );
+       );
 
-    }
-  }
+  //   }
+  // }
 
 
 
-  cancelUpdate(): void {
-    this.router.navigate(['/restaurant/dashboard', this.restaurantId]);
-  }
+  // cancelUpdate(): void {
+  //   this.router.navigate(['/restaurant/dashboard', this.restaurantId]);
+   }
 }
+} 
