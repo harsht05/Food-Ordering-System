@@ -18,6 +18,54 @@ export class ViewOrdersComponent {
 
   orders: Orders[] = [];
   customerId: number = 0;
+  
+  currOrders: Orders[] = [];
+
+  resStartIdx = 0;
+  resEndIdx = 0;
+  totalRes = 0;
+
+  prev() {
+
+    if(this.resStartIdx > 0) {
+
+      this.resEndIdx = this.resStartIdx - 1;
+      this.resStartIdx -= 10;
+      
+      this.loadOrders();
+    }
+    
+    
+  }
+
+  next() {
+
+    if(this.resEndIdx + 10 < this.totalRes) {
+
+      this.resStartIdx = this.resEndIdx + 1;
+      this.resEndIdx += 10;
+    }
+
+    else if(this.resEndIdx < this.totalRes) {
+
+      this.resStartIdx = this.resEndIdx + 1;
+      this.resEndIdx = this.totalRes - 1;
+    }
+
+    this.loadOrders();
+  }
+
+  loadOrders() {
+    
+    if (this.resStartIdx >= 0 && this.resEndIdx < this.orders.length && this.resStartIdx <= this.resEndIdx) {
+      
+      this.currOrders = this.orders.slice(this.resStartIdx, this.resEndIdx + 1);
+    } 
+    else {
+      
+      console.error('Invalid index range or indices.');
+    }
+  }
 
   ngOnInit() {
 
@@ -40,8 +88,19 @@ export class ViewOrdersComponent {
       });
 
       this.orders = response;
-      
+
+      this.totalRes = this.orders.length;
+
+      if(this.totalRes > 10) {
+
+        this.resEndIdx = 9;
+      }
+
+      // console.log(this.orders.length);
+      this.loadOrders();
     });
+
+    
   }
 
   isOrderCancellable(orderDate: Date): boolean {

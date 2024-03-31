@@ -4,7 +4,7 @@
         <div class="col-md-6">
             <p class="mt-3 fw-bolder fs-2 text-center heading">Your Recent Orders</p>
 
-            <div class="order-card" *ngFor="let order of orders">
+            <div class="order-card" *ngFor="let order of currOrders">
                 <div class="card-item">
                     <div class="outer-info">
                         <div class="order-info">
@@ -41,6 +41,12 @@
                 </div>
                 
             </div>
+
+            <div *ngIf="totalRes > 10" class="d-flex justify-content-center gap-3">
+                <button class="button-w3ls active" [disabled]="totalRes <= 10" (click)="prev()">Previous</button>
+                <button class="button-w3ls active" [disabled]="resEndIdx === totalRes - 1" (click)="next()">Next</button>
+              </div>
+            
             <div class="text-center mt-3">
                 <a routerLink="/restaurants" class="button-w3ls active m-2">Back To Dashboard</a>
             </div>
