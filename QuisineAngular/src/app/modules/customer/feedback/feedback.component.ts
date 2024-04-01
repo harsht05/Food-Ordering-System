@@ -71,7 +71,7 @@ export class FeedbackComponent implements OnInit {
   }
 
   skipForm() {
-    this.route.navigate(['/customer/dashboard']);
+    this.route.navigate(['/restaurants']);
   }
 
   initializeForm() {

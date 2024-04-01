@@ -4,6 +4,7 @@ import { UserService } from '../../../services/user.service';
 import { RestaurantFood } from '../../../models/restaurant-food';
 import { SessionStorageService } from '../../../services/session-storage.service';
 import { RestaurantService } from '../../../services/restaurant.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-restaurant-foods',
@@ -55,10 +56,30 @@ export class RestaurantFoodsComponent {
   }
 
   increaseQuantity(foodRest: RestaurantFood): void {
-    foodRest.quantity++;
-    this.map.set(foodRest, foodRest.quantity);
-    this.calculateTotals();
-    this.udateProceedButtonState();
+    
+    if(foodRest.quantity == 5) {
+
+      Swal.fire({
+        title: 'You can Order only 5 quantity of per food at a time....',
+        text: ``,
+        icon: 'warning',
+        // showCancelButton: true,
+        confirmButtonText: 'OK',
+        allowOutsideClick: false,
+        allowEscapeKey: false
+      }).then((result) => {
+        if (result.value) {
+        } 
+      });
+    }
+
+    else {
+      
+      foodRest.quantity++;
+      this.map.set(foodRest, foodRest.quantity);
+      this.calculateTotals();
+      this.udateProceedButtonState();
+    }
   }
 
   decreaseQuantity(foodRest: RestaurantFood): void {
