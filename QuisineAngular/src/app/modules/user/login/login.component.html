@@ -1,53 +1,45 @@
+<div class="container custom-form mb-2 position-absolute top-50 start-50 translate-middle p-4 mb-5 text-dark shadow-lg rounded">
 
-
-<div class="container mb-2 position-absolute top-50 start-50 translate-middle p-4 mb-5 text-dark shadow-lg rounded">
-
-    <p class="fw-bolder fs-2 text-center m-2">Login</p>
+    <p class="fw-bolder fs-2 text-center heading m-2">Login</p>
 
     <div class="container">
 
         <form class="row g-3" [formGroup]="user">
 
-        
-
-            <div class="col-md-12 mt-3 p-2">
+            <div class="col-md-12 mt-3">
                 <label for="uemail" class="form-label">Email</label>
                 <div class="input-group has-validation">
-                    <input type="email" class="form-control def" id="uemail" formControlName="userEmail" style="border-radius: 20px;" required>
+                    <input type="email" class="form-control" formControlName="userEmail" placeholder="Enter your Email">
                 </div>
                 <div *ngIf="user.get('userEmail')?.touched && user.get('userEmail')?.errors">
                     <div class="text-danger m-2" *ngIf="user.get('userEmail')?.errors?.['required']">Email is required</div>
-                    <div class="text-danger m-2" *ngIf="user.get('userEmail')?.errors?.['email']">Invalid email format</div>
-                </div>
-                <div class="invalid-feedback">Please enter a valid username.</div>
-                <div class="valid-feedback">Looks Good!</div>
+                    <div class="text-danger m-2" *ngIf="user.get('userEmail')?.errors?.['pattern']">Invalid email format</div>
+                  </div>
             </div>
             
-            
-
-
-            <div class="col-md-12 mt-3 p-2">
+            <div class="col-md-12 mt-3">
                 <label for="upass" class="form-label">Password</label> 
-                <input type="password" class="form-control def" id="upass" formControlName="userPass" style="border-radius: 20px;" required>
+                <input type="password" class="form-control" formControlName="userPass" placeholder="Enter your Password">
                     <div *ngIf="user.get('userPass')?.touched && user.get('userPass')?.errors">
                         <div class="text-danger m-2" *ngIf="user.get('userPass')?.errors?.['required']">Password is required</div>
                         <div class="text-danger m-2" *ngIf="user.get('userPass')?.errors?.['minlength']">Password must be at least 8 characters long</div>
+                        <div class="text-danger m-2" *ngIf="user.get('userPass')?.errors?.['pattern']">Invalid Password Format</div>
                     </div>
-                <div class="valid-feedback">Looks good!</div>
-                <div class="invalid-feedback">Enter a valid Password!</div>
             </div>
 
             <div class="col-12">
                 <div class="form-check">
-                    <input class="form-check-input def" type="checkbox" value=""
-                        id="agree" required> <label class="form-check-label"
+                    <input class="form-check-input def" type="checkbox" formControlName="agree">
+                     <label class="form-check-label"
                         for="invalidCheck3"> Agree to terms and conditions </label>
                 </div>
+                <div *ngIf="user.get('agree')?.touched && user.get('agree')?.errors">
+                    <div class="text-danger m-2" *ngIf="user.get('agree')?.errors?.['required']">You must agree to Terms and Conditions</div>
+                    </div>
             </div>
 
             <div class="col-12 mt-4">
-                <input type="submit" class="btn btn-danger disabled" id="login"
-                    value="Login">
+                <button type="submit" class="button-w3ls active mr-3" [disabled]="user.invalid" value="Login" (click)="login()"> Login </button>
                 
             </div>
 
@@ -56,19 +48,15 @@
     </div>
 
 <div>
+    <p class="text-left text-dark mr-2 mt-3">
+        <a routerLink="/sendVerifyOtp"
+            class="text-decoration-none">Register</a>
+    </p>
+
     <p class="text-left text-dark mr-2">
-        <a href="RestaurantRegisterRequest"
-            class="text-decoration-none">Register as a Restaurent Owner</a>
-    </p>
-
-    <p class="text-right text-dark mr-2">
-        <a href="register"
-            class="text-decoration-none">Register as a customer</a>
-    </p>
-    </div>
-
-    <p class="text-right text-dark mr-2">
-        <a href="forgotPasswordRequest"
+        <a routerLink="/forgotPassword"
             class="text-decoration-none">Forgot Password</a>
     </p>
 </div>
+
+

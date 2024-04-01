@@ -1,0 +1,362 @@
+<div style="display: flex">
+  <div style="background-color: #ffac30">
+    <nav id="sidebar" aria-label="sidebar" style="background-color: #ffac30">
+      <div class="sidebar-header" style="background-color: #ffac30">
+        <img
+          src="assets/images/LOGO.png"
+          alt="Logo"
+          style="height: 60px; width: auto; padding-right: 15px"
+        />
+      </div>
+
+      <div class="container-fluid" style="background-color: #ffac30">
+        <div class="row">
+          <div
+            class="col p-0"
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <ul class="list-unstyled components" style="text-align: center">
+              <li class="active">
+                <a
+                  routerLink="/admin/dashboard"
+                  class="btn"
+                  style="
+                    border: none;
+                    font-weight: 400;
+                    font-size: medium;
+                    display: inline-block;
+                    margin: 0 15px;
+                    list-style-type: disc;
+                  "
+                  >Dashboard</a
+                >
+              </li>
+
+              <li>
+                <a
+                  routerLink="/admin/aboutus"
+                  class="btn"
+                  style="
+                    border: none;
+                    font-weight: 400;
+                    font-size: medium;
+                    display: inline-block;
+                    margin: 0 15px;
+                    list-style-type: disc;
+                  "
+                  >About us</a
+                >
+              </li>
+              <li>
+                <a
+                  routerLink="/admin/viewRestaurants"
+                  routerLinkActive="active"
+                  class="btn"
+                  style="
+                    border: none;
+                    font-weight: 400;
+                    font-size: medium;
+                    display: inline-block;
+                    margin: 0 30px;
+                    list-style-type: disc;
+                  "
+                  >Restaurants</a
+                >
+              </li>
+              <li>
+                <a
+                  routerLink="/admin/viewOrders"
+                  class="btn"
+                  style="
+                    border: none;
+                    font-weight: 400;
+                    font-size: medium;
+                    display: inline-block;
+                    margin: 0 30px;
+                    list-style-type: disc;
+                  "
+                  >Orders</a
+                >
+              </li>
+              <li>
+                <a
+                  routerLink="/admin/viewCustomers"
+                  class="btn"
+                  style="
+                    border: none;
+                    font-weight: 400;
+                    font-size: medium;
+                    display: inline-block;
+                    margin: 0 28px;
+                    list-style-type: disc;
+                  "
+                  >Customers</a
+                >
+              </li>
+              <li>
+                <a
+                  routerLink="/admin/viewFeedbacks"
+                  class="btn"
+                  style="
+                    border: none;
+                    font-weight: 400;
+                    font-size: medium;
+                    display: inline-block;
+                    margin: 0 40px;
+                    list-style-type: disc;
+                  "
+                  >Feedbacks</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Page Content  -->
+  <main class="p-2 w-80">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark sticky-top rounded-1"
+      aria-label="mainNav"
+    >
+      <div class="container">
+        <a class="navbar-brand" aria-label="admin" href="#"> </a>
+        <a
+          class="navbar-brand"
+          href="backtoadmin"
+          style="font-weight: 500; font-size: x-large"
+          class="text-dark"
+          ><i>Admin Dashboard</i></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="btn login-button-2"
+                style="color: white"
+                (click)="adminLogout()"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-lg-3 mb-3">
+          <div class="card text-dark rounded-1">
+            <div class="card-body m-0 p-0 rounded-1" style="height: 200px">
+              <img
+                class="rounded-1 w-100 h-100"
+                src="assets/images/restaurant.jpg"
+                alt=""
+              />
+            </div>
+            <div
+              class="card-footer d-flex justify-content-between"
+              style="background-color: #c9c9c9"
+            >
+              <span
+                class="text-dark"
+                style="font-weight: 500; font-size: medium"
+              >
+                <a
+                  routerLink="/admin/viewRestaurants"
+                  class="btn"
+                  style="
+                    border: none;
+                    background-color: #c9c9c9;
+                    font-weight: 500;
+                    font-size: medium;
+                  "
+                  >View Restaurants</a
+                >
+                <span> <i class="bi bi-chevron-right text-dark"></i> </span
+              ></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+          <div class="card text-dark rounded-1">
+            <div
+              class="card-body m-0 p-0 rounded-1"
+              style="height: 200px; border-radius: 19px"
+            >
+              <img
+                class="rounded-1 w-100 h-100"
+                src="assets/images/Orders.jfif"
+                style="border-radius: 19px"
+                alt=""
+              />
+            </div>
+            <div
+              class="card-footer d-flex justify-content-between"
+              style="background-color: #c9c9c9"
+            >
+              <span
+                class="text-dark"
+                style="font-weight: 500; font-size: medium"
+              >
+                <a
+                  routerLink="/admin/viewOrders"
+                  class="btn"
+                  style="
+                    border: none;
+                    background-color: #c9c9c9;
+                    font-weight: 500;
+                    font-size: medium;
+                  "
+                  >View Orders</a
+                >
+
+                <span> <i class="bi bi-chevron-right text-dark"></i> </span
+              ></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+          <div class="card text-dark rounded-1">
+            <div class="card-body m-0 p-0 rounded-1" style="height: 200px">
+              <img
+                class="rounded-1 w-100 h-100"
+                src="assets/images/Customers.jpg"
+                alt=""
+              />
+            </div>
+            <div
+              class="card-footer d-flex justify-content-between"
+              style="background-color: #c9c9c9"
+            >
+              <span
+                class="text-dark"
+                style="font-weight: 500; font-size: medium"
+              >
+                <a
+                  routerLink="/admin/viewCustomers"
+                  class="btn"
+                  style="
+                    border: none;
+                    background-color: #c9c9c9;
+                    font-weight: 500;
+                    font-size: medium;
+                  "
+                  >View Customers</a
+                >
+
+                <span> <i class="bi bi-chevron-right text-dark"></i> </span
+              ></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+          <div class="card text-dark rounded-1">
+            <div class="card-body m-0 p-0 rounded-1" style="height: 200px">
+              <img
+                class="rounded-1 w-100 h-100"
+                src="assets/admin.jfif"
+                alt=""
+              />
+            </div>
+            <div
+              class="card-footer d-flex justify-content-between"
+              style="background-color: #c9c9c9"
+            >
+              <span
+                class="text-dark"
+                style="font-weight: 500; font-size: medium"
+              >
+                <a
+                  routerLink="/admin/viewFeedbacks"
+                  class="btn"
+                  style="
+                    border: none;
+                    background-color: #c9c9c9;
+                    font-weight: 500;
+                    font-size: medium;
+                  "
+                  >View Feedbacks</a
+                >
+
+                <span> <i class="bi bi-chevron-right text-dark"></i> </span
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row row-cols-md-1 g-3">
+        <div class="col mb-3">
+          <div class="card">
+            <div class="card-header">
+              <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
+              Feedback Chart
+            </div>
+            <div class="card-body">
+              <app-users></app-users>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-3">
+          <div class="card">
+            <div class="card-header">
+              <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
+              Area Chart Example
+            </div>
+            <div class="card-body">
+              <app-sales></app-sales>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col mb-3">
+          <div class="card">
+            <div class="card-header">
+              <span><i class="bi bi-table me-2"></i></span> Order Count Table
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="example" class="table table-striped">
+                  <caption></caption>
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Counts</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let count of countsByExperience">
+                      <td>{{ count.key }}</td>
+                      <td>{{ count.value }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

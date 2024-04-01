@@ -8,6 +8,7 @@ class QuisineApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }

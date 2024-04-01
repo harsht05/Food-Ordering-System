@@ -1,0 +1,30 @@
+<div style="display: flex;">
+    <div><app-side-navbar></app-side-navbar></div>
+    <div class="container">
+		<h1 class="text-center mb-4 rounded-1" style="display: flex; justify-content: center; align-items: center;background-color: aliceblue; height: 60px;margin-top: 10px;">Feedback Table</h1>
+		<div class="table-responsive rounded-1">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">Feedback ID</th>
+                        <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">Username</th>
+						<th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">User Email</th>
+						<th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">Experience</th>
+						<th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">Feedback Description</th>
+						<th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">Recommend</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr *ngFor="let feed of feedback">
+							<td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{feed.feedId}}</td>
+                            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{feed.username}}</td>
+                            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{feed.useremail}}</td>
+                            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{feed.experience}}</td>
+                            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{feed.feedbackDesc}}</td>
+                            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{feed.recommend== 1 ? 'Yes' : 'No'}}</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

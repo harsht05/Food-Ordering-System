@@ -76,7 +76,11 @@ export class OrderSummaryComponent {
                 'Congratulations! Your Order has been placed Successfully....',
                 '',
                 'success'
-              );
+              ).then(result => {
+
+                this.route.navigate(['/customer/feedback']);
+              });
+
               });
             });
           },

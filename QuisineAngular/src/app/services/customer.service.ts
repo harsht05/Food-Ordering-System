@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Orders } from '../models/orders';
 import { Customer } from '../models/customer';
+import { Feedback } from '../models/feedback';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,14 @@ export class CustomerService {
   cancelOrder(orderId: number): Observable<boolean> {
     
     return this.http.delete<boolean>(`${this.baseUrl}deleteOrder/${orderId}`);
+  }
+
+  getCustomerById(customerId:number):Observable<Customer>{
+    return this.http.get<Customer>(`${this.baseUrl}getCustomerById/${customerId}`)
+  }
+
+  addCustomerFeedback(feedback:Feedback):Observable<Feedback>
+  {
+    return this.http.post<Feedback>(`${this.baseUrl}addFeedback`,feedback)
   }
 }

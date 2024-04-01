@@ -1,0 +1,86 @@
+<app-header></app-header>
+
+<div class="container mt-3">
+  <img [src]="'assets/images/hotels/' + restaurant.userImg" alt="{{ restaurant.userImg }}" class="restaurant-image">
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12 col-lg-90">
+      <div class="restaurant-details">
+        <div class="text-center mb-4" style="font-weight: 600; font-size: xx-large;">
+          <div class="d-flex justify-content-between align-items-center">
+            <p></p>
+            <p class="fw-bolder fs-2 text-center heading">{{ restaurant.userName }}</p>
+            <a class="drop-text fs-5" data-bs-toggle="modal" data-bs-target="#updateModal"><i
+                class="fa-solid fa-pen-to-square"></i></a>
+          </div>
+        </div>
+        <div class="restaurant-info text-center">
+          <p class="fs-5 normal-text-format"><strong>Contact:</strong> {{ restaurant.userContact }}</p>
+          <p class="fs-5 normal-text-format"><strong>City:</strong> {{ restaurant.userCity }}</p>
+          <p class="fs-5 normal-text-format"><strong>State:</strong> {{ restaurant.userState }}</p>
+          <p class="fs-5 normal-text-format"><strong>Pincode:</strong> {{ restaurant.userPin }}</p>
+          <p class="normal-text-format">Welcome, {{ restaurant.userName }}! As a restaurant owner, I rely on our comprehensive
+            dashboard as the central hub for managing all aspects of our operations efficiently. With its intuitive
+            features such as menu management, order tracking, customer management, analytics & reporting, table
+            reservations, staff management, and promotions & marketing tools, I can streamline every facet of our
+            restaurant's workflow. From effortlessly updating our menu to monitoring real-time orders and analyzing
+            performance metrics, our dashboard empowers me to make informed decisions and ensure exceptional dining
+            experiences for our customers. Whether I'm a seasoned restaurateur or just starting out, this user-friendly
+            platform is designed to simplify tasks and boost productivity. Join us today and let's revolutionize the way
+            we run our restaurant together!</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="mt-3">
+  <app-view-food-items></app-view-food-items>
+</div>
+
+<div *ngIf="isAdminOrCustomer()" class="d-flex justify-content-center m-3">
+  <a class="button-w3ls active mb-3" routerLink="/admin/dashboard">Back To Dashboard</a>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title heading fs-4" id="updateModalLabel">Update Restaurant</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="restaurantForm" (ngSubmit)="updateRestaurant()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Restaurant Name</label>
+            <input type="text" class="form-control" id="name" formControlName="userName">
+          </div>
+          <div class="mb-3">
+            <label for="contact" class="form-label">Contact</label>
+            <input type="text" class="form-control" id="contact" formControlName="userContact">
+          </div>
+          <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" formControlName="userCity">
+          </div>
+          <div class="mb-3">
+            <label for="state" class="form-label">State</label>
+            <input type="text" class="form-control" id="state" formControlName="userState">
+          </div>
+          <div class="mb-3">
+            <label for="pin" class="form-label">Pin</label>
+            <input type="text" class="form-control" id="pin" formControlName="userPin">
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="button-w3ls active mr-3">Update</button>
+            <button type="button" class="button-w3ls active" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

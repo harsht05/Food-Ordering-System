@@ -1,0 +1,49 @@
+
+
+
+<div *ngIf="!isAdminOrCustomer()" class="main-top py-1 p-2" style="background: #ffac30;">
+    <div class="container">
+        <div class="nav-content d-flex gap-5 justify-content-center">
+            <!-- logo -->
+                <a id="logo" class="logo">
+                    <img src="../../assets/images/LOGO.png" alt="" class="img-fluid" height="80px" class="rounded"> 
+                </a>
+            
+
+            <!-- nav -->
+            <div class="nav_web-dealingsls">
+                <nav>
+                    <label for="drop" class="toggle">Menu</label>
+                    <input type="checkbox" id="drop" />
+                    <ul class="menu">
+                        <li><a class="text-white" [routerLink]="['/restaurant/dashboard', restaurantId]">Home</a></li>
+                        <li><a class="text-white" [routerLink]="['/restaurant/viewRestaurantOrders', restaurantId]" *ngIf="isLoggedIn();">Your Orders</a></li>
+                        <li><a class="text-white" *ngIf="!isLoggedIn();">About Us</a></li>
+                        <li><a class="text-white" *ngIf="!isLoggedIn();">Contact Us</a></li>
+                        
+
+                        <label for="drop-3" class="toggle toogle-2">Your Profile <span class="fa fa-angle-down"
+                          aria-hidden="true"></span>
+                        </label>
+
+                        <li *ngIf="!isLoggedIn(); else loginButton">
+
+                            <a routerLink="/login" class="btn login-button-2 text-uppercase text-wh">
+                                <span class="fa fa-sign-in mr-2"></span>Login</a>
+                        </li>
+                        
+                        <li>
+                        <ng-template #loginButton>
+                            <!-- login -->
+                            <a (click)="logout()" class="btn login-button-2 text-uppercase text-white">
+                                <span class="fa fa-sign-in mr-2"></span>Logout</a>
+                            <!-- //login -->
+                        </ng-template>
+                      </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- //nav -->
+        </div>
+    </div>
+</div>

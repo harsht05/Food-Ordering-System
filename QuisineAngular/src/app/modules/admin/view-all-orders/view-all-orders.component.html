@@ -1,0 +1,43 @@
+<!-- <app-sidebar-navbar></app-sidebar-navbar> -->
+<div style="display: flex;">
+  <div><app-side-navbar></app-side-navbar></div>
+<main class="p-2 w-100">
+  <div class="container">
+    <h2 class="text-center mb-4 rounded-1" style="display: flex; justify-content: center; align-items: center;background-color: aliceblue; height: 60px;margin-top: 10px;">All Orders</h2>
+    <div class="table-responsive rounded-1">
+      <table class="table table-striped table-bordered">
+        <caption></caption>
+        <thead>
+          <tr>
+            <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center;">Order ID</th>
+            <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center;">Quantity</th>
+            <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center;">Total Price</th>
+            <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center;">Date</th>
+            <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center;">Time</th>
+            <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center;">Restaurant</th>
+            <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center;">Customer</th>
+            <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center;">Food Item</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of allOrders">
+            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.orderId }}</td>
+            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.quantity }}</td>
+            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">&#8377;{{ order.totalPrice }}</td>
+            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.date | date:'MMM d, y' }}</td>
+            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.date | date:'h:mm a' }}</td>
+            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.restaurant.userName}}</td>
+            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.customer.userName }}</td>
+            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.food.foodName }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+</div>
+<!-- +----------+----------------------------+----------+-------------+---------+---------+---------+------------------+
+| order_id | date                       | quantity | total_price | cust_id | food_id | rest_id | delivery_address |
++----------+----------------------------+----------+-------------+---------+---------+---------+------------------+
+|        1 | 2024-04-01 01:30:38.763000 |        2 |        1974 |      19 |       1 |      14 | Sakinaka         |
++----------+----------------------------+----------+-------------+---------+---------+---------+------------------ -->

@@ -1,0 +1,169 @@
+/* Your CSS styles go here */
+
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #ffac30;
+    color: #fff;
+    transition: all 0.3s;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        position: static;
+        height: auto;
+    }
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #ffac30;
+}
+
+
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+
+
+
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #ffac30;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+/* a.download {
+    background: #fff;
+    color: #a75d5d;
+}
+
+a.article,
+a.article:hover {
+    background: #a75d5d !important;
+    color: #fff !important;
+} */
+
+/* Content Style */
+#content {
+    width: calc(100% - 250px);
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+/* Card and Table Styles */
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table thead th {
+    border: none;
+    background-color: #f8f9fa;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa;
+}
+
+/* Navbar Styles */
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.btn-custom {
+    border: none;
+    background-color:  #ffac30;
+    font-weight: 400;
+    font-size: medium;
+    margin-bottom: 10px;
+}
+/* 
+.btn-custom:hover {
+    background-color: #913b3b;
+    color: #fff;
+} */
+
+.active{
+    background: white;
+    color: rgb(23, 23, 23);
+    border-bottom-left-radius: 22px;
+    border-top-left-radius: 22px;
+}
+
+#sidebar ul li{
+    width: 100%;
+    margin: 0;
+    margin-bottom: 10px;
+    transition: 0.1s all ease-in-out;
+    cursor: pointer;
+}
+#sidebar ul li:hover{
+    background: white;
+    color: rgb(23, 23, 23);
+    border-bottom-left-radius: 22px;
+    border-top-left-radius: 22px;
+}

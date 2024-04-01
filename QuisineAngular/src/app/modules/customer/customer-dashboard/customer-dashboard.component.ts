@@ -20,7 +20,6 @@ export class CustomerDashboardComponent {
   customerId: number = 0;
 
   ngOnInit() {
-
     this.userService.getAllRestaurants().subscribe(response => {
       this.restaurants = response;
       console.log(this.restaurants);

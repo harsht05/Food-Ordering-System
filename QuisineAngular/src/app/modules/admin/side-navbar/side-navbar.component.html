@@ -1,0 +1,63 @@
+<nav id="sidebar" aria-label="sidebar" style="background-color: #ffac30;">
+    <div class="sidebar-header">
+      <img
+        src="assets/images/LOGO.png"
+        alt="Logo"
+        style="height: 60px; width: auto; padding-right: 15px"
+      />
+    </div>
+
+    <div class="container-fluid" style="background-color: #ffac30;">
+      <div class="row">
+        <div class="col p-0" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+          <ul class="list-unstyled components" style="text-align: center;">
+            <li class="active">
+             
+
+            <li
+            routerLink="/admin/dashboard"
+            routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+              <a class="btn" style="border: none; font-weight: 400; font-size: medium;display: inline-block; margin: 0 15px; list-style-type: disc;">Dashboard</a>
+            </li>
+            <li
+            routerLink="/admin/aboutus"
+            routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <a class="btn" style="border: none; font-weight: 400; font-size: medium;display: inline-block; margin: 0 25px; list-style-type: disc;">About us</a>
+            </li>
+            <li
+            routerLink="/admin/viewRestaurants"
+            routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <a  class="btn" style="border: none; font-weight: 400; font-size: medium;display: inline-block; margin: 0 30px; list-style-type: disc;">Restaurants</a>
+
+            </li>
+            <li
+            routerLink="/admin/viewOrders"
+            routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+              <a class="btn" style="border: none; font-weight: 400; font-size: medium;display: inline-block; margin: 0 30px; list-style-type: disc;">Orders</a>
+
+            </li>
+            <li
+            routerLink="/admin/viewCustomers"
+            routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+              <a class="btn" style="border: none; font-weight: 400; font-size: medium;display: inline-block; margin: 0 28px; list-style-type: disc;">Customers</a>
+
+            </li>
+            <li
+            routerLink="/admin/viewFeedbacks"
+            routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+              <a class="btn" style="border: none; font-weight: 400; font-size: medium;display: inline-block; margin: 0 40px; list-style-type: disc;">Feedbacks</a>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>

@@ -6,6 +6,7 @@ import { ViewOrdersComponent } from './view-orders/view-orders.component';
 import { CustomerLogoutComponent } from './customer-logout/customer-logout.component';
 import { DeleteOrderComponent } from './delete-order/delete-order.component';
 import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,9 @@ const routes: Routes = [
     component: CustomerLogoutComponent
   },
   {
+    path: "feedback",
+    component: FeedbackComponent},
+    {
     path: "deleteOrder/:orderId",
     component: DeleteOrderComponent
   },

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionStorageService } from '../../../services/session-storage.service';
@@ -6,6 +6,7 @@ import { UserService } from '../../../services/user.service';
 import { CustomerService } from '../../../services/customer.service';
 import { Customer } from '../../../models/customer';
 import Swal from 'sweetalert2';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,14 @@ import Swal from 'sweetalert2';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  showSearchResults: boolean = false;
+  searchInput: string = ''; 
 
+  @ViewChild(SearchComponent) searchComponent!: SearchComponent;
+
+  onInputChange() {
+    this.searchComponent.onInputChange();
+  }
   constructor(private sessionStorageService: SessionStorageService, private custService: CustomerService, private userService: UserService, private route: Router) {}
 
   isLoggedIn(): boolean {
@@ -21,6 +29,10 @@ export class HeaderComponent {
     return this.sessionStorageService.getItem('custId') !== null;
   }
 
+  onSearchClick(query:string){
+    this.route.navigate(['customers/search/'],{queryParams:{query:query}})
+  }
+  
 
   customerId: number = 0;
   customer: Customer = new Customer();
@@ -54,7 +66,7 @@ export class HeaderComponent {
         this.customer = response;
         console.log(response);
         
-        this.imageUrl = "assets/images/hotels/" + this.customer.userImg;
+        this.imageUrl = "assets/images/" + this.customer.userImg;
         console.log(this.imageUrl);
         
   
