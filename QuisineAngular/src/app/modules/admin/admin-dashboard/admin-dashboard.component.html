@@ -1,7 +1,7 @@
 <div style="display: flex">
   <div style="background-color: #ffac30">
     <nav id="sidebar" aria-label="sidebar" style="background-color: #ffac30">
-      <div class="sidebar-header"  style="background-color: #ffac30">
+      <div class="sidebar-header" style="background-color: #ffac30">
         <img
           src="assets/images/LOGO.png"
           alt="Logo"
@@ -12,7 +12,7 @@
       <div class="container-fluid" style="background-color: #ffac30">
         <div class="row">
           <div
-            class="col"
+            class="col p-0"
             style="
               display: flex;
               flex-direction: column;
@@ -21,7 +21,21 @@
             "
           >
             <ul class="list-unstyled components" style="text-align: center">
-              <li class="active"></li>
+              <li class="active">
+                <a
+                  routerLink="/admin/dashboard"
+                  class="btn"
+                  style="
+                    border: none;
+                    font-weight: 400;
+                    font-size: medium;
+                    display: inline-block;
+                    margin: 0 15px;
+                    list-style-type: disc;
+                  "
+                  >Dashboard</a
+                >
+              </li>
 
               <li>
                 <a
@@ -41,6 +55,7 @@
               <li>
                 <a
                   routerLink="/admin/viewRestaurants"
+                  routerLinkActive="active"
                   class="btn"
                   style="
                     border: none;
@@ -137,7 +152,12 @@
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="btn login-button-2" style="color: white;" (click)="adminLogout()">Logout</a>
+              <a
+                class="btn login-button-2"
+                style="color: white"
+                (click)="adminLogout()"
+                >Logout</a
+              >
             </li>
           </ul>
         </div>
@@ -290,7 +310,7 @@
           <div class="card">
             <div class="card-header">
               <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-             Feedback Chart
+              Feedback Chart
             </div>
             <div class="card-body">
               <app-users></app-users>
@@ -327,8 +347,8 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let count of countsByExperience">
-                      <td>{{count.key}}</td>
-                      <td>{{count.value}}</td>
+                      <td>{{ count.key }}</td>
+                      <td>{{ count.value }}</td>
                     </tr>
                   </tbody>
                 </table>

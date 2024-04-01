@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { RestaurantFood } from '../../../models/restaurant-food';
 import { SessionStorageService } from '../../../services/session-storage.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { PayementService } from '../../../services/payement.service';
 
 @Component({
   selector: 'app-payment-gateway',
@@ -12,17 +11,17 @@ import Swal from 'sweetalert2';
 })
 export class PaymentGatewayComponent {
 
-  constructor(private sessionStorageService: SessionStorageService, private route: Router) {
+  constructor(private sessionStorageService: SessionStorageService, private payementService:PayementService, private route: Router) {
 
   }
 
-  map: Map<RestaurantFood, number> = new Map();
   totalMealCharges: number = 0;
   delAddress:string='';
 
   ngOnInit() {
 
-    if(this.sessionStorageService.getItem("custId") === null) {
+    const cid = this.sessionStorageService.getItem("custId");
+    if(cid === null) {
 
       Swal.fire({
         title: 'Please Login To Continue....',
@@ -45,72 +44,56 @@ export class PaymentGatewayComponent {
       });
     }
 
-    const storedMap = this.sessionStorageService.getMap("mealsMap");
-    this.totalMealCharges = this.sessionStorageService.getItem("totalCharges");
-    this.delAddress = this.sessionStorageService.getItem("custAddress");
+    else {
 
-    if(storedMap !== null) {
+      this.totalMealCharges = this.sessionStorageService.getItem("totalCharges");
+      this.delAddress = this.sessionStorageService.getItem("custAddress");
 
-      this.map = storedMap;
+    type Address = {
+      address: string
     }
-
-    this.payementForm.patchValue({
-      delAddress: this.delAddress
-    })
     
-  }
-
-  payementForm = new FormGroup({
-    cardNumber: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^[0-9]+$/),
-      Validators.maxLength(16),
-      Validators.minLength(16)
-    ]),
-    cardHolder: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^[a-zA-Z\s]+$/)
-    ]),
-    expiryDate: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)
-    ]),
-    cvv: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^[0-9]{3}$/)
-    ]),
-    delAddress: new FormControl(this.delAddress, [
-      Validators.required,
-      Validators.minLength(8)
-    ]),
-    agreeToTerms: new FormControl([
-      Validators.required
-    ])
-  });
-
-  
-  submitForm(): void {
+    let addressInput: HTMLInputElement
     
-    this.sessionStorageService.setItem("delAddress", this.payementForm.value.delAddress);
-    
-    Swal.fire({
-      title: 'Are You Sure Want to Place Order?....',
-      text: `Amount Rs.${this.totalMealCharges + 60} will be debited from your account....`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Place Order',
-      cancelButtonText: 'Cancel',
+    Swal.fire<Address>({
+      title: 'Check Your Delivery Address',
+      html: `
+        <input type="text" id="address" class="swal2-input" value="${this.delAddress}">
+      `,
+      confirmButtonText: 'Confirm and Make Payement',
+      icon:'info',
+      allowEscapeKey: false,
       allowOutsideClick: false,
-      allowEscapeKey: false 
+      focusConfirm: false,
+      didOpen: () => {
+        const popup = Swal.getPopup()!
+        addressInput = popup.querySelector('#address') as HTMLInputElement
+        addressInput.onkeyup = (event) => event.key === 'Enter' && Swal.clickConfirm()
+      },
+      preConfirm: () => {
+        const address = addressInput.value
+        if (!address) {
+          Swal.showValidationMessage(`Please Enter Valid Address`)
+        }
+        return { address }
+      },
+      
     }).then((result) => {
-      if (result.value) {
 
-        this.route.navigate(['customer/orderSummary']);
-      } 
-      else if (result.dismiss === Swal.DismissReason.cancel) {
+      if(result) {
+
+        this.delAddress = addressInput.value;
+        this.sessionStorageService.setItem("delAddress", this.delAddress);
+
+        console.log(this.delAddress);
         
-        this.route.navigate([`/restaurantFoods/${this.sessionStorageService.getItem("restId")}`]);
+        this.payementService.generatePayementLink(cid, this.totalMealCharges + 60).subscribe(response => {
+
+          console.log(response);
+          window.location.href = response.payment_link_url;
+        });
       }
     });
+    }
   }
 }

@@ -45,6 +45,7 @@
 
 
 
+
 .dropdown-toggle::after {
     display: block;
     position: absolute;
@@ -145,3 +146,24 @@ a.article:hover {
     background-color: #913b3b;
     color: #fff;
 } */
+
+.active{
+    background: white;
+    color: rgb(23, 23, 23);
+    border-bottom-left-radius: 22px;
+    border-top-left-radius: 22px;
+}
+
+#sidebar ul li{
+    width: 100%;
+    margin: 0;
+    margin-bottom: 10px;
+    transition: 0.1s all ease-in-out;
+    cursor: pointer;
+}
+#sidebar ul li:hover{
+    background: white;
+    color: rgb(23, 23, 23);
+    border-bottom-left-radius: 22px;
+    border-top-left-radius: 22px;
+}

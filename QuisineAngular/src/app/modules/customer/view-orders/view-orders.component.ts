@@ -97,6 +97,7 @@ export class ViewOrdersComponent {
         this.resEndIdx = 9;
       }
 
+      // console.log(this.orders.length);
       this.loadOrders();
     });
 

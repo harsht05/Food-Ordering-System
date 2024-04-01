@@ -1,9 +1,9 @@
 <div class="container mt-5">
     <div class="card" style="max-width: 500px; margin: 0 auto;">
-      <h1 class="card-header" style="display: flex;justify-content: center;align-items: center;">Feedback Form</h1>
+      <h1 class="card-header heading" style="display: flex;justify-content: center;align-items: center;">Feedback Form</h1>
       <div class="card-body">
         <div class="row justify-content-center">
-          <div class="col-md-6">
+          <div class="col-md-10">
             <form [formGroup]="feedbackForm" (ngSubmit)="submitForm()">
               <div class="mb-3">
                 <label for="name">Name</label>
@@ -41,7 +41,7 @@
                 </div>
               </div>
               <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-danger">Submit</button>
+                <button type="submit" class="button-w3ls active">Submit</button>
                 <button type="button" class="btn btn-secondary" (click)="skipForm()">Skip</button>
               </div>
             </form>
@@ -49,7 +49,7 @@
         </div>
       </div>
       <div class="card-footer text-muted" style="display: flex; justify-content: end;align-items: end;">
-        <a class="navbar-brand" href="#"> <img src="assets/images/LOGO.png" alt="Your Logo" style="height: 80px; width: 200px;float: right;" class="rounded">
+        <a class="navbar-brand" href="#"> <img src="assets/images/logo.png" alt="Your Logo" style="height: 80px; width: 200px;float: right;" class="rounded">
         </a>
       </div>
     </div>
