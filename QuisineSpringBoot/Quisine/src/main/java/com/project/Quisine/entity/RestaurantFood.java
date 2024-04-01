@@ -1,6 +1,5 @@
 package com.project.Quisine.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,12 +17,10 @@ public class RestaurantFood {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private UserEntity restaurant;
     
-	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "food_id")
     private Food food;

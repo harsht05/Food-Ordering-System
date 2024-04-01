@@ -34,6 +34,11 @@ export class RestaurantService {
   }
 
   addFoodItem(restaurantFood: RestaurantFood): Observable<any> {
+
+    console.log("Inservice");
+    console.log(restaurantFood);
+    
+    
     return this.http.post(`${this.baseUrl}addRestaurantFood`, restaurantFood);
   }
 

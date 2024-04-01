@@ -34,6 +34,10 @@ const routes: Routes = [
     component: ViewAllFeedbackComponent
   },
   {
+    path:'home',
+    component:AdminDashboardComponent
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }

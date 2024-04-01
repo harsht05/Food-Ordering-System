@@ -25,73 +25,90 @@ export class LoginComponent {
 
   login() {
 
-    this.service.login(new User(0, '', this.user.value.userEmail!, this.user.value.userPass!, '', '', '', '', '', '', 0, '')).subscribe(response => {
+    if(this.user.value.userEmail! === 'admin@gmail.com' && this.user.value.userPass! === 'Admin@1234') {
 
-      console.log(response);
+      this.sessionStorage.setItem("isAdmin", true);
+      this.route.navigate(['admin/dashboard']);
 
-      if(response !== null) {
-        
-        if(response.role === "customer") {
+      Swal.fire(
+        'Login Successfully!!',
+        '',
+        'success'
+      );
+    }
 
-          console.log(response);
-          this.sessionStorage.setItem("custId", response.userId);
-          this.sessionStorage.setItem("custAddress", response.userAddress);
+    else {
+
+      this.service.login(new User(0, '', this.user.value.userEmail!, this.user.value.userPass!, '', '', '', '', '', '', 0, '')).subscribe(response => {
+
+        console.log(response);
+  
+        if(response !== null) {
           
-          if(this.sessionStorage.getMap("mealsMap") !== null) {
-
-            this.route.navigate(['customer/payementGateway']);
-            Swal.fire(
-              'Login Successfully!!',
-              '',
-              'success'
-            );
+          if(response.role === "customer") {
+  
+            console.log(response);
+            this.sessionStorage.setItem("custId", response.userId);
+            this.sessionStorage.setItem("custAddress", response.userAddress);
+            
+            if(this.sessionStorage.getMap("mealsMap") !== null) {
+  
+              this.route.navigate(['customer/payementGateway']);
+              Swal.fire(
+                'Login Successfully!!',
+                '',
+                'success'
+              );
+            }
+  
+            else if(this.sessionStorage.getItem("restId") !== null) {
+  
+              this.route.navigate([`customer/addToCart/${this.sessionStorage.getItem("restId")}`]);
+              Swal.fire(
+                'Login Successfully!!',
+                '',
+                'success'
+              );
+            }
+  
+            else {
+  
+              // window.history.go(-1);
+              this.route.navigate(['restaurants']);
+              Swal.fire(
+                'Login Successfully!!',
+                '',
+                'success'
+              );
+            }
           }
-
-          else if(this.sessionStorage.getItem("restId") !== null) {
-
-            this.route.navigate([`customer/addToCart/${this.sessionStorage.getItem("restId")}`]);
-            Swal.fire(
-              'Login Successfully!!',
-              '',
-              'success'
-            );
+  
+          if(response.role === 'restaurant') {
+  
+            this.sessionStorage.setItem("restaurantId", response.userId);
+            this.route.navigate([`restaurant/dashboard/${response.userId}`]);
+              Swal.fire(
+                'Login Successfully!!',
+                '',
+                'success'
+              );
           }
-
-          else {
-
-            // window.history.go(-1);
-            this.route.navigate(['restaurants']);
-            Swal.fire(
-              'Login Successfully!!',
-              '',
-              'success'
-            );
-          }
+          
         }
-
-        if(response.role === 'restaurant') {
-
-          this.sessionStorage.setItem("restaurantId", response.userId);
-          this.route.navigate([`restaurant/dashboard/${response.userId}`]);
-            Swal.fire(
-              'Login Successfully!!',
-              '',
-              'success'
-            );
+  
+        else {
+  
+          Swal.fire(
+            'Wrong Credentials Entered!!',
+            'Please enter valid credentials....',
+            'error'
+          );
         }
         
-      }
+      });
+    }
 
-      else {
-
-        Swal.fire(
-          'Wrong Credentials Entered!!',
-          'Please enter valid credentials....',
-          'error'
-        );
-      }
-      
-    });
+    
   }
   
   

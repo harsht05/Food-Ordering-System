@@ -44,6 +44,15 @@ export class SendVerifyOtpComponent {
             console.log(this.otpStatus);
             this.otpStatus = true;
           }
+
+          else {
+
+            Swal.fire(
+              'Error Sending Mail!',
+              'Try Later',
+              'error'
+            );
+          }
         });
       }
       else {

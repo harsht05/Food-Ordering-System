@@ -58,6 +58,10 @@ const routes: Routes = [
     loadChildren: () => import('../app/modules/admin/admin.module').then(m => m.AdminModule)
   },
   {
+    path: 'customers',
+    loadChildren: () => import('../app/modules/shared/shared.module').then(m => m.SharedModule)
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }

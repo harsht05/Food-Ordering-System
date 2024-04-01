@@ -578,6 +578,12 @@ a.button-w3ls , button.button-w3ls.active{
     border-radius: 4px;
 }
 
+button.button-w3ls.active:disabled {
+
+    opacity: 0.7;
+    cursor: default;
+}
+
 a.button-w3ls.active, button.button-w3ls.active {
     color: #fff;
     background: #d15f3b;
@@ -669,7 +675,13 @@ a.button-w3ls:hover, button.button-w3ls.active:hover {
     cursor: pointer;
 }
 
+.card-img-bottom {
 
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+    height: 275px;
+    width: 100%;
+}
 /* Order Cards :  */
 
 .order-card p{

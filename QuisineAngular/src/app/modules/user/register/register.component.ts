@@ -67,7 +67,7 @@ export class RegisterComponent {
       "userImg": new FormControl("", [Validators.required]),
       "restOwnerName": new FormControl(""),
       "confirmPassword": new FormControl("", [Validators.required]),
-      "userAddress": new FormControl("", [Validators.required, Validators.minLength(8)]),
+      "userAddress": new FormControl("", [Validators.required, Validators.minLength(4)]),
       "userContact": new FormControl("", [ Validators.required,  Validators.pattern(/^(?!1|2|3)\d{10}$/),
         Validators.minLength(10), 
         Validators.maxLength(10)]),

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionStorageService } from '../../../services/session-storage.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
@@ -19,9 +20,32 @@ export class HeaderComponent {
 
   logout() {
 
-    this.sessionStorageService.clearStorage();
+   
+
+    Swal.fire({
+      title: 'Are you sure?,You want to Logout!',
+      text: '',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.sessionStorageService.clearStorage();
     this.router.navigate(['']);
 
+      } 
+    });
+  }
+
+  isLoggedIn(): boolean {
+    
+    return this.sessionStorageService.getItem('restaurantId') !== null;
+  }
+
+  isAdminOrCustomer() : boolean {
+
+    return this.sessionStorageService.getItem('isAdmin') || this.sessionStorageService.getItem("custId") !== null;
   }
 
 }

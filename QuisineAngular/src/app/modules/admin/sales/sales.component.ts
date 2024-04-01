@@ -1,5 +1,7 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { SessionStorageService } from '../../../services/session-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sales',
@@ -10,7 +12,15 @@ export class SalesComponent implements AfterViewInit, OnDestroy {
   private ctx: any;
   chartData: any;
 
-  constructor() {}
+  constructor(private sessionStorageService: SessionStorageService, private route: Router) {}
+
+  ngOnInit(){
+
+    if(!this.sessionStorageService.getItem("isAdmin")) {
+
+      this.route.navigate(['accessDenied']);
+    }
+  }
 
   ngAfterViewInit() {
     this.ctx = document.getElementById('myChart1') as HTMLCanvasElement | null;
