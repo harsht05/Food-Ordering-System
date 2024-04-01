@@ -7,19 +7,20 @@
             <form [formGroup]="feedbackForm" (ngSubmit)="submitForm()">
               <div class="mb-3">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" formControlName="name" readonly>
+                <input type="text" class="form-control" id="name" formControlName="username" readonly>
               </div>
+              
               <div class="mb-3">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" formControlName="email" readonly>
+                <input type="email" class="form-control" id="email" formControlName="useremail" readonly>
               </div>
               <div class="mb-3">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" formControlName="description" rows="3" required></textarea>
+                <textarea class="form-control" id="description" formControlName="feedbackDesc" rows="3" required></textarea>
               </div>
               <div class="mb-3">
                 <label for="like">What do you like about the site?</label>
-                <select class="form-select" id="like" formControlName="like" required>
+                <select class="form-select" id="like" formControlName="experience" required>
                   <option selected disabled>Select an option</option>
                   <option value="Excellent">Excellent</option>
                   <option value="Good">Good</option>

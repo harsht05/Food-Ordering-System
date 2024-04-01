@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AdminService } from '../../../services/admin.service';
 import { Orders } from '../../../models/orders';
+import { SessionStorageService } from '../../../services/session-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-all-orders',
@@ -9,15 +11,24 @@ import { Orders } from '../../../models/orders';
 })
 export class ViewAllOrdersComponent {
 
-  constructor( private adminService:AdminService) {
+  constructor( private adminService:AdminService, private sessionStorageService: SessionStorageService, private route: Router) {
 
   }
 
   allOrders: Orders[] = [];
 
   ngOnInit() {
+
+    if(!this.sessionStorageService.getItem("isAdmin")) {
+
+      this.route.navigate(['accessDenied']);
+    }
+
     this.adminService.getAllOrders().subscribe(response => {
+      
       this.allOrders = response;
+      console.log(this.allOrders);
+      
     });
   }
 }

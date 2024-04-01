@@ -1,32 +1,34 @@
-<!-- <div class="container">
-    <h1 class="mb-4"style="display: flex;justify-content: center;">User List</h1>
-    <div class="table-responsive">
+<div style="display: flex;">
+    <div><app-side-navbar></app-side-navbar></div>
+    <div class="container">
+    <h1 class="text-center mb-4 rounded-1" style="display: flex; justify-content: center; align-items: center;background-color: aliceblue; height: 60px;margin-top: 10px;">Customer List</h1>
+    <div class="table-responsive rounded-1">
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Customer ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Contact</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Pincode</th>
+                    <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">Name</th>
+                    <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">Email</th>
+                    <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">Contact</th>
+                    <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">City</th>
+                    <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">State</th>
+                    <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">Pincode</th>
+                    <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <c:forEach items="${allusers}" var="user">
-                    <tr>
-                        <td>${user.custId}</td>
-                        <td>${user.custName}</td>
-                        <td>${user.custEmail}</td>                    	
-                        <td>${user.custContact}</td>
-                        <td>${user.custCity}</td>
-                        <td>${user.custState}</td>
-                        <td>${user.custPin}</td>
+                
+                    <tr *ngFor="let cust of customer">
+                        <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{cust.userName}}</td>
+                        <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{cust.userEmail}}</td>
+                        <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{cust.userContact}}</td>
+                        <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{cust.userCity}}</td>
+                        <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{cust.userState}}</td>
+                        <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{cust.userPin}}</td>
+                        <td style="border: 1px solid #ccc; padding: 10px; text-align: center"><a (click)="deleteHandler(cust.userId)" class="btn btn-danger" style="text-decoration: none;color: white;"><i class="fa-solid fa-trash">  </i></a>
+                        </td>
                     </tr>
-                </c:forEach>
             </tbody>
         </table>
     </div>
-</div> -->
-<app-side-navbar></app-side-navbar>
+</div>
+</div>

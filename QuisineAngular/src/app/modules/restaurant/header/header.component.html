@@ -1,29 +1,49 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
+
+
+
+<div *ngIf="!isAdminOrCustomer()" class="main-top py-1 p-2" style="background: #ffac30;">
     <div class="container">
+        <div class="nav-content d-flex gap-5 justify-content-center">
+            <!-- logo -->
+                <a id="logo" class="logo">
+                    <img src="../../assets/images/LOGO.png" alt="" class="img-fluid" height="80px" class="rounded"> 
+                </a>
+            
 
-        <a class="navbar-brand" href="#">
-            <img src="../../../../assets/images/logo.png" alt="Your Logo" width="120" height="auto">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active fs-5 fw-bold" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active fs-5 fw-bold" [routerLink]="['/restaurant/viewRestaurantOrders', restaurantId]">Orders</a>
-                </li>
-            </ul>
+            <!-- nav -->
+            <div class="nav_web-dealingsls">
+                <nav>
+                    <label for="drop" class="toggle">Menu</label>
+                    <input type="checkbox" id="drop" />
+                    <ul class="menu">
+                        <li><a class="text-white" [routerLink]="['/restaurant/dashboard', restaurantId]">Home</a></li>
+                        <li><a class="text-white" [routerLink]="['/restaurant/viewRestaurantOrders', restaurantId]" *ngIf="isLoggedIn();">Your Orders</a></li>
+                        <li><a class="text-white" *ngIf="!isLoggedIn();">About Us</a></li>
+                        <li><a class="text-white" *ngIf="!isLoggedIn();">Contact Us</a></li>
+                        
 
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a (click)="logout()" class="btn login-button-2 text-uppercase text-wh">
-                        <span class="fa mr-2"></span>Logout</a>
-                </li>
-            </ul>
+                        <label for="drop-3" class="toggle toogle-2">Your Profile <span class="fa fa-angle-down"
+                          aria-hidden="true"></span>
+                        </label>
+
+                        <li *ngIf="!isLoggedIn(); else loginButton">
+
+                            <a routerLink="/login" class="btn login-button-2 text-uppercase text-wh">
+                                <span class="fa fa-sign-in mr-2"></span>Login</a>
+                        </li>
+                        
+                        <li>
+                        <ng-template #loginButton>
+                            <!-- login -->
+                            <a (click)="logout()" class="btn login-button-2 text-uppercase text-white">
+                                <span class="fa fa-sign-in mr-2"></span>Logout</a>
+                            <!-- //login -->
+                        </ng-template>
+                      </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- //nav -->
         </div>
     </div>
-</nav>
+</div>

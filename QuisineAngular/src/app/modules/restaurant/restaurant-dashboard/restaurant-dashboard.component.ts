@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Restaurant } from '../../../models/restaurant';
 import Swal from 'sweetalert2';
+import { SessionStorageService } from '../../../services/session-storage.service';
 // import * as bootstrap from 'bootstrap';
 
 
@@ -18,9 +19,10 @@ export class RestaurantDashboardComponent {
   restaurantForm!: FormGroup;
   restaurant: any;
   restaurantId:any;
+  restImage:string='';
   
 
-  constructor(private restaurantService: RestaurantService,private route:ActivatedRoute,private router:Router, private fb: FormBuilder) { }
+  constructor(private restaurantService: RestaurantService,private route:ActivatedRoute,private router:Router, private fb: FormBuilder, private sessionStorageService: SessionStorageService) { }
 
   ngOnInit(): void {
     this.restaurantId = this.route.snapshot.paramMap.get("restId");
@@ -55,6 +57,8 @@ export class RestaurantDashboardComponent {
           userPin: this.restaurant.userPin,
           userImg:this.restaurant.userImg
         });
+
+        this.restImage = this.restaurant.userImg;
       },
       (error) => {
         console.error('Error fetching restaurant:', error);
@@ -62,7 +66,10 @@ export class RestaurantDashboardComponent {
     );
   }
 
-  
+  isAdminOrCustomer() : boolean {
+
+    return this.sessionStorageService.getItem('isAdmin') || this.sessionStorageService.getItem("custId") !== null;
+  }
 
 
   updateRestaurant() {
@@ -75,7 +82,7 @@ export class RestaurantDashboardComponent {
       cancelButtonText: 'No'
     }).then((result) => {
       if (result.value) {
-
+        
         if (this.restaurantForm.valid) {
           const updatedRestaurant: Restaurant = {
             userId: this.restaurantId,
@@ -87,7 +94,7 @@ export class RestaurantDashboardComponent {
             userEmail: this.restaurant.userEmail,
             userPass: this.restaurant.userPass,
             role: this.restaurant.role,
-            userImg: this.restaurantForm.value.userImg.substring(12),
+            userImg: this.restImage,
             restOwnerName: this.restaurant.restOwnerName,
             userAddress: this.restaurant.userAddress
           };

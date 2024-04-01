@@ -1,6 +1,8 @@
 package com.project.Quisine.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -11,6 +13,8 @@ import com.project.Quisine.dto.OrdersDTO;
 import com.project.Quisine.entity.Orders;
 import com.project.Quisine.repository.OrdersRepository;
 import com.project.Quisine.repository.UserEntityRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class OrdersService {
@@ -41,7 +45,20 @@ public class OrdersService {
 	}
 	public List<OrdersDTO> getAllCustomerOrders() {
 		
-		return userEntityRespository.findByRole("customer").stream().map(order->modelMapper.map(order, OrdersDTO.class)).collect(Collectors.toList());
+		return ordersRepository.findAll().stream().map(order->modelMapper.map(order, OrdersDTO.class)).collect(Collectors.toList());
 	}
+	
+    	@Transactional
+    	  public Map<String, Integer> getOrderCountsByDate() {
+            List<Object> results = ordersRepository.getOrderCountsByDate();
 
-}
+            Map<String, Integer> orderCountsByDate = new HashMap<>();
+            for (Object result : results) {
+                String date = result.toString();
+                Integer count = ((Number) result).intValue();
+                orderCountsByDate.put(date, count);
+            }
+            return orderCountsByDate;
+        }
+    }
+

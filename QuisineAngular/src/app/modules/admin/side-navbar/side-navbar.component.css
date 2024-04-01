@@ -1,15 +1,10 @@
 /* Your CSS styles go here */
 
-.wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
-}
 
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #a75d5d;
+    background: #ffac30;
     color: #fff;
     transition: all 0.3s;
     position: sticky;
@@ -31,13 +26,10 @@
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #a75d5d;
+    background: #ffac30;
 }
 
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #a75d5d;
-}
+
 
 #sidebar ul p {
     color: #fff;
@@ -50,20 +42,8 @@
     display: block;
 }
 
-#sidebar ul li a:hover {
-    color: #fff;
-    background-color: #a75d5d;
-}
 
-#sidebar ul li.active>a,
-a[aria-expanded="true"] {
-    color: #fff;
-    background: #a75d5d;
-}
 
-a[data-toggle="collapse"] {
-    position: relative;
-}
 
 .dropdown-toggle::after {
     display: block;
@@ -76,7 +56,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #a75d5d;
+    background: #ffac30;
 }
 
 ul.CTAs {
@@ -91,7 +71,7 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
-a.download {
+/* a.download {
     background: #fff;
     color: #a75d5d;
 }
@@ -100,7 +80,7 @@ a.article,
 a.article:hover {
     background: #a75d5d !important;
     color: #fff !important;
-}
+} */
 
 /* Content Style */
 #content {
@@ -155,13 +135,13 @@ a.article:hover {
 
 .btn-custom {
     border: none;
-    background-color: #a75d5d;
-    font-weight: 500;
+    background-color:  #ffac30;
+    font-weight: 400;
     font-size: medium;
     margin-bottom: 10px;
 }
-
+/* 
 .btn-custom:hover {
     background-color: #913b3b;
     color: #fff;
-}
+} */

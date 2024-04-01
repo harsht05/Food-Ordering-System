@@ -64,6 +64,8 @@ public class RestaurantController {
 	@PostMapping("addRestaurantFood")
 	public ResponseEntity<RestaurantFood> addRestaurantFood(@RequestBody RestaurantFood restaurantFood) {
 
+		System.out.println(restaurantFood);
+		
 		Food food = foodService.getByfoodName(restaurantFood.getFood().getFoodName());
 
 		if (food == null) {
@@ -178,4 +180,5 @@ public class RestaurantController {
 	        return new ResponseEntity<>(existingUserEntity, HttpStatus.OK);
 	    
 	}
+	
 }

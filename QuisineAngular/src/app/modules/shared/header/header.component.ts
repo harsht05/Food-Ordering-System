@@ -29,6 +29,10 @@ export class HeaderComponent {
     return this.sessionStorageService.getItem('custId') !== null;
   }
 
+  onSearchClick(query:string){
+    this.route.navigate(['customers/search/'],{queryParams:{query:query}})
+  }
+  
 
   customerId: number = 0;
   customer: Customer = new Customer();
@@ -62,7 +66,7 @@ export class HeaderComponent {
         this.customer = response;
         console.log(response);
         
-        this.imageUrl = "assets/images/hotels/" + this.customer.userImg;
+        this.imageUrl = "assets/images/" + this.customer.userImg;
         console.log(this.imageUrl);
         
   

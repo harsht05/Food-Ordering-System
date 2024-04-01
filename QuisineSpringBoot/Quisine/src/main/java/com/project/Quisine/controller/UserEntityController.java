@@ -20,8 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.Quisine.dto.Restaurant;
 import com.project.Quisine.algorithm.SendEmail;
+import com.project.Quisine.entity.Feedback;
 import com.project.Quisine.entity.UserEntity;
+import com.project.Quisine.service.FeedBackService;
 import com.project.Quisine.service.UserEntityService;
+
+import jakarta.mail.AuthenticationFailedException;
 
 @RestController
 @RequestMapping("/user/")
@@ -34,10 +38,11 @@ public class UserEntityController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	
 	static int verifyOtp = 0;
 	
 	@PostMapping("sendOtp")
-	public ResponseEntity<Integer> sendOtp(@RequestBody String email) {
+	public ResponseEntity<Integer> sendOtp(@RequestBody String email) throws AuthenticationFailedException {
 		
 		Random random = new Random();
 		int otp = random.nextInt(100000, 999999);
@@ -65,7 +70,6 @@ public class UserEntityController {
 
 	@PostMapping("addUser")
 	public ResponseEntity<UserEntity> addUser(@RequestBody UserEntity userEntity) {
-		
 		return new ResponseEntity<UserEntity>(userEntityService.addUser(userEntity), HttpStatus.CREATED);
 	}
 
@@ -77,14 +81,14 @@ public class UserEntityController {
 	
 	@PostMapping("userLogin")
 	public ResponseEntity<UserEntity> userLogin(@RequestBody UserEntity userEntity) {
-		
 		String userEmail = userEntity.getUserEmail();
-	    String userPassword = userEntity.getUserPass();
+		String userPassword = userEntity.getUserPass();
 
 	    UserEntity userFromDatabase = userEntityService.findByEmail(userEmail);
 	    
 	    if (userFromDatabase != null && passwordEncoder.matches(userPassword, userFromDatabase.getUserPass())) {
-	       
+	    	   
+
 	        return new ResponseEntity<UserEntity>(userFromDatabase, HttpStatus.OK);
 	    } 
 	    else {
@@ -124,6 +128,7 @@ public class UserEntityController {
 		
 		return new ResponseEntity<List<Restaurant>>(userEntityService.getAllRestaurants(), HttpStatus.OK);
 	}
-
+	
+	
 	
 }

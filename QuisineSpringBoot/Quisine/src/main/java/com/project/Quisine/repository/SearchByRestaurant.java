@@ -8,7 +8,7 @@ import com.project.Quisine.entity.UserEntity;
 
 
 public interface SearchByRestaurant extends JpaRepository<UserEntity, Integer>{
-	List<UserEntity> findByUserNameContaining(String username);
+    List<UserEntity> findByUserNameContainingAndRole(String username, String role);
 	
 
 }

@@ -4,7 +4,7 @@
 
     <div class="container">
 
-        <form class="row g-3" [formGroup]="user" (ngSubmit)="login()">
+        <form class="row g-3" [formGroup]="user">
 
             <div class="col-md-12 mt-3">
                 <label for="uemail" class="form-label">Email</label>
@@ -39,7 +39,7 @@
             </div>
 
             <div class="col-12 mt-4">
-                <button type="submit" class="button-w3ls active mr-3" value="Login" > Login </button>
+                <button type="submit" class="button-w3ls active mr-3" [disabled]="user.invalid" value="Login" (click)="login()"> Login </button>
                 
             </div>
 

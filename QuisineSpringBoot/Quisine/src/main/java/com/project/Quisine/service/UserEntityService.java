@@ -27,7 +27,6 @@ public class UserEntityService {
 	private PasswordEncoder passwordEncoder;
 	
 	public UserEntity addUser(UserEntity userEntity) {
-		
 		userEntity.setUserPass(passwordEncoder.encode(userEntity.getUserPass()));
 		return userEntityRepository.save(userEntity);
 	}

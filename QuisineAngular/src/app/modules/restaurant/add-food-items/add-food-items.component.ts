@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantService } from '../../../services/restaurant.service';
 import { RestaurantFood } from '../../../models/restaurant-food';
+import { Food } from '../../../models/food';
 
 @Component({
   selector: 'app-add-food-items',
@@ -38,21 +39,22 @@ export class AddFoodItemsComponent implements OnInit {
   submitForm(): void {
     if (this.foodForm.valid) {
       const foodData = this.foodForm.value;
+
+      console.log(foodData);
+      
       const restaurantFood: RestaurantFood = new RestaurantFood(
         0,
-        { foodId: 0, foodName: foodData.foodName, foodImage: foodData.foodImage.substring(12) },
+        new Food(0, foodData.foodName, foodData.foodImage.substring(12)),
         foodData.rate,
         this.restaurant
       );
+    
+      this.restaurantService.addFoodItem(restaurantFood).subscribe(response=> {
 
-      this.restaurantService.addFoodItem(restaurantFood).subscribe(
-        () => {
-          this.router.navigate(['/restaurant/dashboard', this.restaurantId]);
-        },
-        (error) => {
-          this.router.navigate(['/restaurant/dashboard', this.restaurantId]);
-          console.error('Error adding food item:', error);
-        }
+        console.log(response);
+        this.router.navigate([`restaurant/dashboard/${this.restaurantId}`]);
+        
+      }
       );
     }
   }
