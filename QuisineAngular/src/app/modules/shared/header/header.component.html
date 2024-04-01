@@ -74,7 +74,7 @@
                         <li><a class="text-white" routerLink="">Home</a></li>
                         <li><a class="text-white" routerLink="/restaurants">Restaurants</a></li>
                         <li><a class="text-white" routerLink="/customer/viewOrders" *ngIf="isLoggedIn();">Your Orders</a></li>
-                        <li><a class="text-white" *ngIf="!isLoggedIn();">About Us</a></li>
+                        <li><a class="text-white" *ngIf="!isLoggedIn();" routerLink="/customers/aboutUs">About Us</a></li>
                         <li><a class="text-white" *ngIf="!isLoggedIn();">Contact Us</a></li>
                         
 
