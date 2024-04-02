@@ -25,9 +25,17 @@ export class RestaurantDashboardComponent {
   constructor(private restaurantService: RestaurantService,private route:ActivatedRoute,private router:Router, private fb: FormBuilder, private sessionStorageService: SessionStorageService) { }
 
   ngOnInit(): void {
+    
+    
+    if(this.sessionStorageService.getItem("restId") === null) {
+
+      this.router.navigate(['/accessDenied']);
+    }
+
     this.restaurantId = this.route.snapshot.paramMap.get("restId");
     this.initForm();
     this.getRestaurantById(this.restaurantId);
+
     
     
   }

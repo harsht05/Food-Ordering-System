@@ -46,7 +46,7 @@ export class UsersComponent implements AfterViewInit, OnDestroy {
         data: {
           labels: ['Excellent', 'Good', 'Average', 'Poor', 'Very Bad'],
           datasets: [{
-            label: '# of Votes',
+            label: 'No. of Feedbacks',
             data: [response[0], response[1],response[2], response[3],response[4]],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',

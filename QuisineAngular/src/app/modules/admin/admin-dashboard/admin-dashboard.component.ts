@@ -4,6 +4,7 @@ import { Feedback } from '../../../models/feedback';
 import { AdminService } from '../../../services/admin.service';
 import { FeedbackService } from '../../../services/feedback.service';
 import { SessionStorageService } from '../../../services/session-storage.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -19,12 +20,28 @@ export class AdminDashboardComponent {
 
   countsByExperience: any[] = [];
 
-
-
+  
   adminLogout(){
 
-    this.sessionStorageService.clearStorage();
-    this.route.navigate(['']);
+    Swal.fire({
+      title: 'Are you sure want to Logout?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Logout!',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Logout Successfully!',
+          '',
+          'success'
+        )
+        this.route.navigate([`/customer/logout`]);
+        this.sessionStorageService.clearStorage();
+        this.route.navigate(['']);
+      } 
+    })
+    
   }
   ViewAllRestaurant(){
     this.route.navigate(['/viewRestaurants'])
@@ -43,7 +60,7 @@ export class AdminDashboardComponent {
 
     if(!this.sessionStorageService.getItem("isAdmin")) {
 
-      this.route.navigate(['accessDenied']);
+      this.route.navigate(['/accessDenied']);
     }
 
     this.adminService.getOrdersByDate().subscribe(response => {

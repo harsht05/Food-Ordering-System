@@ -13,7 +13,7 @@ public class PdfGeneration {
 	public static String generateOrderSummaryPDF(String orderDetails) {
      
 		String fileName = "order_summary.pdf";
-        String filePath = "E:\\CTEP-November 2023\\Order_Summary" + fileName;
+        String filePath = "E:\\Order_Summary" + fileName;
 
         try {
         

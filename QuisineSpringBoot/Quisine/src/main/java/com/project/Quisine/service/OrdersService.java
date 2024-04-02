@@ -1,5 +1,7 @@
 package com.project.Quisine.service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.project.Quisine.dto.OrdersDTO;
@@ -34,13 +37,13 @@ public class OrdersService {
 
 	public List<OrdersDTO> getCustomerOrders(int id) {
 
-		return ordersRepository.findByCustomerUserId(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
+		return ordersRepository.findByCustomerUserIdOrderByOrderIdDesc(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
 				.collect(Collectors.toList());
 	}
 
 	public List<OrdersDTO> getRestaurantOrders(int id) {
 
-		return ordersRepository.findByRestaurantUserId(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
+		return ordersRepository.findByRestaurantUserIdOrderByOrderIdDesc(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
 				.collect(Collectors.toList());
 	}
 	public List<OrdersDTO> getAllCustomerOrders() {
@@ -48,17 +51,30 @@ public class OrdersService {
 		return ordersRepository.findAll().stream().map(order->modelMapper.map(order, OrdersDTO.class)).collect(Collectors.toList());
 	}
 	
-    	@Transactional
-    	  public Map<String, Integer> getOrderCountsByDate() {
-            List<Object> results = ordersRepository.getOrderCountsByDate();
+	public ResponseEntity<Map<String, Integer>> getOrderCountsByDate() {
+	    List<Object[]> results = ordersRepository.getOrderCountsByDate();
 
-            Map<String, Integer> orderCountsByDate = new HashMap<>();
-            for (Object result : results) {
-                String date = result.toString();
-                Integer count = ((Number) result).intValue();
-                orderCountsByDate.put(date, count);
-            }
-            return orderCountsByDate;
-        }
+	    Map<String, Integer> orderCountsByDate = new HashMap<>();
+	    for (Object[] result : results) {
+	        LocalDate date = (LocalDate) result[0]; // Assuming the first element is a LocalDate
+	        Long count = (Long) result[1]; // Assuming the second element is a Long
+	        orderCountsByDate.put(date.toString(), count.intValue());
+	    }
+
+	    return ResponseEntity.ok().body(orderCountsByDate);
+	}
+
+	public OrdersDTO getOrderById(int id) {
+
+		return modelMapper.map(ordersRepository.findById(id).get(), OrdersDTO.class);
+	}
+	
+public boolean deleteOrderById(int id) {
+		
+		ordersRepository.deleteById(id);
+		return ordersRepository.existsById(id);
+	}
+
+
     }
 

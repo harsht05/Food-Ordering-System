@@ -19,23 +19,23 @@ export class HeaderComponent {
   // }
 
   logout() {
-
-   
-
     Swal.fire({
-      title: 'Are you sure?,You want to Logout!',
-      text: '',
+      title: 'Are you sure want to Logout?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes',
+      confirmButtonText: 'Yes, Logout!',
       cancelButtonText: 'No'
     }).then((result) => {
-      if (result.isConfirmed) {
+      if (result.value) {
+        Swal.fire(
+          'Logout Successfully!',
+          '',
+          'success'
+        )
         this.sessionStorageService.clearStorage();
-    this.router.navigate(['']);
-
+        this.router.navigate(['']);
       } 
-    });
+    })
   }
 
   isLoggedIn(): boolean {
