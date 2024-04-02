@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,6 +47,7 @@ public class CustomerController {
     @GetMapping("getCustomerOrders/{id}")
 	public ResponseEntity<List<OrdersDTO>> getCustomerOrders(@PathVariable int id) {
 		
+    	System.out.println(ordersService.getCustomerOrders(id));
 		return new ResponseEntity<List<OrdersDTO>>(ordersService.getCustomerOrders(id), HttpStatus.OK);
 	}
 
@@ -105,5 +107,41 @@ public class CustomerController {
 		}
 		
 		return new ResponseEntity<Integer>(1, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("deleteOrder/{id}")
+	public ResponseEntity<Boolean> deleteOrder(@PathVariable int id) {
+		
+		OrdersDTO order = ordersService.getOrderById(id);
+		
+		StringBuffer msg = new StringBuffer();
+		
+		msg.append("Hi " +order.getCustomer().getUserName() + " , Your order with Order Id : " + order.getOrderId() + " has been cancelled. Here are details:");
+		
+		msg.append("\n\n*****************Order Details*****************\n\n");
+		msg.append("Order ID : " + order.getOrderId() + "\nFood Item : " + order.getFood().getFoodName() + "\nRestaurant Name : " + order.getRestaurant().getUserName() + "\nOrder Date and Time : " + order.getDate() + "\nDelivery Address : " + order.getDeliveryAddress() + ", " + order.getCustomer().getUserCity() + ", " + order.getCustomer().getUserState() + ", " + order.getCustomer().getUserPin());
+		msg.append("\n\n***********************************************\n\n");
+		msg.append("\nTotal Amount : Rs. " +order.getTotalPrice());
+		
+		String filePath = PdfGeneration.generateOrderSummaryPDF(msg.toString());
+		
+		try {
+			
+			SendEmail.cancelOrder(filePath, order.getCustomer().getUserEmail(), order.getCustomer().getUserName());
+			System.out.println("Sent, I think");
+		}
+		
+		catch (Exception e) {
+
+			System.out.println("Not Sent, I think");
+		}
+		
+		if(!ordersService.deleteOrderById(id)) {
+			
+			
+			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+		}
+
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
 }

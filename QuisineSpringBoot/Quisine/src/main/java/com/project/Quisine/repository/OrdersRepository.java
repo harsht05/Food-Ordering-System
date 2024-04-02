@@ -7,13 +7,17 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.project.Quisine.entity.Orders;
 
+import jakarta.transaction.Transactional;
+
 public interface OrdersRepository extends JpaRepository<Orders, Integer> {
 
-    List<Orders> findByCustomerUserId(int id);
+	List<Orders> findByCustomerUserIdOrderByOrderIdDesc(int id);
     
-    List<Orders> findByRestaurantUserId(int id);
+    List<Orders> findByRestaurantUserIdOrderByOrderIdDesc(int id);
     
+    @Transactional
     @Query("SELECT Date(o.date) AS order_date, COUNT(*) AS order_count FROM Orders o GROUP BY Date(o.date)")
-    List<Object> getOrderCountsByDate();
+    List<Object[]> getOrderCountsByDate();
+
 
 } 

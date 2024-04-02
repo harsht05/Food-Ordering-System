@@ -70,7 +70,7 @@ export class ViewOrdersComponent {
   ngOnInit() {
 
     const cid = this.sessionStorage.getItem("custId");
-    console.log("ghfdgfggfuewigfeiucustomerid"+cid);
+    console.log(cid);
     
     if(cid === null) {
 
@@ -89,6 +89,8 @@ export class ViewOrdersComponent {
       });
 
       this.orders = response;
+      console.log(this.orders);
+      
 
       this.totalRes = this.orders.length;
 
@@ -97,7 +99,11 @@ export class ViewOrdersComponent {
         this.resEndIdx = 9;
       }
 
-      // console.log(this.orders.length);
+      else {
+
+        this.resEndIdx = this.totalRes - 1;
+      }
+
       this.loadOrders();
     });
 
