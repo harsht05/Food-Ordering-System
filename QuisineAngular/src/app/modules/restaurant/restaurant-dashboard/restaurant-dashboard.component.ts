@@ -27,7 +27,7 @@ export class RestaurantDashboardComponent {
   ngOnInit(): void {
     
     
-    if(this.sessionStorageService.getItem("restId") === null) {
+    if(this.sessionStorageService.getItem("restaurantId") === null) {
 
       this.router.navigate(['/accessDenied']);
     }

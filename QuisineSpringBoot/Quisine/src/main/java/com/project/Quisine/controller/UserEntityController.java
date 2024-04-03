@@ -78,7 +78,7 @@ public class UserEntityController {
 		
 		return new ResponseEntity<UserEntity>(userEntityService.getUserById(id), HttpStatus.OK);
 	}
-	
+		
 	@PostMapping("userLogin")
 	public ResponseEntity<UserEntity> userLogin(@RequestBody UserEntity userEntity) {
 		String userEmail = userEntity.getUserEmail();
