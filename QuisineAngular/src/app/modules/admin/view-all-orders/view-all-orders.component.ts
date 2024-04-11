@@ -14,8 +14,11 @@ export class ViewAllOrdersComponent {
   constructor( private adminService:AdminService, private sessionStorageService: SessionStorageService, private route: Router) {
 
   }
-
+  resStartIdx = 0;
+  resEndIdx = 9; 
+  totalRes = 0;
   allOrders: Orders[] = [];
+  currOrders:Orders[]=[];
 
   ngOnInit() {
 
@@ -27,8 +30,36 @@ export class ViewAllOrdersComponent {
     this.adminService.getAllOrders().subscribe(response => {
       
       this.allOrders = response;
+      this.totalRes = this.allOrders.length;
+      this.loadOrders();
       console.log(this.allOrders);
       
     });
+  }
+  prev() {
+    if (this.resStartIdx > 0) {
+      this.resEndIdx = this.resStartIdx - 1;
+      this.resStartIdx -= 10;
+      this.loadOrders();
+    }
+  }
+
+  next() {
+    if (this.resEndIdx + 10 < this.totalRes) {
+      this.resStartIdx = this.resEndIdx + 1;
+      this.resEndIdx += 10;
+    } else if (this.resEndIdx < this.totalRes) {
+      this.resStartIdx = this.resEndIdx + 1;
+      this.resEndIdx = this.totalRes - 1;
+    }
+    this.loadOrders();
+  }
+
+  loadOrders() {
+    if (this.resStartIdx >= 0 && this.resEndIdx < this.totalRes && this.resStartIdx <= this.resEndIdx) {
+      this.currOrders = this.allOrders.slice(this.resStartIdx, this.resEndIdx + 1);
+    } else {
+      console.error('Invalid index range or indices.');
+    }
   }
 }

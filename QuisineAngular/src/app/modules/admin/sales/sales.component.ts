@@ -14,11 +14,9 @@ export class SalesComponent {
   label:any=[]
   mydata:any=[]
   constructor(private sessionStorageService: SessionStorageService, private route: Router, private adminService: AdminService) {
-    Chart.register(...registerables); // Register necessary components of Chart.js
+    Chart.register(...registerables); 
   }
-// ngOnInit(){
-//   this.createChart(countsByExperience);
-// }
+
   ngOnInit() {
     this.adminService.getOrdersByDate().subscribe(response => {
       const countsByExperience = response;
@@ -30,10 +28,7 @@ export class SalesComponent {
   }
 
   createChart(countsByExperience: any[]) {
-    // if ('myChart1') {
-    //   console.error("Chart canvas element is not available.");
-    //   return;
-    // }
+  
     console.log(countsByExperience);
     countsByExperience.forEach(data=>{
       console.log(data);
@@ -50,8 +45,20 @@ export class SalesComponent {
         datasets: [{
           label: 'Order Counts',
           data: this.mydata,
-          borderColor: 'blue',
-          backgroundColor: 'rgba(0, 0, 255, 0.1)',
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)'
+          ],
           borderWidth: 1
         }]
       },

@@ -46,6 +46,7 @@ public class UserEntityController {
 		
 		Random random = new Random();
 		int otp = random.nextInt(100000, 999999);
+		System.out.println(otp);
 		verifyOtp = otp;
 		
 		SendEmail.sendOtpEmail(email, otp);

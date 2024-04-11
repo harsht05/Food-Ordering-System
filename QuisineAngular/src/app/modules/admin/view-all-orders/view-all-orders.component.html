@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let order of allOrders">
+          <tr *ngFor="let order of currOrders">
             <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.orderId }}</td>
             <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.quantity }}</td>
             <td style="border: 1px solid #ccc; padding: 10px; text-align: center">&#8377;{{ order.totalPrice }}</td>
@@ -32,6 +32,10 @@
           </tr>
         </tbody>
       </table>
+      <div *ngIf="totalRes > 10" class="d-flex justify-content-center gap-3">
+        <button class="button-w3ls active" [disabled]="resStartIdx === 0" (click)="prev()">Previous</button>
+        <button class="button-w3ls active" [disabled]="resEndIdx === totalRes - 1" (click)="next()">Next</button>
+    </div>
     </div>
   </div>
 </main>

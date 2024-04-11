@@ -58,7 +58,7 @@
             
             <div class="row middle-flex">
               <form (ngSubmit)="onSearchClick(queryInput.value)" class="newsletter-info d-flex justify-content-center gap-2">
-                <input #queryInput type="text" placeholder="      Restaurant and Food......." class="search-bar rounded-1" style="width: 260px;border: none;padding: 20px; height: 50px;">
+                <input #queryInput type="text"  placeholder="Restaurants......." class="search-bar rounded-1" style="width: 260px;border: none;padding: 20px; height: 50px;">
                 <app-search *ngIf="showSearchResults"></app-search>                    
                 <button type="submit" class="rounded-1">Search</button>
             </form>

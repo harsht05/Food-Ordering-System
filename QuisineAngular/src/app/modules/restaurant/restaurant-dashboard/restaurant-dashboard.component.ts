@@ -25,10 +25,11 @@ export class RestaurantDashboardComponent {
   constructor(private restaurantService: RestaurantService,private route:ActivatedRoute,private router:Router, private fb: FormBuilder, private sessionStorageService: SessionStorageService) { }
 
   ngOnInit(): void {
+    console.log(this.sessionStorageService.getItem("isAdmin"));
     
     
-    if(this.sessionStorageService.getItem("restaurantId") === null) {
-
+    if(this.sessionStorageService.getItem("restaurantId") === null && this.sessionStorageService.getItem("isAdmin")!=="done") {
+        
       this.router.navigate(['/accessDenied']);
     }
 
@@ -40,6 +41,7 @@ export class RestaurantDashboardComponent {
     
   }
 
+  
   initForm(): void {
     this.restaurantForm = this.fb.group({
       userName: ['', Validators.required],
