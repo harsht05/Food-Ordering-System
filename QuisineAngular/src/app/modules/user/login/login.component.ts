@@ -27,7 +27,9 @@ export class LoginComponent {
 
     if(this.user.value.userEmail! === 'admin@gmail.com' && this.user.value.userPass! === 'Admin@1234') {
 
-      this.sessionStorage.setItem("isAdmin", true);
+      this.sessionStorage.setItem("isAdmin", "done");
+      console.log(this.sessionStorage.getItem("isAdmin"));
+      
       this.route.navigate(['admin/dashboard']);
 
       Swal.fire(
