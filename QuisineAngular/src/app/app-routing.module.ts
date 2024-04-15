@@ -9,6 +9,7 @@ import { AllRestaurantsComponent } from './modules/shared/all-restaurants/all-re
 import { RegisterComponent } from './modules/user/register/register.component';
 import { RestaurantFoodsComponent } from './modules/shared/restaurant-foods/restaurant-foods.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { CityRestaurantsComponent } from './modules/shared/city-restaurants/city-restaurants.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,9 @@ const routes: Routes = [
   {
     path: "restaurants",
     component: AllRestaurantsComponent
+  },{
+    path: "cityRestaurants",
+    component: CityRestaurantsComponent
   },
   {
     path: "restaurantFoods/:restId",

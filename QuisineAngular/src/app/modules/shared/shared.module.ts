@@ -9,6 +9,8 @@ import { RestaurantFoodsComponent } from './restaurant-foods/restaurant-foods.co
 import { AllRestaurantsComponent } from './all-restaurants/all-restaurants.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
+import { CityRestaurantsComponent } from './city-restaurants/city-restaurants.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { SearchComponent } from './search/search.component';
     HomepageComponent,
     RestaurantFoodsComponent,
     AllRestaurantsComponent,
-    SearchComponent
+    SearchComponent,
+    ChatbotComponent,
+    CityRestaurantsComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,6 @@
 package com.project.Quisine.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -70,14 +71,26 @@ public class UserEntityService {
 	}
 	
 	
+	public List<Restaurant> getRestaurantByCity(String city) {
+		
+		List<Restaurant> result = userEntityRepository.findByRole("restaurant").stream().map(rest->modelMapper.map(rest, Restaurant.class)).collect(Collectors.toList());
+		
+		List<Restaurant> restaurants = new ArrayList<>();
+		
+		for(Restaurant r : result) {
+			
+			if(r.getUserCity().toLowerCase().equals(city)) restaurants.add(r);
+		}
+		
+		return restaurants;
+	}
+	
 
 	public List<UserEntity> getAllUsers() {
 
 		return userEntityRepository.findAll();
 	}
 	
-	
-
 
 	public Customer getCustomerDetailsById(int id) {
 		return modelMapper.map(userEntityRepository.findById(id).get(), Customer.class);
@@ -105,6 +118,14 @@ public class UserEntityService {
 
 		return modelMapper.map(userEntityRepository.findById(id).get(), Restaurant.class);
 	}
-
 	
+	public List<String> findDistinctCitiesForRestaurant() {
+		
+		return userEntityRepository.findDistinctCitiesForRestaurantRole();
+	}
+
+	public List<Restaurant> getAllRestaurantsByCity(String city) {
+		
+		return userEntityRepository.findByUserCityAndRole(city, "restaurant").stream().map(rest->modelMapper.map(rest, Restaurant.class)).collect(Collectors.toList());
+	}
 }

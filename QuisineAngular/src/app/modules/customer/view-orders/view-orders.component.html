@@ -43,8 +43,8 @@
             </div>
 
             <div *ngIf="totalRes > 10" class="d-flex justify-content-center gap-3">
-                <button class="button-w3ls active" [disabled]="totalRes <= 10" (click)="prev()">Previous</button>
-                <button class="button-w3ls active" [disabled]="resEndIdx === totalRes - 1" (click)="next()">Next</button>
+                <button *ngIf="resStartIdx !== 0" class="button-w3ls active" (click)="prev()">Previous</button>
+                <button *ngIf="resEndIdx !== totalRes - 1" class="button-w3ls active" (click)="next()">Next</button>
               </div>
             
             <div class="text-center mt-3">

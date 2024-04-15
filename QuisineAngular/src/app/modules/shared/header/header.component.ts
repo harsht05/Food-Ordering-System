@@ -16,12 +16,18 @@ import { SearchComponent } from '../search/search.component';
 export class HeaderComponent {
   showSearchResults: boolean = false;
   searchInput: string = ''; 
+  isUpdateMode: boolean = false;
 
   @ViewChild(SearchComponent) searchComponent!: SearchComponent;
+
+  toggleUpdateMode(): void {
+    this.isUpdateMode = !this.isUpdateMode;
+  }
 
   onInputChange() {
     this.searchComponent.onInputChange();
   }
+
   constructor(private sessionStorageService: SessionStorageService, private custService: CustomerService, private userService: UserService, private route: Router) {}
 
   isLoggedIn(): boolean {
@@ -38,6 +44,7 @@ export class HeaderComponent {
   customer: Customer = new Customer();
   imageUrl: string = "";
   userImage:string = '';
+  cities:string[] = [];
   
   user = new FormGroup({
     userName: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]{3,}$/)]),
@@ -54,6 +61,11 @@ export class HeaderComponent {
   
 
   ngOnInit() {
+
+    this.custService.getCities().subscribe(response => {
+      
+      this.cities = response;      
+    });
 
     const cid = this.sessionStorageService.getItem("custId");
 
@@ -84,6 +96,12 @@ export class HeaderComponent {
         this.userImage = this.customer.userImg;
       });
     }
+  }
+
+  cityRestaurants(city:string) {
+
+    this.sessionStorageService.setItem("city", city);
+    window.location.href = `/cityRestaurants`;
   }
 
   updateCustomer() {

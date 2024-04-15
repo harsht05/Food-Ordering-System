@@ -63,7 +63,7 @@ export class PaymentGatewayComponent {
       confirmButtonText: 'Confirm and Make Payement',
       icon:'info',
       allowEscapeKey: false,
-      allowOutsideClick: false,
+      // allowOutsideClick: false,
       focusConfirm: false,
       didOpen: () => {
         const popup = Swal.getPopup()!

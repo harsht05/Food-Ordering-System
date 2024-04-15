@@ -1,5 +1,23 @@
 <app-header></app-header>
-<div class="container-fluid p-3" id="custHeight">
+
+<div *ngIf="!isOrderPlaced else orderSummary;">
+
+    <div
+  class="h-100 mt-5 d-flex flex-column gap-3 justify-content-center align-items-center"
+>
+  <div class="d-flex flex-column gap-3 justify-content-center align-items-center image-container">
+    <img
+      class=""
+      src="../../assets/images/burger.jpg"
+    />
+    <p class="fw-semiBold fs-5 heading">Hang On!!</p>
+    <p class="fw-semiBold fs-5 heading">We are processing your Order....</p>
+  </div>
+</div>
+</div>
+
+<ng-template #orderSummary>
+<div class="container-fluid p-3">
     <div class="row justify-content-center">
         <div class="col-md-6">
 
@@ -45,4 +63,7 @@
         </div>
     </div>
 </div>
-<app-footer></app-footer>
+
+</ng-template> 
+
+<!-- <app-footer></app-footer> -->

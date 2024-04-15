@@ -21,8 +21,6 @@ public class OrdersService {
 
 	@Autowired
 	private OrdersRepository ordersRepository;
-	@Autowired
-	private UserEntityRepository userEntityRespository;
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -34,13 +32,13 @@ public class OrdersService {
 
 	public List<OrdersDTO> getCustomerOrders(int id) {
 
-		return ordersRepository.findByCustomerUserId(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
+		return ordersRepository.findByCustomerUserIdOrderByOrderIdDesc(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
 				.collect(Collectors.toList());
 	}
 
 	public List<OrdersDTO> getRestaurantOrders(int id) {
 
-		return ordersRepository.findByRestaurantUserId(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
+		return ordersRepository.findByRestaurantUserIdOrderByOrderIdDesc(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
 				.collect(Collectors.toList());
 	}
 	public List<OrdersDTO> getAllCustomerOrders() {
@@ -48,17 +46,30 @@ public class OrdersService {
 		return ordersRepository.findAll().stream().map(order->modelMapper.map(order, OrdersDTO.class)).collect(Collectors.toList());
 	}
 	
-    	@Transactional
-    	  public Map<String, Integer> getOrderCountsByDate() {
-            List<Object> results = ordersRepository.getOrderCountsByDate();
+	@Transactional
+    public Map<String, Integer> getOrderCountsByDate() {
+        List<Object> results = ordersRepository.getOrderCountsByDate();
 
-            Map<String, Integer> orderCountsByDate = new HashMap<>();
-            for (Object result : results) {
-                String date = result.toString();
-                Integer count = ((Number) result).intValue();
-                orderCountsByDate.put(date, count);
-            }
-            return orderCountsByDate;
+        Map<String, Integer> orderCountsByDate = new HashMap<>();
+        for (Object result : results) {
+                
+        	String date = result.toString();    
+        	Integer count = ((Number) result).intValue();
+            orderCountsByDate.put(date, count);
         }
+            
+        return orderCountsByDate;
     }
+	
+	public OrdersDTO getOrderById(int id) {
+
+		return modelMapper.map(ordersRepository.findById(id).get(), OrdersDTO.class);
+	}
+    	
+    public boolean deleteOrderById(int id) {
+    		
+    	ordersRepository.deleteById(id);
+    	return ordersRepository.existsById(id);
+    }
+}
 

@@ -1,0 +1,22 @@
+@keyframes pulse {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.9);
+      opacity: 0.5;
+    }
+  }
+  
+  .image-container img {
+    height: 47vh;
+    width: 25vw;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  

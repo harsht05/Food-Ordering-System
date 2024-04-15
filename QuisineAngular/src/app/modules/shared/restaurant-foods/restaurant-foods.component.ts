@@ -101,6 +101,17 @@ export class RestaurantFoodsComponent {
       (acc, curr) => acc + curr.rate * (curr.quantity || 0),
       0
     );
+
+    if(this.totalMealCharges > 250) {
+
+      this.deliveryCharges = 0;
+    }
+
+    else {
+
+      this.deliveryCharges = 40;
+    }
+
     this.totalPrice =
       this.totalMealCharges + this.deliveryCharges + this.convenienceFee;
   }
