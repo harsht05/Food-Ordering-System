@@ -1,7 +1,7 @@
 package com.project.Quisine.controller;
 
+
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +17,7 @@ import com.project.Quisine.dto.Customer;
 import com.project.Quisine.dto.OrdersDTO;
 import com.project.Quisine.dto.Restaurant;
 import com.project.Quisine.entity.Feedback;
+import com.project.Quisine.repository.OrdersRepository;
 import com.project.Quisine.service.FeedBackService;
 import com.project.Quisine.service.OrdersService;
 import com.project.Quisine.service.UserEntityService;
@@ -34,6 +35,10 @@ public class AdminController {
 	
 	@Autowired
 	private FeedBackService feedBackService;
+	
+	@Autowired
+	private OrdersRepository ordersRepository;
+	
 	
 	@GetMapping(path="getAllCustomers")
 	public ResponseEntity<List<Customer>> getAllCustomers() {
@@ -88,13 +93,10 @@ public class AdminController {
 	}
 	
 	 @GetMapping("orderCountsByDate")
-	    public ResponseEntity<Map<String, Integer>> getOrderCountsByDate() {
-	        Map<String, Integer> orderCountsByDate = ordersService.getOrderCountsByDate();
-	        if (orderCountsByDate.isEmpty()) {
-	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	        } else {
-	            return new ResponseEntity<>(orderCountsByDate, HttpStatus.OK);
-	        }
-	    }
+	 public ResponseEntity<List<Object[]>> getOrderCountsByDate() {
+		    List<Object[]> results = ordersRepository.getOrderCountsByDate();
+		    return ResponseEntity.ok().body(results);
+		}
+
 
 }

@@ -19,7 +19,7 @@
           top-rated restaurants, we're here to make every meal memorable. <br />
           ~<i>"Taste the World, One Bite at a Time with QUISINE!"</i>
         </p>
-        <a class="button-w3ls mt-5"
+        <a class="button-w3ls mt-5" routerLink="/customers/aboutUs"
           >Read More
           <span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
         </a>
@@ -75,7 +75,7 @@
             </a>
           </div>
           <div class="card-body border border-top-0">
-            <h5 class="blog-title card-title m-0"><a>Kalyani Veg</a></h5>
+            <h5 class="blog-title card-title m-0"><a>Tadekar</a></h5>
             <p class="mt-3">
               Indulge in Culinary Excellence, Delivered to Your Doorstep!
             </p>
@@ -94,13 +94,13 @@
             <a>
               <img
                 class="card-img-bottom"
-                src="assets/images/hotels/restaurant-4.jpg"
+                src="assets/images/hotels/restaurant-2.jpg"
                 alt="Card image cap"
               />
             </a>
           </div>
           <div class="card-body border border-top-0">
-            <h5 class="blog-title card-title m-0"><a>Hotel Residency</a></h5>
+            <h5 class="blog-title card-title m-0"><a>Black Swan</a></h5>
             <p class="mt-3">
               Elevating Your Dining Experience, One Delivery at a Time!
             </p>
@@ -459,7 +459,7 @@
                 required=""
               ></textarea>
             </div>
-            <button type="submit" class="btn submit-contact ml-auto">
+            <button type="submit" class="btn submit-contact ml-auto" (click)="homesubmit()">
               Submit
             </button>
           </form>

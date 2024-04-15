@@ -13,6 +13,10 @@ import { SessionStorageService } from '../../../services/session-storage.service
 export class ViewAllRestaurantsComponent {
   constructor(private route: Router, private adminService: AdminService, private sessionStorageService: SessionStorageService) {}
   showrest: Restaurant[] = [];
+  resStartIdx = 0;
+  resEndIdx = 4; 
+  totalRes = 0;
+  currRest:Restaurant[]=[];
 
   ngOnInit(): void {
 
@@ -27,6 +31,8 @@ export class ViewAllRestaurantsComponent {
   loadRestaurants(): void {
     this.adminService.getAllRestaurants().subscribe((response) => {
       this.showrest = response;
+      this.totalRes = this.showrest.length;
+      this.loadRest();
       console.log(this.showrest);
     });
   }
@@ -70,6 +76,32 @@ export class ViewAllRestaurantsComponent {
   
   viewHandler(restId: number): void {
     this.route.navigate(['/restaurant/dashboard', restId]);   
+  }
+  prev() {
+    if (this.resStartIdx > 0) {
+      this.resEndIdx = this.resStartIdx - 1;
+      this.resStartIdx -= 8;
+      this.loadRest();
+    }
+  }
+
+  next() {
+    if (this.resEndIdx + 8 < this.totalRes) {
+      this.resStartIdx = this.resEndIdx + 1;
+      this.resEndIdx += 8;
+    } else if (this.resEndIdx < this.totalRes) {
+      this.resStartIdx = this.resEndIdx + 1;
+      this.resEndIdx = this.totalRes - 1;
+    }
+    this.loadRest();
+  }
+
+  loadRest() {
+    if (this.resStartIdx >= 0 && this.resEndIdx < this.totalRes && this.resStartIdx <= this.resEndIdx) {
+      this.currRest = this.showrest.slice(this.resStartIdx, this.resEndIdx + 1);
+    } else {
+      console.error('Invalid index range or indices.');
+    }
   }
 
 }

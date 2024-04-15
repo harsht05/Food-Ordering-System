@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import { CityRestaurantsComponent } from './city-restaurants/city-restaurants.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { CityRestaurantsComponent } from './city-restaurants/city-restaurants.co
     AllRestaurantsComponent,
     SearchComponent,
     ChatbotComponent,
-    CityRestaurantsComponent
+    CityRestaurantsComponent,
+    AboutUsComponent
   ],
   imports: [
     CommonModule,

@@ -60,6 +60,7 @@ public class CustomerController {
     @GetMapping("getCustomerOrders/{id}")
 	public ResponseEntity<List<OrdersDTO>> getCustomerOrders(@PathVariable int id) {
 		
+    	System.out.println(ordersService.getCustomerOrders(id));
 		return new ResponseEntity<List<OrdersDTO>>(ordersService.getCustomerOrders(id), HttpStatus.OK);
 	}
 

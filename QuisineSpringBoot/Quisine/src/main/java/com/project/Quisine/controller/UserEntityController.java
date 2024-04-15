@@ -44,6 +44,7 @@ public class UserEntityController {
 		
 		Random random = new Random();
 		int otp = random.nextInt(100000, 999999);
+		System.out.println(otp);
 		verifyOtp = otp;
 		
 		SendEmail.sendOtpEmail(email, otp);
@@ -76,7 +77,7 @@ public class UserEntityController {
 		
 		return new ResponseEntity<UserEntity>(userEntityService.getUserById(id), HttpStatus.OK);
 	}
-	
+		
 	@PostMapping("userLogin")
 	public ResponseEntity<UserEntity> userLogin(@RequestBody UserEntity userEntity) {
 		String userEmail = userEntity.getUserEmail();

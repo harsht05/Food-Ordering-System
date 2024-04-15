@@ -7,6 +7,7 @@ import { ViewAllOrdersComponent } from './view-all-orders/view-all-orders.compon
 import { AdminlogoutComponent } from './adminlogout/adminlogout.component';
 import { PageNotFoundComponent } from '../../page-not-found/page-not-found.component';
 import { ViewAllFeedbackComponent } from './view-all-feedback/view-all-feedback.component';
+import { AboutUsComponent } from '../shared/about-us/about-us.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path:'home',
     component:AdminDashboardComponent
+  },
+  {
+    path:'aboutUs',
+    component:AboutUsComponent
   },
   {
     path: '**',

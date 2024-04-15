@@ -37,25 +37,11 @@
                 >
               </li>
 
-              <li>
-                <a
-                  routerLink="/admin/aboutus"
-                  class="btn"
-                  style="
-                    border: none;
-                    font-weight: 400;
-                    font-size: medium;
-                    display: inline-block;
-                    margin: 0 15px;
-                    list-style-type: disc;
-                  "
-                  >About us</a
-                >
-              </li>
+              
               <li>
                 <a
                   routerLink="/admin/viewRestaurants"
-                  routerLinkActive="active"
+                  routerLinkActive="active" 
                   class="btn"
                   style="
                     border: none;
@@ -121,7 +107,7 @@
   </div>
 
   <!-- Page Content  -->
-  <main class="p-2 w-80">
+  <main class="p-2 w-100">
     <nav
       class="navbar navbar-expand-lg navbar-dark sticky-top rounded-1"
       aria-label="mainNav"
@@ -167,7 +153,7 @@
       <div class="row">
         <div class="col-md-6 col-lg-3 mb-3">
           <div class="card text-dark rounded-1">
-            <div class="card-body m-0 p-0 rounded-1" style="height: 200px">
+            <div class="card-body m-0 p-0 rounded-1" style="height: 200px; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
               <img
                 class="rounded-1 w-100 h-100"
                 src="assets/images/restaurant.jpg"
@@ -190,10 +176,11 @@
                     background-color: #c9c9c9;
                     font-weight: 500;
                     font-size: medium;
+                    
                   "
                   >View Restaurants</a
                 >
-                <span> <i class="bi bi-chevron-right text-dark"></i> </span
+                <span> <i class="bi bi-chevron-right text-light"></i></span
               ></span>
             </div>
           </div>
@@ -308,9 +295,9 @@
       <div class="row row-cols-md-1 g-3">
         <div class="col mb-3">
           <div class="card">
-            <div class="card-header">
+            <div class="card-header text-center">
               <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-              Feedback Chart
+             <strong><i>Feedback Chart</i></strong> 
             </div>
             <div class="card-body">
               <app-users></app-users>
@@ -319,40 +306,12 @@
         </div>
         <div class="col mb-3">
           <div class="card">
-            <div class="card-header">
+            <div class="card-header text-center">
               <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-              Area Chart Example
+              <strong><i>Orders By Date</i></strong>
             </div>
             <div class="card-body">
               <app-sales></app-sales>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col mb-3">
-          <div class="card">
-            <div class="card-header">
-              <span><i class="bi bi-table me-2"></i></span> Order Count Table
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table id="example" class="table table-striped">
-                  <caption></caption>
-                  <thead>
-                    <tr>
-                      <th>Date</th>
-                      <th>Counts</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let count of countsByExperience">
-                      <td>{{ count.key }}</td>
-                      <td>{{ count.value }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
             </div>
           </div>
         </div>

@@ -34,8 +34,7 @@ public class SendEmail {
 		props.put("mail.smtp.host", "webmail.evolvingsols.com");
 		props.put("mail.smtp.auth", "true");
 		
-//		final String username = "freshertraining@evolvingsols.com";
-//		final String password = "!ndiaWin@2024#";
+
 		
 		final String username = "cybtraining@evolvingsols.com";
 		final String password = "Cybage$$23456";

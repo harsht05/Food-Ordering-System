@@ -1,7 +1,7 @@
 
 <app-header></app-header>
   <div class="container-fluid p-3">
-    <div *ngIf="restaurantResults.length > 0 || foodResults.length > 0; else noResults">
+    <div *ngIf="restaurantResults.length > 0  else noResults">
       <p class="fw-bolder fs-2 text-center mt-4 mb-3 heading">Search Results</p>
     <div class="d-flex justify-content-center gap-5 flex-row flex-wrap mb-3 mt-3 cards-container">
 
