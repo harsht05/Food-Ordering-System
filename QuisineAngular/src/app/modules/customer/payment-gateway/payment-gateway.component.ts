@@ -71,7 +71,9 @@ export class PaymentGatewayComponent {
       confirmButtonText: 'Confirm and Make Payement',
       icon:'info',
       allowEscapeKey: false,
-      // allowOutsideClick: false,
+      allowOutsideClick: false,
+      showCancelButton: true,
+      cancelButtonText: 'Cancel',
       focusConfirm: false,
       didOpen: () => {
         const popup = Swal.getPopup()!
@@ -88,7 +90,7 @@ export class PaymentGatewayComponent {
       
     }).then((result) => {
 
-      if(result) {
+      if(result.isConfirmed) {
 
         this.delAddress = addressInput.value;
         this.sessionStorageService.setItem("delAddress", this.delAddress);
@@ -100,6 +102,11 @@ export class PaymentGatewayComponent {
           // console.log(response);
           window.location.href = response.payment_link_url;
         });
+      }
+
+      else {
+          
+        window.history.back();
       }
     });
     }
