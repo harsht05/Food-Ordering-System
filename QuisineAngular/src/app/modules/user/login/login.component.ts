@@ -52,6 +52,8 @@ export class LoginComponent {
             console.log(response);
             this.sessionStorage.setItem("custId", response.userId);
             this.sessionStorage.setItem("custAddress", response.userAddress);
+            this.sessionStorage.setItem("custCity", response.userCity);
+            this.sessionStorage.setItem("custPin", response.userPin);
             
             if(this.sessionStorage.getMap("mealsMap") !== null) {
   

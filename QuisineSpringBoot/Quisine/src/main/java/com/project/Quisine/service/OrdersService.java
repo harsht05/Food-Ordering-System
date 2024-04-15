@@ -35,13 +35,13 @@ public class OrdersService {
 
 	public List<OrdersDTO> getCustomerOrders(int id) {
 
-		return ordersRepository.findByCustomerUserIdOrderByOrderIdDesc(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
+		return ordersRepository.findTop50ByCustomerUserIdOrderByOrderIdDesc(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
 				.collect(Collectors.toList());
 	}
 
 	public List<OrdersDTO> getRestaurantOrders(int id) {
 
-		return ordersRepository.findByRestaurantUserIdOrderByOrderIdDesc(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
+		return ordersRepository.findTop50ByRestaurantUserIdOrderByOrderIdDesc(id).stream().map(order -> modelMapper.map(order, OrdersDTO.class))
 				.collect(Collectors.toList());
 	}
 	public List<OrdersDTO> getAllCustomerOrders() {
