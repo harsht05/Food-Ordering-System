@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 
 public interface OrdersRepository extends JpaRepository<Orders, Integer> {
 
-	List<Orders> findByCustomerUserIdOrderByOrderIdDesc(int id);
+    List<Orders> findByCustomerUserIdOrderByOrderIdDesc(int id);
     
     List<Orders> findByRestaurantUserIdOrderByOrderIdDesc(int id);
     

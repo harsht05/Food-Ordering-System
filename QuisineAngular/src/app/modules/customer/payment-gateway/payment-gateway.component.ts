@@ -63,7 +63,7 @@ export class PaymentGatewayComponent {
       confirmButtonText: 'Confirm and Make Payement',
       icon:'info',
       allowEscapeKey: false,
-      allowOutsideClick: false,
+      // allowOutsideClick: false,
       focusConfirm: false,
       didOpen: () => {
         const popup = Swal.getPopup()!
@@ -89,7 +89,7 @@ export class PaymentGatewayComponent {
         
         this.payementService.generatePayementLink(cid, this.totalMealCharges + 60).subscribe(response => {
 
-          console.log(response);
+          // console.log(response);
           window.location.href = response.payment_link_url;
         });
       }

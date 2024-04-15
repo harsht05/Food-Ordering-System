@@ -1,0 +1,34 @@
+<app-header></app-header>
+      
+      <div *ngIf="city != null && city != ''; else nocity" class="container-fluid p-3">
+  
+        <p class="fw-bolder fs-2 text-center mt-4 mb-3 heading">Hotels In {{city}}</p>
+    
+        <div class="d-flex justify-content-center gap-5 flex-row flex-wrap mb-3 mt-3 cards-container">
+    
+            <div class="col-lg-3 col-md-2" *ngFor="let rest of restaurants">
+                <div class="card border-0 med-blog rounded" style="border-radius: 15px !important;">
+                    <div class="card-header p-0">
+                        
+                      <img class="card-img-bottom" style="border-top-left-radius: 15px !important;border-top-right-radius: 15px !important;" src="../../../../assets/images/hotels/restaurant-1.jpg" alt="Card image cap">
+                        
+                    </div>
+                    <div class="card-body border border-top-0">
+                        <h5 class="blog-title card-title m-0 ">{{rest.userName}}</h5>
+                        <p class="mt-2 ">Starting at just <b>&#8377; 99 </b></p>
+                        <a routerLink="/restaurantFoods/{{rest.userId}}" class="button-w3ls active mt-2">Order Now <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                            <span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #nocity>
+        <p class="fw-bolder fs-2 text-center mt-4 mb-3 heading">No City Selected</p>
+    </ng-template>
+
+<app-footer></app-footer>
+  
+      

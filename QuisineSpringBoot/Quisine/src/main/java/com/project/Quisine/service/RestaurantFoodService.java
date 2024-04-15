@@ -24,6 +24,11 @@ public class RestaurantFoodService {
 		
 		return restaurantFoodRepository.findByRestaurantUserId(id).stream().map(restFood->modelMapper.map(restFood, RestaurantFoodDTO.class)).collect(Collectors.toList());
 	}
+    
+    public List<RestaurantFoodDTO> getRestaurantFoodByName(String name) {
+		
+		return restaurantFoodRepository.findByRestaurantUserName(name).stream().map(restFood->modelMapper.map(restFood, RestaurantFoodDTO.class)).collect(Collectors.toList());
+	}
 
 	public RestaurantFood addRestaurantFood(RestaurantFood restaurantFood) {
 
@@ -59,5 +64,27 @@ public class RestaurantFoodService {
 	 public void updateRateById(int id, float rate) {
 	        restaurantFoodRepository.updateRateById(id, rate);
 	}
+	 
+	 public Float getMinPrice(String name) {
+		 
+		 return restaurantFoodRepository.findMinRateByRestaurantUserName(name);
+	 }
+	 
+	 public Float getMaxPrice(String name) {
+		 
+		 return restaurantFoodRepository.findMaxRateByRestaurantUserName(name);
+	 }
+	 
+	 public RestaurantFoodDTO getCheapRestaurantFoodByCity(String name) {
+		 
+		 RestaurantFood cheapestRestaurantFood = restaurantFoodRepository.findCheapestRestaurantFoodByCity(name);
+
+	        if (cheapestRestaurantFood == null) {
+	            
+	        	return null;
+	        }
+
+	        return modelMapper.map(cheapestRestaurantFood, RestaurantFoodDTO.class);
+	 }
 
 }

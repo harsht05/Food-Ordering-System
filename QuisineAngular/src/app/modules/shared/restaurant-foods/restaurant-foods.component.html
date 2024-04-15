@@ -63,9 +63,14 @@
             Meal Charges : &#8377; {{ totalMealCharges }}
           </p>
           <hr />
-          <p class="normal-text-format">
+          <p *ngIf="deliveryCharges === 40 else freeDelivery" class="normal-text-format">
             Delivery Charges : &#8377; {{ deliveryCharges }}
           </p>
+          <ng-template #freeDelivery>
+            <p class="normal-text-format">
+              Congratulations, You are eligible for free delivery!
+            </p>
+          </ng-template>
           <p class="normal-text-format">
             Convenience Fee : &#8377; {{ convenienceFee }}
           </p>
@@ -83,3 +88,4 @@
       </div>
     </div>
 </div>
+<app-footer></app-footer>

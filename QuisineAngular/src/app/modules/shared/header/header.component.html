@@ -1,64 +1,15 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="images/OIP.jfif" alt="Your Logo" width="120" height="auto">
-      </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active fs-6 fw-normal" aria-current="page" routerLink="/customer/dashboard">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-6 fw-normal" routerLink="/customer/viewOrders">Orders</a>
-                </li>
-            </ul>
-            
-            <form class="d-flex search-form"> 
-                <input class="form-control me-2" type="search" id="search-bar" name="query" placeholder="Search" aria-label="Search" style="height:40px;" required>
-                <select class="form-select def" id="state" name="filter_type" style="height:40px; border-radius: 20px;" required>
-                    <option selected disabled value="">Choose Filter</option>
-                    <option value="rest_name">Filter by Restaurent Name</option>
-                    <option value="rest_city">Filter by City</option>
-                    <option value="rest_pin">Filter by Pin Code</option>
-                </select>
-                
-                <input type="submit" class="btn btn-outline-light submit-btn" value="Search" style="height:40px;">
-            </form>
-            
-        </div>
-
-        <div *ngIf="isLoggedIn(); else loginButton">
-            <button class="text-white active fs-6 fw-normal" mat-button [matMenuTriggerFor]="afterMenu"> Profile</button>
-            <mat-menu #afterMenu="matMenu" xPosition="after">
-                <button data-bs-toggle="modal" data-bs-target="#updateForm" mat-menu-item>Update Profile</button>
-                <button routerLink="/customer/viewCustomer" mat-menu-item>View Profile</button>
-                <button routerLink="/customer/logout" mat-menu-item>Logout</button>
-            </mat-menu>
-        </div>
-        <ng-template #loginButton>
-            <button class="btn btn-outline-light" routerLink="/login">Login/Sign up</button>
-            
-        </ng-template>
-        
-    </div>
-</nav> -->
 
 <div class="main-top py-1 p-2" style="background: #ffac30;">
-    <div class="container">
+    <div class="container-fluid" style="padding: 5px 120px;">
         <div class="nav-content d-flex gap-5 justify-content-center">
             <!-- logo -->
                 <a id="logo" class="logo">
-                    <img src="assets/images/LOGO.png" alt="" class="img-fluid" height="80px" class="rounded"> 
+                    <img src="assets/images/LOGO.png" alt="" class="img-fluid" height="72px" width="200px" class="rounded"> 
                 </a>
             
             <div class="row middle-flex">
               <form (ngSubmit)="onSearchClick(queryInput.value)" class="newsletter-info d-flex justify-content-center gap-2">
-                <input #queryInput type="text"  placeholder="Restaurants......." class="search-bar rounded-1" style="width: 260px;border: none;padding: 20px; height: 50px;">
+                <input #queryInput type="text" (input)="onSearchClick(queryInput.value)" placeholder="Search Restaurants......" class="search-bar rounded-1">
                 <app-search *ngIf="showSearchResults"></app-search>                    
                 <button type="submit" class="rounded-1">Search</button>
             </form>
@@ -71,6 +22,18 @@
                     <label for="drop" class="toggle">Menu</label>
                     <input type="checkbox" id="drop" />
                     <ul class="menu">
+
+                      <li>
+                            
+                        <a class="text-white">Select City<span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                        <input type="checkbox" id="drop-3" />
+                        <ul>
+                            <li *ngFor="let c of cities">
+                              <a class="drop-text" (click)="cityRestaurants(c)">{{c}}</a>
+                            </li>
+                        </ul>
+                    </li>
+
                         <li><a class="text-white" routerLink="">Home</a></li>
                         <li><a class="text-white" routerLink="/restaurants">Restaurants</a></li>
                         <li><a class="text-white" routerLink="/customer/viewOrders" *ngIf="isLoggedIn();">Your Orders</a></li>
@@ -83,12 +46,11 @@
                         </label>
 
                         <li *ngIf="isLoggedIn(); else loginButton">
-                            
+                          
                             <a class="text-white">Hi, {{customer.userName}} <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                             <input type="checkbox" id="drop-3" />
                             <ul>
-                                <li><a class="drop-text" data-bs-toggle="modal" data-bs-target="#updateForm">Update Profile</a></li>
-                                <li><a class="drop-text" data-bs-toggle="modal" data-bs-target="#viewCustomer">View Profile</a></li>
+                                <li><a class="drop-text" data-bs-toggle="modal" data-bs-target="#viewCustomer">Your Profile</a></li>
                                 <li><a class="drop-text rounded-1" (click)="logout()">Logout</a></li>
                             </ul>
                         </li>
@@ -110,241 +72,20 @@
 </div>
 
 
-<!-- Modal for Update Customer -->
-<div
-  class="modal fade"
-  id="updateForm"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-body updateForm">
-        <p class="fw-bolder fs-2 text-center heading m-3">Update Profile</p>
-
-          <div class="container">
-            <form
-              class="row g-3"
-              [formGroup]="user"
-              (submit)="updateCustomer()"
-            >
-
-            <div class="col-md-12 m-auto" *ngIf="imageUrl">
-              <div class="img-prev-box" [style.background-image]="'url(' + imageUrl + ')'">
-              </div>
-          </div>
-
-              <div class="col-md-6">
-                <label for="fname" class="form-label">First name</label>
-                <input
-                  type="text"
-                  class="form-control def"
-                  formControlName="userName"
-                />
-
-                <div
-                  *ngIf="
-                    user.get('userName')?.touched &&
-                    user.get('userName')?.errors
-                  "
-                >
-                  <div
-                    class="text-danger m-2"
-                    *ngIf="user.get('userName')?.errors?.['required']"
-                  >
-                    Customer Name Can't be Blank!
-                  </div>
-                  <div
-                    class="text-danger m-2"
-                    *ngIf="user.get('userName')?.errors?.['pattern']"
-                  >
-                    Please enter a valid Customer Name.
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <label for="cnumber" class="form-label">Contact Number</label>
-                <input
-                  type="text"
-                  class="form-control def"
-                  formControlName="userContact"
-                />
-
-                <div
-                  *ngIf="
-                    user.get('userContact')?.touched &&
-                    user.get('userContact')?.errors
-                  "
-                >
-                  <div
-                    class="text-danger m-2"
-                    *ngIf="user.get('userContact')?.errors?.['required']"
-                  >
-                    Contact Number Can't be Blank!
-                  </div>
-                  <div
-                    class="text-danger m-2"
-                    *ngIf="user.get('userContact')?.errors?.['pattern']"
-                  >
-                    Please enter a valid Contact Number.
-                  </div>
-                  <div
-                    class="text-danger m-2"
-                    *ngIf="user.get('userContact')?.errors?.['minlength']"
-                  >
-                    Contact number must be at least 16 digits.
-                  </div>
-                  <div
-                    class="text-danger m-2"
-                    *ngIf="user.get('userContact')?.errors?.['maxlength']"
-                  >
-                    Contact number cannot exceed 16 digits.
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-12">
-                <label for="address" class="form-label">Address</label>
-                <input
-                  type="text"
-                  class="form-control def"
-                  formControlName="userAddress"
-                />
-
-                <div
-                  *ngIf="
-                    user.get('userAddress')?.touched &&
-                    user.get('userAddress')?.errors
-                  "
-                >
-                  <div
-                    class="text-danger m-2"
-                    *ngIf="user.get('userAddress')?.errors?.['required']"
-                  >
-                    Address Can't be Blank!
-                  </div>
-                  
-                  <div
-                    class="text-danger m-2"
-                    *ngIf="user.get('userAddress')?.errors?.['minlength']"
-                  >
-                    Enter a Valid Address
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <label for="city" class="form-label">City</label>
-                <input
-                  type="text"
-                  class="form-control def"
-                  formControlName="userCity"
-                />
-
-                <div
-                  *ngIf="
-                    user.get('userCity')?.touched &&
-                    user.get('userCity')?.errors
-                  "
-                >
-                  <div
-                    class="text-danger m-2"
-                    *ngIf="user.get('userCity')?.errors?.['required']"
-                  >
-                    City Can't be Blank!
-                  </div>
-                </div>
-              </div>
-
-              
-              <div class="col-md-6">
-                <label for="pincode" class="form-label">Pin Code</label>
-                <input
-                  type="text"
-                  class="form-control def"
-                  formControlName="userPin"
-                />
-
-                <div
-                  *ngIf="
-                    user.get('userPin')?.touched &&
-                    user.get('userPin')?.errors
-                  "
-                >
-                  <div
-                    class="text-danger m-2"
-                    *ngIf="user.get('userPin')?.errors?.['required']"
-                  >
-                    Please Enter Pin Code 
-                  </div>
-
-                  <div
-                    class="text-danger m-2"
-                    *ngIf="user.get('userPin')?.errors?.['pattern']"
-                  >
-                    Please enter a valid PinCode.
-                  </div>
-                  <div
-                    class="text-danger m-2"
-                    *ngIf="user.get('userPin')?.errors?.['minlength']"
-                  >
-                    PinCode must be at least 6 digits.
-                  </div>
-                  <div
-                    class="text-danger m-2"
-                    *ngIf="user.get('userPin')?.errors?.['maxlength']"
-                  >
-                    PinCode cannot exceed 6 digits.
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <label class="userImgLabel" for="userImg">Choose Img</label>
-                <input class="userImg" type="file" formControlName="userImg" id="userImg" (change)="onFileSelected($event)">
-                <div *ngIf="user.get('userImg')?.touched && user.get('userImg')?.errors">
-                    <div class="text-danger m-2" *ngIf="user.get('userImg')?.errors?.['required']">Please Select Profile Image!!</div>
-                  </div>
-            </div>
-
-              <div class="text-center">
-                <button
-                  type="submit"
-                  [disabled]="!user.valid"
-                  class="button-w3ls active m-2"
-                >Update Profile</button>
-              </div>
-            </form>
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal for View Customer -->
-<div
-  class="modal fade"
-  id="viewCustomer"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<!-- Modal for View/Update Customer -->
+<div class="modal fade" id="viewCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-body viewForm">
         <p class="fw-bolder fs-2 text-center heading m-3">Your Profile</p>
 
         <div class="container p-3">
-    
-          <form class="row g-3" [formGroup]="user">
-           
-            <div class="col-md-12 m-auto" *ngIf="imageUrl">
-              <div class="img-prev-box" [style.background-image]="'url(' + imageUrl + ')'">
-              </div>
+
+          <div class="col-md-12 m-auto" *ngIf="imageUrl">
+            <div class="img-prev-box" [style.background-image]="'url(' + imageUrl + ')'"></div>
           </div>
+
+          <form class="row g-3" [formGroup]="user">
 
             <div class="col-md-12">
               <label for="uemail" class="form-label">Email</label>
@@ -353,41 +94,58 @@
               </div>
             </div>
 
-              <div class="col-md-6">
+            <div class="col-md-6">
               <label for="fname" class="form-label">First name</label>
-              <input type="text" class="form-control def" formControlName="userName" readonly>
+              <input type="text" class="form-control def" formControlName="userName" [readonly]="!isUpdateMode">
             </div>
-           
+
             <div class="col-md-6">
               <label for="cnumber" class="form-label">Contact Number</label>
-              <input type="text" class="form-control def" formControlName="userContact" readonly>
+              <input type="text" class="form-control def" formControlName="userContact" [readonly]="!isUpdateMode">
             </div>
 
             <div class="col-md-12">
               <label for="upass" class="form-label">Address</label>
-              <input type="text" class="form-control def" formControlName="userAddress" readonly>
+              <input type="text" class="form-control def" formControlName="userAddress" [readonly]="!isUpdateMode">
             </div>
-  
+
             <div class="col-md-6">
               <label for="city" class="form-label">City</label>
-              <input type="text" class="form-control def" formControlName="userCity" readonly>
-              
+              <input type="text" class="form-control def" formControlName="userCity" [readonly]="!isUpdateMode">
             </div>
-  
-  
+
             <div class="col-md-3">
               <label for="state" class="form-label">State</label>
               <input type="text" class="form-control def" formControlName="userState" readonly>
-              
             </div>
-           
+
             <div class="col-md-3">
               <label for="pincode" class="form-label">Pin Code</label>
-              <input type="text" class="form-control def" formControlName="userPin" readonly>
+              <input type="text" class="form-control def" formControlName="userPin" [readonly]="!isUpdateMode">
+            </div>
+
+            <div class="col-md-6" *ngIf="isUpdateMode">
+              <label class="userImgLabel" for="userImg">Choose Img</label>
+              <input class="userImg" type="file" formControlName="userImg" id="userImg" (change)="onFileSelected($event)">
+              <div *ngIf="user.get('userImg')?.touched && user.get('userImg')?.errors">
+                  <div class="text-danger m-2" *ngIf="user.get('userImg')?.errors?.['required']">Please Select Profile Image!!</div>
+                </div>
+          </div>
+
+            <div class="col-md-12 text-center">
+              <button *ngIf="!isUpdateMode" class="button-w3ls active m-2" (click)="toggleUpdateMode()">
+                Update Profile
+              </button>
+              <button *ngIf="isUpdateMode" class="button-w3ls active m-2" (click)="updateCustomer()">
+                Save Changes
+              </button>
+              <button *ngIf="isUpdateMode" class="button-w3ls active m-2" (click)="toggleUpdateMode()">
+                Cancel
+              </button>
             </div>
           </form>
-      
-      </div>
+
+        </div>
       </div>
     </div>
   </div>

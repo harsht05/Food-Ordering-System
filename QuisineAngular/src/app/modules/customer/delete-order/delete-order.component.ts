@@ -13,6 +13,8 @@ export class DeleteOrderComponent {
 
   }
 
+  isOrderDeleted:boolean = false;
+
   ngOnInit() {
 
     const orderId = Number(this.route.snapshot.paramMap.get("orderId"));
@@ -23,6 +25,7 @@ export class DeleteOrderComponent {
         
         console.log('Order Cancelled');
         this.router.navigate(['/customer/viewOrders']);
+        this.isOrderDeleted = true;
       }
   
       else {

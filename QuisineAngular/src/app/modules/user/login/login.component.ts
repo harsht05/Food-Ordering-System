@@ -65,7 +65,7 @@ export class LoginComponent {
   
             else if(this.sessionStorage.getItem("restId") !== null) {
   
-              this.route.navigate([`customer/addToCart/${this.sessionStorage.getItem("restId")}`]);
+              this.route.navigate([`restaurantFoods/${this.sessionStorage.getItem("restId")}`]);
               Swal.fire(
                 'Login Successfully!!',
                 '',

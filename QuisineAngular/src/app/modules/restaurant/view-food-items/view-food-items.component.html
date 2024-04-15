@@ -1,117 +1,104 @@
-<!-- 
-
-
 <div class="container-fluid p-3">
-    <p class="fw-bolder fs-2 text-center heading">Your food items</p>
-    <div class="d-flex justify-content-center gap-4 flex-row flex-wrap mb-3 cards-container">
-      <div class="card m-2 rounded card-hover" style="width: 18rem;" *ngFor="let food of foods">
-        <img [src]="'assets/images/' + food.food.foodImage" class="card-img-top" alt="{{ food.food.foodName }}">
-        <div class="card-body">
-          <p class="card-title fs-4 fw-semibold">{{ food.food.foodName }}</p>
-          <p class="card-text fs-5">Starting at just <b>&#8377; {{ food.rate }}</b></p>
-          <div class="d-flex justify-content-between">
-            <div>
-              <button class="btn btn-danger" (click)="deleteFoodItem(food.id)">Delete</button>
-            </div>
-            <div style="margin-left: 10px;"> 
-              <button class="btn btn-danger" (click)="updateFoodItem(food.id)">Update Price</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-        <div *ngIf="foods.length > 0" class="card m-2 rounded card-hover add-food-button" style="width: 18rem; height: 100%;">
-          <button [routerLink]="['/restaurant/addFoodItems', restaurantId]" class="btn btn-light add-button"><i class="fa-solid fa-plus plus"></i></button>
-        </div>
-    </div>
-  </div>
-  
-  
-  
-   -->
-
-   <div class="container-fluid p-3">
-    <p class="fw-bolder fs-2 text-center heading">Your food items</p>
-    <div class="d-flex justify-content-center gap-4 flex-row flex-wrap mb-3 cards-container">
-        <!-- Loop through food items -->
-        <ng-container *ngFor="let food of foods; let last = last">
-            <!-- <div class="card m-2 rounded card-hover" style="width: 18rem;">
-                <img [src]="'assets/images/' + food.food.foodImage" class="card-img-bottom" alt="{{ food.food.foodName }}" >
-                <div class="card-body">
-                    <p class="card-title fs-4 fw-semibold">{{ food.food.foodName }}</p>
-                    <p class="card-text fs-5">Starting at just <b>&#8377; {{ food.rate }}</b></p>
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <button class="btn btn-danger" (click)="deleteFoodItem(food.id)">Delete</button>
-                        </div>
-                        <div style="margin-left: 10px;">
-                            <button class="btn btn-danger" (click)="updateFoodItem(food.id)">Update Price</button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-            <div class="col-lg-3 col-md-2">
-              <div class="card border-0 med-blog rounded" style="border-radius: 15px !important;">
-                  <div class="card-header p-0">
-                      
+  <p class="fw-bolder fs-2 text-center heading">Your food items</p>
+  <div class="d-flex justify-content-center align-items-center gap-4 flex-row flex-wrap mb-3 cards-container">
+      <!-- Loop through food items -->
+      <ng-container *ngFor="let food of foods">
+          <div class="col-lg-3 col-md-2">
+            <div class="card border-0 med-blog rounded" style="border-radius: 15px !important;">
+                <div class="card-header p-0">
                     <img [src]="'assets/images/' + food.food.foodImage" class="card-img-bottom" alt="{{ food.food.foodName }}">
-                      
-                  </div>
-                  <div class="card-body border border-top-0">
-                      <h5 class="blog-title card-title m-0 ">{{ food.food.foodName }}</h5>
-                      <p class="mt-2 ">Starting at just <b>&#8377; {{ food.rate }} </b></p>
-                      
-                      <div class="d-flex justify-content-between">
-                        <div>
-                            <button class="button-w3ls active" (click)="deleteFoodItem(food.id)">Delete</button>
-                        </div>
-                        <div style="margin-left: 10px;">
-                            <button class="button-w3ls active" (click)="updateFoodItem(food.id)">Update Price</button>
-                        </div>
-                    </div>
-                  </div>
-              </div>
-          </div>
-            <!-- Display the "+" icon after the last food item -->
-            <div *ngIf="last && foods.length > 0" class="card m-2 rounded card-hover add-food-button" style="width: 18rem;">
-                <button [routerLink]="['/restaurant/addFoodItems', restaurantId]" class="btn btn-light add-button"><i class="fa-solid fa-plus plus"></i></button>
-            </div>
-        </ng-container>
-        <!-- Display the "+" icon if there are no food items -->
-        <div *ngIf="foods.length === 0" class="card m-2 rounded card-hover add-food-button" style="width: 18rem;">
-            <button [routerLink]="['/restaurant/addFoodItems', restaurantId]" class="btn btn-light add-button"><i class="fa-solid fa-plus plus"></i></button>
-        </div>
-    </div>
-</div>
-<!-- 
-<div class="container-fluid p-3">
-  
-  <p class="fw-bolder fs-2 text-center mt-4 mb-3 heading">Hotels Near You</p>
-
-  <div class="d-flex justify-content-center gap-5 flex-row flex-wrap mb-3 mt-3 cards-container">
-
-      <div class="col-lg-3 col-md-2" *ngFor="let food of foods; let last = last">
-          <div class="card border-0 med-blog rounded" style="border-radius: 15px !important;">
-              <div class="card-header p-0">
-                  
-                <img [src]="'assets/images/' + food.food.foodImage" class="card-img-bottom" alt="{{ food.food.foodName }}">
-                  
-              </div>
-              <div class="card-body border border-top-0">
-                  <h5 class="blog-title card-title m-0 ">{{ food.food.foodName }}</h5>
-                  <p class="mt-2 ">Starting at just <b>&#8377; {{ food.rate }} </b></p>
-                  
-                  <div class="d-flex justify-content-between">
-                    <div>
-                        <button class="btn btn-danger" (click)="deleteFoodItem(food.id)">Delete</button>
-                    </div>
-                    <div style="margin-left: 10px;">
-                        <button class="btn btn-danger" (click)="updateFoodItem(food.id)">Update Price</button>
-                    </div>
                 </div>
-              </div>
+                <div class="card-body border border-top-0">
+                    <h5 class="blog-title card-title m-0 ">{{ food.food.foodName }}</h5>
+                    <p class="mt-2 ">Starting at just <b>&#8377; {{ food.rate }} </b></p>
+                    <div class="d-flex justify-content-between">
+                      <div>
+                          <button class="button-w3ls active" (click)="deleteFoodItem(food.id)">Delete</button>
+                      </div>
+                      <div style="margin-left: 10px;">
+                          <!-- Open the modal on button click -->
+                          <button class="button-w3ls active" (click)="updateFoodItem(food.id)" data-bs-toggle="modal" data-bs-target="#updatePriceModal" >Update Price</button>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </ng-container>
+      
+      <!-- Display the "Add Food Items" button -->
+      <div class="card m-2 rounded card-hover add-food-button" style="width: 18rem;">
+
+          <div class="d-flex justify-content-center align-items-center">
+            <button  class="btn btn-light add-button plus"><i class="fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#addFoodModal" ></i></button>
           </div>
       </div>
   </div>
-</div> -->
+</div>
+
+
+<!-- Update-Price-Modal -->
+<div class="modal fade" id="updatePriceModal" tabindex="-1" aria-labelledby="updatePriceModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2 class="modal-title heading" id="updatePriceModalLabel">Update Food Price</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form [formGroup]="foodUpdateForm" (ngSubmit)="submitUpdateForm()" class="d-flex flex-column align-items-center">
+                  <div class="mb-3">
+                      <label for="foodPrice" class="form-label">Enter updated price</label>
+                      <input type="number" class="form-control" id="foodPrice" formControlName="rate" required>
+                  </div>
+                  <div class="mb-3">
+                      <button type="submit" class="button-w3ls active" [disabled]="!foodUpdateForm.valid">Update Food Item</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<!-- Add Food Items Modal -->
+<div class="modal fade" id="addFoodModal" tabindex="-1" aria-labelledby="addFoodModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2 class="modal-title heading" id="addFoodModalLabel">Add Food Item</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form [formGroup]="foodForm">
+                <div class="mb-3">
+                  <label for="foodName" class="form-label">Food Name</label>
+                  <input type="text" class="form-control" id="foodName" formControlName="foodName">
+                  </div>
+                  <div *ngIf="foodForm.get('foodName')?.errors?.['required'] && foodForm.get('foodName')?.touched" class="text-danger">
+                    Food Name is required
+                  </div>
+                  <div class="mb-3">
+                    <label for="foodPrice" class="form-label">Price</label>
+                    <input type="number" class="form-control" id="foodPrice" formControlName="rate">
+                    <div *ngIf="foodForm.get('rate')?.errors?.['required'] && foodForm.get('rate')?.touched" class="text-danger">
+                      Food Price is required
+                    </div>
+                  </div>          
+                  <div class="mb-3">
+                    <label for="foodImage" class="form-label">Food Image</label>
+                    <input type="file" class="form-control" id="foodImage" formControlName="foodImage" accept="image/*">
+                    <div *ngIf="foodForm.get('foodImage')?.errors?.['required'] && foodForm.get('foodImage')?.touched" class="text-danger">
+                      Food Image is required
+                    </div>
+                  </div>
+          
+                  <div class="d-flex justify-content-between">
+                    <button type="submit" class="button-w3ls active" (click)="submitForm()">Add Food Item</button>
+                 
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
