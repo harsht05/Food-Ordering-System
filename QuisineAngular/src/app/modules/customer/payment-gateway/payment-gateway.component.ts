@@ -89,7 +89,7 @@ export class PaymentGatewayComponent {
         
         this.payementService.generatePayementLink(cid, this.totalMealCharges + 60).subscribe(response => {
 
-          console.log(response);
+          // console.log(response);
           window.location.href = response.payment_link_url;
         });
       }

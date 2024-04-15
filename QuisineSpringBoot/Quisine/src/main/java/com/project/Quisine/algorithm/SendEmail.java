@@ -23,7 +23,7 @@ public class SendEmail {
 	
 	public static boolean sendOtpEmail(String to, int otp) {
 		
-		String from = "cybel@evolvingsols.com", sub = "Verify OTP", msg = "Hi, Your OTP for verification is : "+otp;
+		String from = "cybtraining@evolvingsols.com", sub = "Verify OTP", msg = "Hi, Your OTP for verification is : "+otp;
 		
 //		Smtp properties : 
 		
@@ -37,8 +37,8 @@ public class SendEmail {
 //		final String username = "freshertraining@evolvingsols.com";
 //		final String password = "!ndiaWin@2024#";
 		
-		final String username = "cybel@evolvingsols.com";
-		final String password = "Cyb!ndi@#74102";
+		final String username = "cybtraining@evolvingsols.com";
+		final String password = "Cybage$$23456";
 		
 //		Get Session : 
 		
@@ -79,7 +79,7 @@ public class SendEmail {
 
 	public static void sendEmailWithAttachment(String filePath, String recipientEmail, String name) {
 		
-		String from = "cybel@evolvingsols.com", sub = "Order Summary";
+		String from = "cybtraining@evolvingsols.com", sub = "Order Summary";
 		
 	//	Smtp properties : 
 		
@@ -90,8 +90,8 @@ public class SendEmail {
 		props.put("mail.smtp.host", "webmail.evolvingsols.com");
 		props.put("mail.smtp.auth", "true");
 		
-		final String username = "cybel@evolvingsols.com";
-		final String password = "Cyb!ndi@#74102";
+		final String username = "cybtraining@evolvingsols.com";
+		final String password = "Cybage$$23456";
 		
 	//	Get Session : 
 		
@@ -142,7 +142,7 @@ public class SendEmail {
 	
 	public static void cancelOrder(String filePath, String recipientEmail, String name) {
 		
-		String from = "cybel@evolvingsols.com", sub = "Order Cancelled!";
+		String from = "cybtraining@evolvingsols.com", sub = "Order Cancelled!";
 		
 	//	Smtp properties : 
 		
@@ -153,8 +153,8 @@ public class SendEmail {
 		props.put("mail.smtp.host", "webmail.evolvingsols.com");
 		props.put("mail.smtp.auth", "true");
 		
-		final String username = "cybel@evolvingsols.com";
-		final String password = "Cyb!ndi@#74102";
+		final String username = "cybtraining@evolvingsols.com";
+		final String password = "Cybage$$23456";
 		
 	//	Get Session : 
 		

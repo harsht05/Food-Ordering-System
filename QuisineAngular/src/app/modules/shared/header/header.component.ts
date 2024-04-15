@@ -36,6 +36,8 @@ export class HeaderComponent {
   }
 
   onSearchClick(query:string){
+    
+    document.getElementById("queryInput")
     this.route.navigate(['customers/search/'],{queryParams:{query:query}})
   }
   

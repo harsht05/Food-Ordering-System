@@ -9,7 +9,7 @@
             
             <div class="row middle-flex">
               <form (ngSubmit)="onSearchClick(queryInput.value)" class="newsletter-info d-flex justify-content-center gap-2">
-                <input #queryInput type="text" placeholder="Search Restaurants......" class="search-bar rounded-1">
+                <input #queryInput type="text" (input)="onSearchClick(queryInput.value)" placeholder="Search Restaurants......" class="search-bar rounded-1">
                 <app-search *ngIf="showSearchResults"></app-search>                    
                 <button type="submit" class="rounded-1">Search</button>
             </form>

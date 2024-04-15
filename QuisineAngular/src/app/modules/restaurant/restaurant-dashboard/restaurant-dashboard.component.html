@@ -45,7 +45,7 @@
   <a class="button-w3ls active mb-3" routerLink="/admin/dashboard">Back To Dashboard</a>
 </div>
 
-<!-- Modal -->
+<!-- Modal for updating restaurant-->
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -58,25 +58,68 @@
           <div class="mb-3">
             <label for="name" class="form-label">Restaurant Name</label>
             <input type="text" class="form-control" id="name" formControlName="userName">
+            <div *ngIf="restaurantForm.get('userName')?.touched && restaurantForm.get('userName')?.errors">
+              <div class="text-danger m-2" *ngIf="restaurantForm.get('userName')?.errors?.['required']">Restaurant Name can't be blank</div>
+          </div>
           </div>
           <div class="mb-3">
             <label for="contact" class="form-label">Contact</label>
             <input type="text" class="form-control" id="contact" formControlName="userContact">
+            <div *ngIf="restaurantForm.get('userContact')?.touched && restaurantForm.get('userContact')?.errors">
+              <div class="text-danger m-2" *ngIf="restaurantForm.get('userContact')?.errors?.['required']">Contact Number can't be blank</div>
+              <div class="text-danger m-2" *ngIf="restaurantForm.get('userContact')?.errors?.['pattern']">Invalid Format of Contact Number</div>
+              <div class="text-danger m-2" *ngIf="restaurantForm.get('userContact')?.errors?.['minlength']">Contact Number should be at least 10 digits long</div>
+              <div class="text-danger m-2" *ngIf="restaurantForm.get('userContact')?.errors?.['maxlength']">Contact Number should not exceed 10 digits</div>
+          </div>
+
           </div>
           <div class="mb-3">
             <label for="city" class="form-label">City</label>
             <input type="text" class="form-control" id="city" formControlName="userCity">
+            <div *ngIf="restaurantForm.get('userCity')?.touched && restaurantForm.get('userCity')?.errors">
+              <div class="text-danger m-2" *ngIf="restaurantForm.get('userCity')?.errors?.['required']">City is required</div>
+          </div>
+            
           </div>
           <div class="mb-3">
-            <label for="state" class="form-label">State</label>
-            <input type="text" class="form-control" id="state" formControlName="userState">
+            <!-- <label for="state" class="form-label">State</label>
+            <input type="text" class="form-control" id="state" formControlName="userState"> -->
+
+            <label for="state" class="form-label">State</label> 
+                <select class="form-select" formControlName="userState" style="border-radius: 10px;">
+                    <option selected disabled value="">Choose...</option>
+                    <option>Maharashtra</option>
+                    <option>Karnataka</option>
+                    <option>Kerala</option>
+                    <option>Tamil Nadu</option>
+                </select>
+                <div *ngIf="restaurantForm.get('userState')?.touched && restaurantForm.get('userState')?.errors">
+                    <div class="text-danger m-2" *ngIf="restaurantForm.get('userState')?.errors?.['required']">State is required</div>
+                   
+                </div>
+            
           </div>
+          <!-- <div class="mb-3">
+            <label for="pin" class="form-label">Pin</label>
+            <input type="text" class="form-control" id="pin" formControlName="userPin">
+            <div *ngIf="restaurantForm.get('userPin')?.touched && restaurantForm.get('userPin')?.errors">
+              <div class="text-danger m-2" *ngIf="restaurantForm.get('userPin')?.errors?.['required']">Pin Code can't be blank</div>
+              <div class="text-danger m-2" *ngIf="restaurantForm.get('userPin')?.errors?.['pattern']">Invalid Format of Pin Code</div>
+             
+          </div>
+          </div> -->
           <div class="mb-3">
             <label for="pin" class="form-label">Pin</label>
             <input type="text" class="form-control" id="pin" formControlName="userPin">
+            <div *ngIf="restaurantForm.get('userPin')?.touched && restaurantForm.get('userPin')?.errors">
+              <div class="text-danger m-2" *ngIf="restaurantForm.get('userPin')?.errors?.['required']">Pin Code can't be blank</div>
+              <div class="text-danger m-2" *ngIf="restaurantForm.get('userPin')?.errors?.['pattern']">Invalid Format of Pin Code</div>
+              <div class="text-danger m-2" *ngIf="restaurantForm.get('userPin')?.errors?.['minlength']">Pin Code should be at least 6 digits long</div>
+              <div class="text-danger m-2" *ngIf="restaurantForm.get('userPin')?.errors?.['maxlength']">Pin Code should not exceed 6 digits</div>
+            </div>
           </div>
           <div class="mb-3">
-            <button type="submit" class="button-w3ls active mr-3">Update</button>
+            <button type="submit" class="button-w3ls active mr-3" [disabled]="!restaurantForm.valid">Update</button>
             <button type="button" class="button-w3ls active" data-bs-dismiss="modal">Cancel</button>
           </div>
         </form>

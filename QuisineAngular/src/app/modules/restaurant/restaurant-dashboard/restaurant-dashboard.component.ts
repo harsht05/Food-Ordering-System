@@ -25,21 +25,33 @@ export class RestaurantDashboardComponent {
   constructor(private restaurantService: RestaurantService,private route:ActivatedRoute,private router:Router, private fb: FormBuilder, private sessionStorageService: SessionStorageService) { }
 
   ngOnInit(): void {
+    console.log(this.sessionStorageService.getItem("isAdmin"));
+    
+    
+    if(this.sessionStorageService.getItem("restaurantId") === null && this.sessionStorageService.getItem("isAdmin")!=="done") {
+        
+      this.router.navigate(['/accessDenied']);
+    }
+
     this.restaurantId = this.route.snapshot.paramMap.get("restId");
     this.initForm();
     this.getRestaurantById(this.restaurantId);
+
     
     
   }
 
+  
   initForm(): void {
     this.restaurantForm = this.fb.group({
       userName: ['', Validators.required],
       userCity: ['', Validators.required],
       userState: ['', Validators.required],
-      userPin: ['', Validators.required],
-      userContact: ['', Validators.required],
-      userImg: ['', Validators.required]
+      // userPin: ['', Validators.required, Validators.pattern('[0-9]+')],
+      userPin: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(6), Validators.maxLength(6)]],
+
+      userContact: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(10), Validators.maxLength(10)]],
+      userImg: ['', [Validators.required]]
       
 
     });
@@ -129,10 +141,5 @@ export class RestaurantDashboardComponent {
   }
 
 
- 
-  
-  
-
-  
 
 }
