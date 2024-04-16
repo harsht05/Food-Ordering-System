@@ -20,6 +20,7 @@ import com.project.Quisine.algorithm.PdfGeneration;
 import com.project.Quisine.algorithm.SendEmail;
 import com.project.Quisine.dto.Customer;
 import com.project.Quisine.dto.OrdersDTO;
+import com.project.Quisine.dto.Restaurant;
 import com.project.Quisine.entity.Orders;
 import com.project.Quisine.entity.UserEntity;
 import com.project.Quisine.service.OrdersService;
@@ -37,6 +38,18 @@ public class CustomerController {
 	
 	@Autowired 
 	private OrdersService ordersService;
+	
+	@GetMapping("getCities")
+	public ResponseEntity<List<String>> getCities() {
+		
+		return new ResponseEntity<List<String>>(userEntityService.findDistinctCitiesForRestaurant(), HttpStatus.OK);
+	}
+	
+	@GetMapping("getRestaurantByCity/{city}")
+	public ResponseEntity<List<Restaurant>> getRestaurantByCity(@PathVariable String city) {
+		
+		return new ResponseEntity<List<Restaurant>>(userEntityService.getRestaurantByCity(city), HttpStatus.OK);
+	}
 
     @PostMapping("placeOrder")
 	public ResponseEntity<Orders> placeOrder(@RequestBody Orders order) {

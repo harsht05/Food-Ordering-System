@@ -52,6 +52,8 @@ export class LoginComponent {
             console.log(response);
             this.sessionStorage.setItem("custId", response.userId);
             this.sessionStorage.setItem("custAddress", response.userAddress);
+            this.sessionStorage.setItem("custCity", response.userCity);
+            this.sessionStorage.setItem("custPin", response.userPin);
             
             if(this.sessionStorage.getMap("mealsMap") !== null) {
   
@@ -65,7 +67,7 @@ export class LoginComponent {
   
             else if(this.sessionStorage.getItem("restId") !== null) {
   
-              this.route.navigate([`customer/addToCart/${this.sessionStorage.getItem("restId")}`]);
+              this.route.navigate([`restaurantFoods/${this.sessionStorage.getItem("restId")}`]);
               Swal.fire(
                 'Login Successfully!!',
                 '',

@@ -33,6 +33,7 @@ export class OrderSummaryComponent {
   customer: Customer = new Customer();
   orders: Orders[] = [];
   delAddress:string ='';
+  isOrderPlaced:boolean = false;
 
   ngOnInit() {
 
@@ -70,7 +71,7 @@ export class OrderSummaryComponent {
       
               this.custService.sendOrderDetails(this.orders).subscribe(response => {
                 console.log(response);
-
+                this.isOrderPlaced = true;
                 
               Swal.fire(
                 'Congratulations! Your Order has been placed Successfully....',

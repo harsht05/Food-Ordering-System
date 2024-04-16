@@ -11,9 +11,9 @@ import jakarta.transaction.Transactional;
 
 public interface OrdersRepository extends JpaRepository<Orders, Integer> {
 
-	List<Orders> findByCustomerUserIdOrderByOrderIdDesc(int id);
+    List<Orders> findTop50ByCustomerUserIdOrderByOrderIdDesc(int id);
     
-    List<Orders> findByRestaurantUserIdOrderByOrderIdDesc(int id);
+    List<Orders> findTop50ByRestaurantUserIdOrderByOrderIdDesc(int id);
     
     @Transactional
     @Query("SELECT Date(o.date) AS order_date, COUNT(*) AS order_count FROM Orders o GROUP BY Date(o.date)")

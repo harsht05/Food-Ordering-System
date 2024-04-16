@@ -1,12 +1,12 @@
-<div class="container custom-form mb-2 position-absolute top-50 start-50 translate-middle p-4 mb-5 text-dark shadow-lg rounded">
+<div class="container custom-form position-absolute top-50 start-50 translate-middle p-0 text-dark shadow-lg rounded">
 
-    <p class="fw-bolder fs-2 text-center heading m-2">Login</p>
+    <p class="fw-bolder fs-2 text-center heading mt-3">Login</p>
 
-    <div class="container">
+    <div class="container-fluid d-flex justify-content-center">
 
-        <form class="row g-3" [formGroup]="user">
+        <form class="col-md-7 p-2" [formGroup]="user">
 
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12">
                 <label for="uemail" class="form-label">Email</label>
                 <div class="input-group has-validation">
                     <input type="email" class="form-control" formControlName="userEmail" placeholder="Enter your Email">
@@ -27,7 +27,7 @@
                     </div>
             </div>
 
-            <div class="col-12">
+            <div class="col-12 mt-3">
                 <div class="form-check">
                     <input class="form-check-input def" type="checkbox" formControlName="agree">
                      <label class="form-check-label"
@@ -41,23 +41,32 @@
             <div class="col-12 mt-4">
                 <button type="submit" class="button-w3ls active mr-3" [disabled]="user.invalid" value="Login" (click)="login()"> Login </button>
             </div>
+            <div>
+                <p class="text-left text-dark mr-2 mt-3">
+                    <a routerLink="/sendVerifyOtp"
+                        class="text-decoration-none">Register</a>
+                </p>
+        
+                <p class="text-left text-dark mr-2">
+                    <a routerLink="/forgotPassword"
+                        class="text-decoration-none">Forgot Password</a>
+                </p>
+            </div>
 
         </form>
-        <div style="position: absolute; bottom: 0; right: 0;">
-            <img src="assets/images/LOGO.png" alt="" style="height: 80px; width: 100%;">
+
+        <div class="col-md-5">
+            <img
+      class=""
+      style="height: 30vh; width: 15vw"
+      src="../../../../assets/images/undraw_undraw_sign_up_ln1s_-1-_ofs1.svg"
+    />
         </div>
+
     </div>
 
-<div>
-    <p class="text-left text-dark mr-2 mt-3">
-        <a routerLink="/sendVerifyOtp"
-            class="text-decoration-none">Register</a>
-    </p>
+    
 
-    <p class="text-left text-dark mr-2">
-        <a routerLink="/forgotPassword"
-            class="text-decoration-none">Forgot Password</a>
-    </p>
 </div>
 
 

@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.Quisine.dto.Restaurant;
 import com.project.Quisine.algorithm.SendEmail;
-import com.project.Quisine.entity.Feedback;
 import com.project.Quisine.entity.UserEntity;
-import com.project.Quisine.service.FeedBackService;
 import com.project.Quisine.service.UserEntityService;
 
 import jakarta.mail.AuthenticationFailedException;
@@ -129,7 +127,4 @@ public class UserEntityController {
 		
 		return new ResponseEntity<List<Restaurant>>(userEntityService.getAllRestaurants(), HttpStatus.OK);
 	}
-	
-	
-	
 }

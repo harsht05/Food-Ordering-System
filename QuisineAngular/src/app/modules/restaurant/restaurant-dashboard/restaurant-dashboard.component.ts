@@ -47,9 +47,11 @@ export class RestaurantDashboardComponent {
       userName: ['', Validators.required],
       userCity: ['', Validators.required],
       userState: ['', Validators.required],
-      userPin: ['', Validators.required],
-      userContact: ['', Validators.required],
-      userImg: ['', Validators.required]
+      // userPin: ['', Validators.required, Validators.pattern('[0-9]+')],
+      userPin: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(6), Validators.maxLength(6)]],
+
+      userContact: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(10), Validators.maxLength(10)]],
+      userImg: ['', [Validators.required]]
       
 
     });
@@ -139,10 +141,5 @@ export class RestaurantDashboardComponent {
   }
 
 
- 
-  
-  
-
-  
 
 }

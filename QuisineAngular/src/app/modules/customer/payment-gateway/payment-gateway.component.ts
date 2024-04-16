@@ -58,12 +58,22 @@ export class PaymentGatewayComponent {
     Swal.fire<Address>({
       title: 'Check Your Delivery Address',
       html: `
-        <input type="text" id="address" class="swal2-input" value="${this.delAddress}">
+      <div class="row" style="width: 460px;">  
+      <input type="text" id="address" class="swal2-input col-md-8" value="${this.delAddress}">
+
+      <div style="display:flex; justify-content: flex-start;">
+        <input type="text" id="city" class="swal2-input col-md-3" value="${this.sessionStorageService.getItem("custCity")}" readonly>
+        <input type="text" id="pin" class="swal2-input col-md-3" value="${this.sessionStorageService.getItem("custPin")}" readonly>
+      </div>
+
+      </div>
       `,
       confirmButtonText: 'Confirm and Make Payement',
       icon:'info',
       allowEscapeKey: false,
       allowOutsideClick: false,
+      showCancelButton: true,
+      cancelButtonText: 'Cancel',
       focusConfirm: false,
       didOpen: () => {
         const popup = Swal.getPopup()!
@@ -80,7 +90,7 @@ export class PaymentGatewayComponent {
       
     }).then((result) => {
 
-      if(result) {
+      if(result.isConfirmed) {
 
         this.delAddress = addressInput.value;
         this.sessionStorageService.setItem("delAddress", this.delAddress);
@@ -89,9 +99,14 @@ export class PaymentGatewayComponent {
         
         this.payementService.generatePayementLink(cid, this.totalMealCharges + 60).subscribe(response => {
 
-          console.log(response);
+          // console.log(response);
           window.location.href = response.payment_link_url;
         });
+      }
+
+      else {
+          
+        window.history.back();
       }
     });
     }

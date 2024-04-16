@@ -15,6 +15,17 @@ public interface RestaurantFoodRepository extends JpaRepository<RestaurantFood, 
 
     List<RestaurantFood> findByRestaurantUserId(int id);
 
+    List<RestaurantFood> findByRestaurantUserName(String name);
+    
+    @Query("SELECT MIN(rf.rate) FROM RestaurantFood rf WHERE rf.restaurant.userName = :userName")
+    Float findMinRateByRestaurantUserName(String userName);
+    
+    @Query("SELECT MAX(rf.rate) FROM RestaurantFood rf WHERE rf.restaurant.userName = :userName")
+    Float findMaxRateByRestaurantUserName(String userName);
+    
+    @Query("SELECT rf FROM RestaurantFood rf WHERE rf.restaurant.userCity = :city ORDER BY rf.rate ASC LIMIT 1")
+    RestaurantFood findCheapestRestaurantFoodByCity(String city);
+    
     @Transactional
     @Modifying
     @Query("UPDATE RestaurantFood rf SET rf.rate = :rate WHERE rf.id = :id")
