@@ -26,6 +26,7 @@ export class ViewAllFeedbackComponent implements OnInit {
 
     this.adminService.getAllFeedbacks().subscribe(response => {
       this.feedback = response;
+      this.feedback.reverse();
       this.totalRes = this.feedback.length;
       this.loadFeedbacks();
     });

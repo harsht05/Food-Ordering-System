@@ -30,6 +30,7 @@ export class ViewAllOrdersComponent {
     this.adminService.getAllOrders().subscribe(response => {
       
       this.allOrders = response;
+      this.allOrders.reverse();
       this.totalRes = this.allOrders.length;
       this.loadOrders();
       console.log(this.allOrders);
