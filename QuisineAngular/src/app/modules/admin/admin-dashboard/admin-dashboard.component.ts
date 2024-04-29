@@ -65,7 +65,6 @@ export class AdminDashboardComponent {
 
     this.adminService.getOrdersByDate().subscribe(response => {
       this.countsByExperience=response;
-      console.log(this.countsByExperience+"ORDERSSSSSS");
     });
   }
 }

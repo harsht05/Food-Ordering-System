@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 import { UserRoutingModule } from './user-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { SendOtpComponent } from './send-otp/send-otp.component';
-import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SendVerifyOtpComponent } from './send-verify-otp/send-verify-otp.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -15,8 +13,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
   declarations: [
     LoginComponent,
     RegisterComponent,
-    SendOtpComponent,
-    VerifyOtpComponent,
     SendVerifyOtpComponent,
     ForgotPasswordComponent
   ],
@@ -29,8 +25,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
   exports:[
     LoginComponent,
     RegisterComponent,
-    SendOtpComponent,
-    VerifyOtpComponent
   ]
 })
 export class UserModule { }

@@ -2,6 +2,7 @@ package com.project.Quisine.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -96,12 +97,27 @@ public class UserEntityService {
 		return modelMapper.map(userEntityRepository.findById(id).get(), Customer.class);
 	}
 	
-	public void deleteCustomer(int customerId) {
-		userEntityRepository.deleteById(customerId);
+	public void deleteCustomer(int customerId,Boolean block) throws Exception {
+        Optional<UserEntity> userEntityOptional = userEntityRepository.findById(customerId);
+        if (userEntityOptional.isPresent()) {
+            UserEntity customer = userEntityOptional.get();
+            customer.setIsBlocked(block);
+            userEntityRepository.save(customer);
+        }
+        else {
+            throw new Exception("Restaurant not found with ID: " + customerId);
+        }
 	}
-	public void deleteRestaurant(int restId) {
-		userEntityRepository.deleteById(restId);
-	}
+	 public void deleteRestaurant(int restId,Boolean block) throws Exception {
+	        Optional<UserEntity> userEntityOptional = userEntityRepository.findById(restId);
+	        if (userEntityOptional.isPresent()) {
+	            UserEntity restaurant = userEntityOptional.get();
+	            restaurant.setIsBlocked(block);
+	            userEntityRepository.save(restaurant);
+	        } else {
+	            throw new Exception("Restaurant not found with ID: " + restId);
+	        }
+	    }
 
 	public List<UserEntity> getUserByRole(String role) {
 

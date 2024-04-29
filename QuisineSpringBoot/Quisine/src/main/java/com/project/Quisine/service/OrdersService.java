@@ -69,10 +69,11 @@ public class OrdersService {
 		return modelMapper.map(ordersRepository.findById(id).get(), OrdersDTO.class);
 	}
     	
-    public boolean deleteOrderById(int id) {
-    		
-    	ordersRepository.deleteById(id);
-    	return ordersRepository.existsById(id);
+	public boolean deleteOrderById(int id) {
+		
+    	int i = ordersRepository.cancelOrder(id);
+    	System.out.println("In service" +i);
+    	return i > 0;
     }
 }
 

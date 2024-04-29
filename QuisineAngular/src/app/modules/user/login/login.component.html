@@ -27,7 +27,7 @@
                     </div>
             </div>
 
-            <div class="col-12 mt-3">
+            <!-- <div class="col-12 mt-3">
                 <div class="form-check">
                     <input class="form-check-input def" type="checkbox" formControlName="agree">
                      <label class="form-check-label"
@@ -36,7 +36,7 @@
                 <div *ngIf="user.get('agree')?.touched && user.get('agree')?.errors">
                     <div class="text-danger m-2" *ngIf="user.get('agree')?.errors?.['required']">You must agree to Terms and Conditions</div>
                     </div>
-            </div>
+            </div> -->
 
             <div class="col-12 mt-4">
                 <button type="submit" class="button-w3ls active mr-3" [disabled]="user.invalid" value="Login" (click)="login()"> Login </button>
@@ -60,6 +60,7 @@
       class=""
       style="height: 30vh; width: 15vw"
       src="../../../../assets/images/undraw_undraw_sign_up_ln1s_-1-_ofs1.svg"
+      alt=""
     />
         </div>
 

@@ -38,7 +38,6 @@ export class UsersComponent implements AfterViewInit, OnDestroy {
 
   private renderChart(): void {
     this.feedbackService.getCountsByExperience().subscribe(response=>{
-      console.log(response);
       
 
       const myChart = new Chart(this.ctx!, {

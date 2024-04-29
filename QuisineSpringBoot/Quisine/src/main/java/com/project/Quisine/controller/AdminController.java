@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,10 +53,10 @@ public class AdminController {
 		return new ResponseEntity<Customer>(userEntityService.getCustomerDetailsById(id), HttpStatus.OK);
 	}
 	
-	@DeleteMapping(path="/deleteCustomer/{customerId}")
-	public ResponseEntity<String> deleteCustomer(@PathVariable int customerId)
+	@PutMapping(path="/deleteCustomer/{customerId}")
+	public ResponseEntity<String> deleteCustomer(@PathVariable int customerId,@RequestBody Boolean blockValue) throws Exception
 	{
-		userEntityService.deleteCustomer(customerId);
+		userEntityService.deleteCustomer(customerId,blockValue);
 		return new ResponseEntity<String>("Customer Deleted!", HttpStatus.OK);
 	}
 	
@@ -73,10 +75,10 @@ public class AdminController {
 	}
 	
 
-	@DeleteMapping(path ="deleteRestaurant/{restId}")
-	public ResponseEntity<String> deleteRestaurant(@PathVariable int restId)
+	@PutMapping(path ="deleteRestaurant/{restId}")
+	public ResponseEntity<String> deleteRestaurant(@PathVariable int restId ,@RequestBody Boolean blockValue) throws Exception
 	{
-		userEntityService.deleteRestaurant(restId);
+		userEntityService.deleteRestaurant(restId,blockValue);
 		return new ResponseEntity<String>("Restaurant Deleted!", HttpStatus.OK);
 	}
 	

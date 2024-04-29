@@ -66,11 +66,8 @@ export class OrderSummaryComponent {
             this.customer = custResponse;
             
             this.processOrders().subscribe(() => {
-              console.log("send email");
-              console.log(this.orders);
       
               this.custService.sendOrderDetails(this.orders).subscribe(response => {
-                console.log(response);
                 this.isOrderPlaced = true;
                 
               Swal.fire(

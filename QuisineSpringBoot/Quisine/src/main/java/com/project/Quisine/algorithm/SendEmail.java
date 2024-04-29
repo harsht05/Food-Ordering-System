@@ -23,7 +23,7 @@ public class SendEmail {
 	
 	public static boolean sendOtpEmail(String to, int otp) {
 		
-		String from = "cybtraining@evolvingsols.com", sub = "Verify OTP", msg = "Hi, Your OTP for verification is : "+otp;
+		String from = "cybtraining@evolvingsols.com", sub = "Verify OTP", msg = "Hello from Quisine,\n"+" Your OTP for verification is : "+otp+"\n\n";
 		
 //		Smtp properties : 
 		

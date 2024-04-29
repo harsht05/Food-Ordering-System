@@ -1,7 +1,7 @@
 
 <app-header></app-header>
+<div *ngIf="restaurantResults.length > 0  else noResults">
   <div class="container-fluid p-3">
-    <div *ngIf="restaurantResults.length > 0  else noResults">
       <p class="fw-bolder fs-2 text-center mt-4 mb-3 heading">Search Results</p>
     <div class="d-flex justify-content-center gap-5 flex-row flex-wrap mb-3 mt-3 cards-container">
 
@@ -22,12 +22,23 @@
             </div>
         </div>
     </div>
-
+    
   </div>
-  <ng-template #noResults>
-    <p class="text-center mt-3 fs-3 fw-semiBold heading">No results found.</p>
-  </ng-template>
+  <app-footer></app-footer>
 </div>
 
+<ng-template #noResults>
+  <p class="text-center mt-3 fs-3 fw-semiBold heading">No results found.</p><br>
+  <img
+  class=""
+  style="height: 45vh; width: 100%"
+  src="../../../../assets/images/undraw_taken_re_yn20.svg"
+  alt=""
+/>
+<div style="position: fixed; bottom: 0; width: 100%;">
+  <app-footer></app-footer>
+</div>
+</ng-template>
 
-<app-footer></app-footer>
+
+

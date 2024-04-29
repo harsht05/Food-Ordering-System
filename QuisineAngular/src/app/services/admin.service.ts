@@ -25,17 +25,17 @@ export class AdminService {
   getAllOrders(): Observable<Orders[]> {
     return this.http.get<Orders[]>(`${this.baseUrl}getAllOrders`);
   }
-  deleteRestaurantById(id:number) : Observable<Restaurant[]> {
+  deleteRestaurantById(id:number,block:boolean) : Observable<Restaurant[]> {
 
-    return this.http.delete<Restaurant[]>(`${this.baseUrl}deleteRestaurant/${id}`,{responseType:'text' as 'json'});
+    return this.http.put<Restaurant[]>(`${this.baseUrl}deleteRestaurant/${id}`,block,{responseType:'text' as 'json'});
   }
   getRestaurantById(id:number) : Observable<Restaurant[]> {
 
     return this.http.get<Restaurant[]>(`${this.baseUrl}getRestaurantById/${id}`,{responseType:'text' as 'json'});
   }
-  deleteCustomerById(id:number) : Observable<Customer[]> {
+  deleteCustomerById(id:number,block:boolean) : Observable<Customer[]> {
 
-    return this.http.delete<Customer[]>(`${this.baseUrl}deleteCustomer/${id}`,{responseType:'text' as 'json'});
+    return this.http.put<Customer[]>(`${this.baseUrl}deleteCustomer/${id}`,block,{responseType:'text' as 'json'});
   }
   getAllFeedbacks() : Observable<Feedback[]> {
 

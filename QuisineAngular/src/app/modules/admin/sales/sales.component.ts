@@ -29,9 +29,7 @@ export class SalesComponent {
 
   createChart(countsByExperience: any[]) {
   
-    console.log(countsByExperience);
     countsByExperience.forEach(data=>{
-      console.log(data);
       this.label.push(data[0])
       this.mydata.push(data[1]);
       

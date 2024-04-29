@@ -12,6 +12,7 @@ export class Orders {
         public food: Food,
         public customer: Customer,
         public restaurant: Restaurant,
-        public isCollapsed: boolean = true) {
+        public isCollapsed: boolean = true,
+        public cancelledOrder:boolean = false) {
     }
 }

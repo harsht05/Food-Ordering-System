@@ -150,7 +150,7 @@
 
 
               <div *ngIf="restaurant || customer" class="col-12 mt-4">
-                <button type="submit" class="button-w3ls active mr-3" (click)="addUser()">Register </button>
+                <button type="submit" class="button-w3ls active mr-3" (click)="addUser()" [disabled]="user.invalid">Register </button>
                 <button type="reset" class="button-w3ls active ms-3"> Cancel</button>
             </div>
     

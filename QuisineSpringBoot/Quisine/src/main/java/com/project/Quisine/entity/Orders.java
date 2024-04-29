@@ -34,4 +34,6 @@ public class Orders {
 	@ManyToOne
 	@JoinColumn(name = "food_id")
 	private Food food;
+	
+	private boolean cancelledOrder;
 }

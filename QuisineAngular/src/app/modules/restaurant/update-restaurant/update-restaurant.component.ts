@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component} from '@angular/core';
+import { FormBuilder, FormGroup} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantService } from '../../../services/restaurant.service';
 import { Restaurant } from '../../../models/restaurant';
-import { response } from 'express';
 
 @Component({
   selector: 'app-update-restaurant',
   templateUrl: './update-restaurant.component.html',
   styleUrls: ['./update-restaurant.component.css']
 })
-export class UpdateRestaurantComponent implements OnInit {
+export class UpdateRestaurantComponent  {
 
   restaurantForm!: FormGroup;
   restaurantId: any;
@@ -23,24 +22,8 @@ export class UpdateRestaurantComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-    // this.restaurantId = this.route.snapshot.paramMap.get("restId");
-    // this.initForm();
-    // this.getRestaurantById(this.restaurantId);
-  }
+  
 
-  // initForm(): void {
-  //   this.restaurantForm = this.fb.group({
-  //     userName: ['', Validators.required],
-  //     userCity: ['', Validators.required],
-  //     userState: ['', Validators.required],
-  //     userPin: ['', Validators.required],
-  //     userContact: ['', Validators.required],
-  //     userImage: ['', Validators.required]
-      
-
-  //   });
-  // }
 
   getRestaurantById(id: number): void {
     this.restaurantService.getRestaurantById(id).subscribe(
@@ -76,11 +59,11 @@ export class UpdateRestaurantComponent implements OnInit {
         role: this.restaurant.role,
         userImg: this.restaurantForm.value.userImg.substring(12),
         restOwnerName:this.restaurantForm.value.restOwnerName,
+        isBlocked: false,
         userAddress:this.restaurantForm.value.userAddress
       };
       this.restaurantService.updateRestaurant(updatedRestaurant).subscribe(
         () => {
-          console.log('Restaurant updated successfully');
           this.router.navigate(['/restaurant/dashboard', this.restaurantId]);
         },
         (error) => {
@@ -89,13 +72,10 @@ export class UpdateRestaurantComponent implements OnInit {
 
        );
 
-  //   }
-  // }
+ 
 
 
 
-  // cancelUpdate(): void {
-  //   this.router.navigate(['/restaurant/dashboard', this.restaurantId]);
    }
 }
 } 

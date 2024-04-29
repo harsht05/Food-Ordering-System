@@ -149,12 +149,13 @@ public class CustomerController {
 			System.out.println("Not Sent, I think");
 		}
 		
-		if(!ordersService.deleteOrderById(id)) {
-			
-			
+		if(ordersService.deleteOrderById(id)) {
+
+	    	System.out.println("Return true");
 			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 		}
 
+		System.out.println("Return false");
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
 }

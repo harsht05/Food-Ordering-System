@@ -15,8 +15,8 @@
                     </tr>
                 </thead>
                 <tbody>
-					<tr *ngFor="let feed of currFeedback">
-						<td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{feed.feedId}}</td>
+					<tr *ngFor="let feed of currFeedback;let i = index">
+						<td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{i+1}}</td>
 						<td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{feed.username}}</td>
 						<td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{feed.useremail}}</td>
 						<td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{feed.experience}}</td>

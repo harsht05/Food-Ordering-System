@@ -122,8 +122,6 @@ export class RestaurantFoodsComponent {
 
   proceedToPayment(): void {
 
-    console.log(this.map);
-
     this.sessionStorageService.setMap("mealsMap", this.map);
     this.sessionStorageService.setItem("totalCharges", this.totalMealCharges);
     

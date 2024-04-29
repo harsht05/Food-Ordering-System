@@ -4,7 +4,9 @@
 
     <p class="fw-bolder fs-2 text-center heading">Verify Your Email</p>
   
-    <div class="container m-2">
+    <div class="d-flex justify-content-center">
+
+    <div class="col-md-7 p-2">
   
         <form class="row g-3" [formGroup]="user">
             
@@ -55,8 +57,18 @@
                 <button class="button-w3ls active" (click)="verifyOtp()"> Verify OTP</button>
               </div>
           </form>
-        
-    </div>
+        </div>
+
+          <div class="col-md-5">
+            <img
+      class=""
+      style="height: 30vh; width: 15vw"
+      src="../../../../assets/images/undraw_sign_in_re_o58h.svg"
+      alt=""
+    />
+        </div>
+
+  </div>
     
     <p class="text-center text-dark">Already Registered? Want to <a href="login"
             class="text-decoration-none">Sign in </a></p>

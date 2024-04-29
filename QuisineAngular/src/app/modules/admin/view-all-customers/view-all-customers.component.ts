@@ -27,40 +27,35 @@ export class ViewAllCustomersComponent {
 
     this.adminService.getAllCustomers().subscribe(response => {
       this.customer = response;
-      console.log(this.customer);
     });
 }
-deleteHandler=(custId:number)=>{
+deleteHandler = (custId: number, cust: Customer) => {
+  const action = cust.isBlocked ? 'unblock' : 'block';
+  const confirmationMessage = cust.isBlocked ? 'unblock this customer' : 'block this customer';
+  const successMessage = cust.isBlocked ? 'unblocked' : 'blocked';
+  
   Swal.fire({
-    title: 'Are you sure?',
-    text: 'You will not be able to recover this customer!',
+    title: `Are you sure you want to ${action} this customer?`,
+    text: cust.isBlocked ? 'You will be unblocking this customer.' : 'You will be blocking this customer.',
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonText: 'Yes, delete it!',
-    cancelButtonText: 'No, keep it'
+    confirmButtonText: `Yes, ${action} it!`,
+    cancelButtonText: 'No, keep it',
   }).then((result) => {
     if (result.isConfirmed) {
-      this.adminService.deleteCustomerById(custId).subscribe(
-        (response) => {
-          console.log("DELETED "+response);
-          this.customer=this.customer.filter(cust=>{
-            return cust.userId===custId;
-          })
-          Swal.fire(
-            'Deleted!',
-            'Your Customer has been deleted.',
-            'success'
-          );           
-        },
-       
-      );
+      this.adminService.deleteCustomerById(custId, !cust.isBlocked).subscribe((response) => {
+        cust.isBlocked = !cust.isBlocked;
+        Swal.fire(
+          `${action.charAt(0).toUpperCase() + action.slice(1)}!`,
+          `Your customer has been ${successMessage}.`,
+          'success'
+        );
+      });
     } else if (result.dismiss === Swal.DismissReason.cancel) {
-      Swal.fire(
-        'Cancelled',
-        'Your Customer is safe :)',
-        'info'
-      );
+      Swal.fire('Cancelled', 'Your action has been cancelled.', 'info');
     }
   });
-}
+};
+
+
 }

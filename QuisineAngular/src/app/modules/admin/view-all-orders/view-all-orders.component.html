@@ -16,18 +16,21 @@
             <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center;">Time</th>
             <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center;">Restaurant</th>
             <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center;">Customer</th>
+            <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center;">Order Status</th>
             <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center;">Food Item</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let order of currOrders">
-            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.orderId }}</td>
+          <tr *ngFor="let order of currOrders;let i = index">
+            <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ i + 1 }}</td>
             <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.quantity }}</td>
             <td style="border: 1px solid #ccc; padding: 10px; text-align: center">&#8377;{{ order.totalPrice }}</td>
             <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.date | date:'MMM d, y' }}</td>
             <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.date | date:'h:mm a' }}</td>
             <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.restaurant.userName}}</td>
             <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.customer.userName }}</td>
+            <td style="border: 1px solid #ccc; padding: 10px; text-align: center" *ngIf="!order.cancelledOrder">Delivered</td>
+            <td style="border: 1px solid #ccc; padding: 10px; text-align: center" *ngIf="order.cancelledOrder">Cancelled </td>
             <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ order.food.foodName }}</td>
           </tr>
         </tbody>

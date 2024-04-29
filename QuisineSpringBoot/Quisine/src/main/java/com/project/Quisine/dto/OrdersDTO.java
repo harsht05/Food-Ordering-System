@@ -16,4 +16,6 @@ public class OrdersDTO {
 	private Customer customer;
 	private Restaurant restaurant;
 	private FoodDTO food;
+	
+	private boolean cancelledOrder;
 }

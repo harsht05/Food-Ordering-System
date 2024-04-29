@@ -46,12 +46,17 @@
                     
                             <p>Delivery Address: {{ order.deliveryAddress }}, {{ order.customer.userCity }}, {{ order.customer.userState }}, {{ order.customer.userPin }}</p>
                             
-                            <div class="d-flex justify-content-center mt-3">
-                            <button *ngIf="isOrderCancellable(order.date) else elseBlock" class="button-w3ls active" (click)="cancelOrder(order.orderId)">Cancel Order</button>
-                            </div>
-                            <ng-template #elseBlock>
-                                <p>Status : Delivered</p>
-                            </ng-template>
+                                <div *ngIf="!order.cancelledOrder && isOrderCancellable(order.date) else elseBlock" class="d-flex justify-content-center mt-3">
+                                    <button class="button-w3ls active" (click)="cancelOrder(order.orderId)">Cancel Order</button>
+                                    </div>
+        
+                                    <ng-template #elseBlock>
+                                        <p *ngIf="!order.cancelledOrder else cancelBlock">Status : Delivered</p>
+                                    </ng-template>
+        
+                                    <ng-template #cancelBlock>
+                                        <p>Status : Cancelled</p>
+                                    </ng-template>
                         </div>
                     </div>
                 </div>

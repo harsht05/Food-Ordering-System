@@ -16,5 +16,6 @@ public class Restaurant {
 	private String userState;
 	private int userPin;
 	private String role;
+	private Boolean isBlocked;
 
 }

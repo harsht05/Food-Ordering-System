@@ -32,6 +32,7 @@ public class UserEntity {
 	private String userState;
 	private int userPin;
 	private String role;
+	private Boolean isBlocked = false;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)

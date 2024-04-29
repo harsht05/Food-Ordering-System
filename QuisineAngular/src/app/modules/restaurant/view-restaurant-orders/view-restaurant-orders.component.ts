@@ -29,7 +29,6 @@ export class ViewRestaurantOrdersComponent {
       });
 
       this.restaurantOrders = response;
-      console.log(this.restaurantOrders);
       
       
     });

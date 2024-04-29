@@ -24,8 +24,6 @@ export class ChatbotComponent {
 
   onSubmitMsg() {
     const message = this.chatbotForm.value.msg;
-    console.log(message);
-
     if (message !== null) {
       const avatarUrl =
         'https://mrseankumar25.github.io/Sandeep-Kumar-Frontend-Developer-UI-Specialist/images/avatar.png';
@@ -89,9 +87,6 @@ export class ChatbotComponent {
       $('.Messages_list').append(replyMessage);
     } else if (msg.toLowerCase().indexOf('hotels in ') != -1) {
       const city = msg.toLowerCase().trim().substring(10);
-
-      console.log(city);
-
       this.chatbotService.getRestaurantsByCity(city).subscribe((response) => {
         if (response.length > 0) {
           let restaurantsHTML = '';
@@ -204,7 +199,7 @@ export class ChatbotComponent {
             .getMaxRestaurantFoodPrice(hotelname.toLowerCase())
             .subscribe((response) => {
               max = response;
-              if (min != 0 && max != 0) {
+              if (min != 0 && max != 0 && min != null && max != null) {
                 const replyMessage = `
                 <div class="msg my-2" style="
                 display: flex;
@@ -259,8 +254,7 @@ export class ChatbotComponent {
             });
         });
     } else if (msg.toLowerCase().indexOf('cheap hotel in ') != -1) {
-      const city = msg.toLowerCase().trim().substring(15);
-      console.log(city);
+      const city = msg.toLowerCase().trim().substring(15);  
 
       this.chatbotService.getCheapRestaurant(city).subscribe((response) => {
         if (response !== null) {

@@ -1,5 +1,6 @@
 package com.project.Quisine.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
@@ -40,7 +41,7 @@ public class UserEntityController {
 	static int verifyOtp = 0;
 	
 	@PostMapping("sendOtp")
-	public ResponseEntity<Integer> sendOtp(@RequestBody String email) throws AuthenticationFailedException {
+	public ResponseEntity<Integer> sendOtp(@RequestBody String email) throws AuthenticationFailedException, IOException {
 		
 		Random random = new Random();
 		int otp = random.nextInt(100000, 999999);

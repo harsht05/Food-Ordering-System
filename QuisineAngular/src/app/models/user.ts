@@ -11,6 +11,7 @@ export class User {
         public userCity: string = '',
         public userState: string = '',
         public userPin: number = 0,
-        public role: string = ''
+        public role: string = '',
+        public isBlocked:boolean = false,
     ) {}
 }

@@ -58,15 +58,27 @@ export class PaymentGatewayComponent {
     Swal.fire<Address>({
       title: 'Check Your Delivery Address',
       html: `
-      <div class="row" style="width: 460px;">  
-      <input type="text" id="address" class="swal2-input col-md-8" value="${this.delAddress}">
-
-      <div style="display:flex; justify-content: flex-start;">
-        <input type="text" id="city" class="swal2-input col-md-3" value="${this.sessionStorageService.getItem("custCity")}" readonly>
-        <input type="text" id="pin" class="swal2-input col-md-3" value="${this.sessionStorageService.getItem("custPin")}" readonly>
+      <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <input type="text" id="address" class="form-control" value="${this.delAddress}">
+          </div>
+        </div>
       </div>
-
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="text" id="city" class="form-control" value="${this.sessionStorageService.getItem("custCity")}" readonly>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="text" id="pin" class="form-control" value="${this.sessionStorageService.getItem("custPin")}" readonly>
+          </div>
+        </div>
       </div>
+    </div>
       `,
       confirmButtonText: 'Confirm and Make Payement',
       icon:'info',

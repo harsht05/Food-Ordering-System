@@ -11,17 +11,19 @@ import { SessionStorageService } from '../../../services/session-storage.service
   styleUrl: './view-all-restaurants.component.css',
 })
 export class ViewAllRestaurantsComponent {
-  constructor(private route: Router, private adminService: AdminService, private sessionStorageService: SessionStorageService) {}
+  constructor(
+    private route: Router,
+    private adminService: AdminService,
+    private sessionStorageService: SessionStorageService
+  ) {}
   showrest: Restaurant[] = [];
   resStartIdx = 0;
-  resEndIdx = 4; 
+  resEndIdx = 4;
   totalRes = 0;
-  currRest:Restaurant[]=[];
+  currRest: Restaurant[] = [];
 
   ngOnInit(): void {
-
-    if(!this.sessionStorageService.getItem("isAdmin")) {
-
+    if (!this.sessionStorageService.getItem('isAdmin')) {
       this.route.navigate(['accessDenied']);
     }
 
@@ -33,49 +35,42 @@ export class ViewAllRestaurantsComponent {
       this.showrest = response;
       this.totalRes = this.showrest.length;
       this.loadRest();
-      console.log(this.showrest);
     });
   }
-  deleteHandler = (restId: number) => {
+  deleteHandler = (restId: number, rest: Restaurant) => {
+    const action = rest.isBlocked ? 'unblock' : 'block';
+    const confirmationMessage = rest.isBlocked ? 'unblock this restaurant' : 'block this restaurant';
+    const successMessage = rest.isBlocked ? 'unblocked' : 'blocked';
+    
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this restaurant!',
+      title: `Are you sure you want to ${action} this restaurant?`,
+      text: rest.isBlocked ? 'You will be unblocking this restaurant.' : 'You will be blocking this restaurant.',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: `Yes, ${action} it!`,
+      cancelButtonText: 'No, keep it',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.adminService.deleteRestaurantById(restId).subscribe(
-          (response) => {
-            console.log("DELETED "+response);
-            
-            this.showrest=this.showrest.filter(rest=>{
-              return rest.userId===restId;
-            })
-            Swal.fire(
-              'Deleted!',
-              'Your restaurant has been deleted.',
-              'success'
-            );
-
-             
-          },
-         
-        );
+        this.adminService.deleteRestaurantById(restId, !rest.isBlocked).subscribe((response) => {
+          rest.isBlocked = !rest.isBlocked;
+          Swal.fire(
+            `${action.charAt(0).toUpperCase() + action.slice(1)}!`,
+            `Your restaurant has been ${successMessage}.`,
+            'success'
+          );
+        });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'Your restaurant is safe :)',
-          'info'
-        );
+        Swal.fire('Cancelled', 'Your action has been cancelled.', 'info');
       }
     });
   };
   
   
+  
+
+
   viewHandler(restId: number): void {
-    this.route.navigate(['/restaurant/dashboard', restId]);   
+    this.route.navigate(['/restaurant/dashboard', restId]);
   }
   prev() {
     if (this.resStartIdx > 0) {
@@ -97,11 +92,14 @@ export class ViewAllRestaurantsComponent {
   }
 
   loadRest() {
-    if (this.resStartIdx >= 0 && this.resEndIdx < this.totalRes && this.resStartIdx <= this.resEndIdx) {
+    if (
+      this.resStartIdx >= 0 &&
+      this.resEndIdx < this.totalRes &&
+      this.resStartIdx <= this.resEndIdx
+    ) {
       this.currRest = this.showrest.slice(this.resStartIdx, this.resEndIdx + 1);
     } else {
       console.error('Invalid index range or indices.');
     }
   }
-
 }

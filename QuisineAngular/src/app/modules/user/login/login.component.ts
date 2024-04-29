@@ -18,67 +18,53 @@ export class LoginComponent {
   user = new FormGroup(
     {
       "userEmail":new FormControl("",[Validators.required,Validators.pattern('^[a-zA-Z0-9._%+-]+@gmail\.com$')]),
-      "userPass": new FormControl("", [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/)]),
-      "agree": new FormControl([Validators.required])
+      "userPass": new FormControl("", [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/)])
+      // "agree": new FormControl([Validators.required])
     }
   );
 
   login() {
-
-    if(this.user.value.userEmail! === 'admin@gmail.com' && this.user.value.userPass! === 'Admin@1234') {
-
+    if (this.user.value.userEmail === 'admin@gmail.com' && this.user.value.userPass === 'Admin@1234') {
       this.sessionStorage.setItem("isAdmin", "done");
-      console.log(this.sessionStorage.getItem("isAdmin"));
-      
       this.route.navigate(['admin/dashboard']);
-
       Swal.fire(
         'Login Successfully!!',
         '',
         'success'
       );
-    }
-
-    else {
-
+    } else {
       this.service.login(new User(0, '', this.user.value.userEmail!, this.user.value.userPass!, '', '', '', '', '', '', 0, '')).subscribe(response => {
-
-        console.log(response);
-  
-        if(response !== null) {
-          
-          if(response.role === "customer") {
-  
-            console.log(response);
-            this.sessionStorage.setItem("custId", response.userId);
-            this.sessionStorage.setItem("custAddress", response.userAddress);
-            this.sessionStorage.setItem("custCity", response.userCity);
-            this.sessionStorage.setItem("custPin", response.userPin);
+       
+        if (response !== null) {
+          if (response.isBlocked) {
+            Swal.fire(
+              'Account Blocked!!',
+              'Your account has been blocked. Please contact support for assistance.',
+              'error'
+            );
+          } else {
+            if (response.role === "customer") {
             
-            if(this.sessionStorage.getMap("mealsMap") !== null) {
-  
-              this.route.navigate(['customer/payementGateway']);
+              this.sessionStorage.setItem("custId", response.userId);
+              this.sessionStorage.setItem("custAddress", response.userAddress);
+              this.sessionStorage.setItem("custCity", response.userCity);
+              this.sessionStorage.setItem("custPin", response.userPin);
+              if (this.sessionStorage.getMap("mealsMap") !== null) {
+                this.route.navigate(['customer/payementGateway']);
+              } else if (this.sessionStorage.getItem("restId") !== null) {
+                this.route.navigate([`restaurantFoods/${this.sessionStorage.getItem("restId")}`]);
+              } else {
+                this.route.navigate(['restaurants']);
+              }
               Swal.fire(
                 'Login Successfully!!',
                 '',
                 'success'
               );
             }
-  
-            else if(this.sessionStorage.getItem("restId") !== null) {
-  
-              this.route.navigate([`restaurantFoods/${this.sessionStorage.getItem("restId")}`]);
-              Swal.fire(
-                'Login Successfully!!',
-                '',
-                'success'
-              );
-            }
-  
-            else {
-  
-              // window.history.go(-1);
-              this.route.navigate(['restaurants']);
+            if (response.role === 'restaurant') {
+              this.sessionStorage.setItem("restaurantId", response.userId);
+              this.route.navigate([`restaurant/dashboard/${response.userId}`]);
               Swal.fire(
                 'Login Successfully!!',
                 '',
@@ -86,33 +72,15 @@ export class LoginComponent {
               );
             }
           }
-  
-          if(response.role === 'restaurant') {
-  
-            this.sessionStorage.setItem("restaurantId", response.userId);
-            this.route.navigate([`restaurant/dashboard/${response.userId}`]);
-              Swal.fire(
-                'Login Successfully!!',
-                '',
-                'success'
-              );
-          }
-          
-        }
-  
-        else {
-  
+        } else {
           Swal.fire(
             'Wrong Credentials Entered!!',
             'Please enter valid credentials....',
             'error'
           );
         }
-        
       });
     }
-
-    
   }
   
   

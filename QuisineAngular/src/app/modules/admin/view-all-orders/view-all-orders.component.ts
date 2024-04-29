@@ -33,7 +33,6 @@ export class ViewAllOrdersComponent {
       this.allOrders.reverse();
       this.totalRes = this.allOrders.length;
       this.loadOrders();
-      console.log(this.allOrders);
       
     });
   }

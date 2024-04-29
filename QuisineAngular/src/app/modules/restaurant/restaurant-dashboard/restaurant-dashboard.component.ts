@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Restaurant } from '../../../models/restaurant';
 import Swal from 'sweetalert2';
 import { SessionStorageService } from '../../../services/session-storage.service';
-// import * as bootstrap from 'bootstrap';
 
 
 @Component({
@@ -14,7 +13,7 @@ import { SessionStorageService } from '../../../services/session-storage.service
   styleUrl: './restaurant-dashboard.component.css'
 })
 export class RestaurantDashboardComponent {
-  @ViewChild('updateModal') updateModal!: ElementRef; // Reference to the modal element
+  @ViewChild('updateModal') updateModal!: ElementRef; 
 
   restaurantForm!: FormGroup;
   restaurant: any;
@@ -25,7 +24,6 @@ export class RestaurantDashboardComponent {
   constructor(private restaurantService: RestaurantService,private route:ActivatedRoute,private router:Router, private fb: FormBuilder, private sessionStorageService: SessionStorageService) { }
 
   ngOnInit(): void {
-    console.log(this.sessionStorageService.getItem("isAdmin"));
     
     
     if(this.sessionStorageService.getItem("restaurantId") === null && this.sessionStorageService.getItem("isAdmin")!=="done") {
@@ -47,7 +45,6 @@ export class RestaurantDashboardComponent {
       userName: ['', Validators.required],
       userCity: ['', Validators.required],
       userState: ['', Validators.required],
-      // userPin: ['', Validators.required, Validators.pattern('[0-9]+')],
       userPin: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(6), Validators.maxLength(6)]],
 
       userContact: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(10), Validators.maxLength(10)]],
@@ -108,11 +105,11 @@ export class RestaurantDashboardComponent {
             role: this.restaurant.role,
             userImg: this.restImage,
             restOwnerName: this.restaurant.restOwnerName,
+            isBlocked: false,
             userAddress: this.restaurant.userAddress
           };
           this.restaurantService.updateRestaurant(updatedRestaurant).subscribe(
             () => {
-              console.log('Restaurant updated successfully');
               this.router.navigate(['/restaurant/dashboard', this.restaurantId]);
             },
             (error) => {
@@ -122,8 +119,7 @@ export class RestaurantDashboardComponent {
           );
     
         }
-        // this.custService.updateCustomer(new Customer(this.customerId, this.user.value.userName!, this.user.value.userEmail!, this.user.value.userPass!, this.userImage, this.user.value.userContact!, this.user.value.userAddress!, this.user.value.userCity!, this.customer.userState, this.user.value.userPin!, "customer")).subscribe(response => {
-        // });
+        
 
         Swal.fire(
           'Profile Updated Successfully!',

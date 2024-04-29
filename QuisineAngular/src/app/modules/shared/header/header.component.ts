@@ -78,10 +78,8 @@ export class HeaderComponent {
       this.userService.getCustomerById(this.customerId).subscribe(response => {
 
         this.customer = response;
-        console.log(response);
         
         this.imageUrl = "assets/images/" + this.customer.userImg;
-        console.log(this.imageUrl);
         
   
         this.user.patchValue({

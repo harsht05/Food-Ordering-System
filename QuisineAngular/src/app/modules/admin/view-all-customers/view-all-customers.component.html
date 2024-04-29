@@ -12,20 +12,24 @@
                     <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center"><i class="fa-solid fa-city"></i>   City</th>
                     <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center"><i class="fa-brands fa-usps"></i>   State</th>
                     <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center"><i class="fa-solid fa-location-dot"></i>   Pincode</th>
-                    <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">Delete</th>
+                    <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px; text-align: center">Block</th>
                 </tr>
             </thead>
             <tbody>
                 
-                    <tr *ngFor="let cust of customer">
-                        <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{cust.userName}}</td>
+                    <tr *ngFor="let cust of customer;let i = index">
+                        <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{i+1}}</td>
                         <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{cust.userEmail}}</td>
                         <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{cust.userContact}}</td>
                         <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{cust.userCity}}</td>
                         <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{cust.userState}}</td>
                         <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{cust.userPin}}</td>
-                        <td style="border: 1px solid #ccc; padding: 10px; text-align: center"><a (click)="deleteHandler(cust.userId)" class="btn btn-danger" style="text-decoration: none;color: white;"><i class="fa-solid fa-trash">  </i></a>
+                        <td *ngIf="!cust.isBlocked" style="border: 1px solid #ccc; padding: 10px; text-align: center;">
+                            <a (click)="deleteHandler(cust.userId,cust)" class="btn btn-danger" style="text-decoration: none;color: white;"><i class="fa-solid fa-user-lock">   </i></a>
                         </td>
+                        <td *ngIf="cust.isBlocked" style="border: 1px solid #ccc; padding: 10px; text-align: center;">
+                            <a (click)="deleteHandler(cust.userId,cust)" class="btn btn-danger" style="text-decoration: none;color: white;">Blocked</a>
+                        </td>                        
                     </tr>
             </tbody>
         </table>

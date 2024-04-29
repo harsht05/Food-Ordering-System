@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantService } from '../../../services/restaurant.service';
 import Swal from 'sweetalert2';
 import { RestaurantFood } from '../../../models/restaurant-food';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SessionStorageService } from '../../../services/session-storage.service';
 
 @Component({
@@ -70,30 +70,8 @@ export class ViewFoodItemsComponent {
       }
     );
   }
-  // {
-  //   this.restaurantService.deleteFoodItem(foodId).subscribe(
-  //     () => {
-  //       this.foods = this.foods.filter(food => food.id !== foodId);
-  //     },
-  //     (error) => {
-  //       console.error('Error deleting food item:', error);
-  //     }
-  //   );
-  // }
-  // deleteFoodItem(foodId: number): void {
-
-    
-  //     this.restaurantService.deleteFoodItem(foodId).subscribe(
-  //       () => {
-  //         this.foods = this.foods.filter(food => food.id !== foodId);
-  //       },
-  //       (error) => {
-  //         console.error('Error deleting food item:', error);
-  //       }
-  //     );
-  // }
+  
   deleteFoodItem(foodId: number): void {
-    // Display a confirmation alert before deleting the food item
     Swal.fire({
       title: 'Are you sure?',
       text: 'Are you sure you want to delete it?',
@@ -129,16 +107,11 @@ export class ViewFoodItemsComponent {
     });
   }
   updateFoodItem( foodId: number): void {
-    // this.router.navigate(['/restaurant/updateFoodItems', foodId,this.restaurantId]); // Navigate to update-food component with foodId as parameter
     this.restaurantFoodId = foodId;
 
     this.restaurantService.getRestaurantFoodItem(this.restaurantFoodId).subscribe(response => {
-      console.log("jiogdfhgiuvhdfhgfiuhgosg"+response.id);
       this.rate = response.rate
       
-      // this.foodUpdateForm.patchValue({
-      //   rate: response.rate, 
-      // });      
   
     })
   }
@@ -173,11 +146,10 @@ export class ViewFoodItemsComponent {
             }
           );
         }
-        // this.custService.updateCustomer(new Customer(this.customerId, this.user.value.userName!, this.user.value.userEmail!, this.user.value.userPass!, this.userImage, this.user.value.userContact!, this.user.value.userAddress!, this.user.value.userCity!, this.customer.userState, this.user.value.userPin!, "customer")).subscribe(response => {
-        // });
+        
 
         Swal.fire(
-          'Food Item Added SUccessfully!',
+          'Food Item Added Successfully!',
           '',
           'success'
         ).then((result) => {
@@ -203,11 +175,9 @@ export class ViewFoodItemsComponent {
       if (result.value) {
         if (this.foodUpdateForm.valid) {
           let updatedRate = this.foodUpdateForm.value.rate;
-          console.log("Updated Rate" + updatedRate);
 
 
           this.restaurantService.updateRestaurantFoodRate(this.restaurantFoodId, updatedRate).subscribe(() => {
-            console.log('Restaurant food rate updated successfully:');
 
             this.router.navigate(['/restaurant/dashboard', this.restaurantId]);
 
@@ -215,7 +185,6 @@ export class ViewFoodItemsComponent {
             console.error('Error updating restaurant food rate:', error);
 
           });
-          console.log("Restaurant ID:" + this.restaurantId);
 
 
           this.router.navigate(['/restaurant/dashboard', this.restaurantId]);

@@ -8,7 +8,7 @@
                 <caption></caption>
                 <thead >
                     <tr>
-                        <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px;">Restaurant ID</th>
+                        <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px;">Sr.No</th>
                         <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px;">Name</th>
                         <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px;">Email</th>
                         <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px;">Contact</th>
@@ -16,13 +16,13 @@
                         <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px;">State</th>
                         <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px;">Pincode</th>
                         <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px;">Image</th>
-                        <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px;">Delete</th>
+                        <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px;">Block</th>
                         <th style="background-color: #6FC3DF; color: white; border: 1px solid #949292; padding: 10px;height: 20px;">View</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let rest of currRest">
-                        <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{rest.userId}}</td>
+                    <tr *ngFor="let rest of currRest;let i = index">
+                        <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{ i + 1 }}</td>
                         <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{rest.userName}}</td> 
                         <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{rest.userEmail}}</td>
                         <td style="border: 1px solid #ccc; padding: 10px; text-align: center">{{rest.userContact}}</td>
@@ -32,8 +32,11 @@
                         <td style="border: 1px solid #ccc; padding: 10px; text-align: center;">
                             <img [src]="'assets/images/hotels/' + rest.userImg" alt="{{rest.userImg}}" class="restaurant-image" style="height: 60px; width: 80px;">
                         </td>
-                        <td style="border: 1px solid #ccc; padding: 10px; text-align: center;">
-                            <a (click)="deleteHandler(rest.userId)" class="btn btn-danger" style="text-decoration: none;color: white;"><i class="fa-solid fa-trash">  </i></a>
+                        <td *ngIf="!rest.isBlocked" style="border: 1px solid #ccc; padding: 10px; text-align: center;">
+                            <a (click)="deleteHandler(rest.userId,rest)" class="btn btn-danger" style="text-decoration: none;color: white;"><i class="fa-solid fa-user-lock"> </i></a>
+                        </td>
+                        <td *ngIf="rest.isBlocked" style="border: 1px solid #ccc; padding: 10px; text-align: center;">
+                            <a (click)="deleteHandler(rest.userId,rest)" class="btn btn-danger" style="text-decoration: none;color: white;">Blocked</a>
                         </td>
                         <td style="border: 1px solid #ccc; padding: 10px; text-align: center;">
                             <a (click)="viewHandler(rest.userId)" class="btn btn-secondary" style="text-decoration: none; color: white;"><i class="fa-solid fa-eye">  </i></a>

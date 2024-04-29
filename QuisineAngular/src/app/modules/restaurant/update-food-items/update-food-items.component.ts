@@ -30,7 +30,6 @@ export class UpdateFoodItemsComponent implements OnInit {
     
     
     this.restaurantService.getRestaurantFoodItem(this.restaurantFoodId).subscribe(response => {
-      console.log("jiogdfhgiuvhdfhgfiuhgosg"+response.id);
       
       
       this.foodForm.patchValue({
@@ -45,11 +44,9 @@ export class UpdateFoodItemsComponent implements OnInit {
   submitForm(): void {
     if (this.foodForm.valid) {
       let updatedRate = this.foodForm.value.rate;
-      console.log("jjgjjggjgjgjgjjgjgg"+updatedRate);
       
 
       this.restaurantService.updateRestaurantFoodRate(this.restaurantFoodId, updatedRate).subscribe(() => {
-        console.log('Restaurant food rate updated successfully:');
         
         this.router.navigate(['/restaurant/dashboard', this.restaurantId]);
 
@@ -57,7 +54,6 @@ export class UpdateFoodItemsComponent implements OnInit {
         console.error('Error updating restaurant food rate:', error);
 
       });
-      console.log("Restaurant ID:"+this.restaurantId);
       
 
       this.router.navigate(['/restaurant/dashboard', this.restaurantId]);

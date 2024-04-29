@@ -40,7 +40,6 @@ export class AddFoodItemsComponent implements OnInit {
     if (this.foodForm.valid) {
       const foodData = this.foodForm.value;
 
-      console.log(foodData);
       
       const restaurantFood: RestaurantFood = new RestaurantFood(
         0,
@@ -51,7 +50,6 @@ export class AddFoodItemsComponent implements OnInit {
     
       this.restaurantService.addFoodItem(restaurantFood).subscribe(response=> {
 
-        console.log(response);
         this.router.navigate([`restaurant/dashboard/${this.restaurantId}`]);
         
       }

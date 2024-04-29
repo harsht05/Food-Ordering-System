@@ -70,7 +70,6 @@ export class ViewOrdersComponent {
   ngOnInit() {
 
     const cid = this.sessionStorage.getItem("custId");
-    console.log(cid);
     
     if(cid === null) {
 
@@ -89,8 +88,6 @@ export class ViewOrdersComponent {
       });
 
       this.orders = response;
-      console.log(this.orders);
-      
 
       this.totalRes = this.orders.length;
 

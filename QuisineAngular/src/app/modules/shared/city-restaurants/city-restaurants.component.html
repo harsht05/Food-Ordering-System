@@ -1,6 +1,7 @@
 <app-header></app-header>
       
-      <div *ngIf="city != null && city != ''; else nocity" class="container-fluid p-3">
+<div  *ngIf="city != null && city != ''; else nocity" >
+      <div class="container-fluid p-3">
   
         <p class="fw-bolder fs-2 text-center mt-4 mb-3 heading">Hotels In {{city}}</p>
     
@@ -24,11 +25,22 @@
             </div>
         </div>
     </div>
-
+    <app-footer></app-footer>
+</div>
     <ng-template #nocity>
         <p class="fw-bolder fs-2 text-center mt-4 mb-3 heading">No City Selected</p>
+        <img
+        class=""
+        style="height: 45vh; width: 100%"
+        src="../../../../assets/images/undraw_taken_re_yn20.svg"
+        alt=""
+      />
+
+      <div style="position: fixed; bottom: 0; width: 100%;">
+        <app-footer></app-footer>
+      </div>
     </ng-template>
 
-<app-footer></app-footer>
+    
   
       

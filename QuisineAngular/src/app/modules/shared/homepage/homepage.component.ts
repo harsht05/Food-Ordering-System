@@ -18,7 +18,6 @@ export class HomepageComponent {
 
     this.userService.getAllRestaurants().subscribe(response => {
       this.restaurants = response;
-      console.log(this.restaurants);
     });
   }
   homesubmit(){
