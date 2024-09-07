@@ -44,19 +44,15 @@ class UserServiceTest {
             return user;
         });
 
-        // Call the addUser method
         UserEntity savedUser = userService.addUser(userEntity);
 
-        // Verify that userRepository.save() method was called with correct arguments
         verify(userRepository).save(userEntity);
 
-        // Verify that password encoder was called with correct argument
         verify(passwordEncoder).encode("password");
 
-        // Assert the returned user entity
-        assertEquals(1, savedUser.getUserId()); // Assuming user id is set to 1
+        assertEquals(1, savedUser.getUserId()); 
         assertEquals("testUser", savedUser.getUserName());
         assertEquals("test@example.com", savedUser.getUserEmail());
-        assertEquals("encodedPassword", savedUser.getUserPass()); // Assuming password was encoded as expected
-    }
+        assertEquals("encodedPassword", savedUser.getUserPass()); 
+}
 }
